@@ -1,4 +1,4 @@
-# Backend Challenge
+# Back-end Challenge
 
 Desafio para os futuros programadores back-end da Apiki.
 
