@@ -27,6 +27,9 @@ Desenvolva uma API que faça conversão de moedas.
 * PHP >= 5.6
 * Orientado a objetos
 
+## Modo de uso da API
+Forma de utilização: http://localhost/BRL/1.00/3.00/USD/json
+ -- http://endereco/moedaDe/valor/valorCotacao/moedaPara/tipoRetorno
 ## Dúvidas
 
 Em caso de dúvidas, crie uma issue.
