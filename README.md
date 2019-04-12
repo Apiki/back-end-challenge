@@ -1,3 +1,19 @@
+# API
+Para utilizar a API, é preciso criar uma chave no site https://hgbrasil.com/status/finance/#chaves-de-api e inserir no arquivo **cotacao.php**
+
+**Variáveis:**
+* valor : (float)
+* moedaorigem : (string) - valores aceitos ['brl', 'usd', 'eur']
+* moedadestino : (string) - valores aceitos ['brl', 'usd', 'eur']
+
+**Retorno**
+     ValorEntrada : "valor para conversão",
+    "MoedaOrigem"
+    "MoedaDestino"
+    "Valor convertido"
+    
+
+
 # Back-end Challenge
 
 Desafio para os futuros programadores back-end da Apiki.
