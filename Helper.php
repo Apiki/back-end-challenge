@@ -2,24 +2,11 @@
 
 class Helper{
 
-    /**
-     * Retorna um array com os valores de conversão de uma moeda para outra considerando 1 unidade de moeda
-     * @return array
-     */
-    public function currencyMap(){
-        return [
-            'brl' => [
-                'usd' => 0.25,
-                'eur' => 0.22
-            ],
-            'eur' => [
-                'brl' => 4.45,
-            ],
-            'usd' => [
-                'brl' => 3.97,
-            ]
-        ];
-    }
+    static $CURRENCY = [
+        'brl',
+        'eur',
+        'usd'
+    ];
 
     /**
      * Retorna o simbolo da moeda com base na sigla da mesma
@@ -36,15 +23,20 @@ class Helper{
     }
 
     /**
-     * Realiza o calculo da moeda atual para outra moeda com base na cotação
+     * Retorna true se a conversão for inválida, false se ela for valida
      * @param string $from
      * @param string $to
-     * @param numeric $quote
-     * @return numeric
+     * @return boolean
      */
-    static function getCurrencyValue($from, $to, $quote){
-        $values = self::currencyMap();
-        return $values[$from][$to] * $quote;
+    public function invalidExchange($from, $to){
+        switch($from){
+            case $to:
+                return true;
+            case 'eur':
+                return 'usd' == $to;
+            case 'usd':
+                return 'eur' == $to;
+        }
     }
 
     /**
@@ -73,7 +65,7 @@ class Helper{
     }
 
     /**
-     * Retorno da API incluido uma mensagem e com status 405 - Not Accetable
+     * Retorno da API incluido uma mensagem e com status 405 - Not Acceptable
      * @param string $message
      * @return string
      */
