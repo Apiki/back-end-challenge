@@ -6,6 +6,6 @@ Tipo : GET
 
 Parametros :
 
-- from : Simbolo da moeda de origem
-- to : Simbolo da moeda de destino
+- from : Moeda de origem (eur,brl,usd)
+- to : Moeda de destino (eur,brl,usd)
 - amount : Valor para ser convertido
