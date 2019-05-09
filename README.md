@@ -3,8 +3,9 @@
 ## Requisição para conversão de moedas
 
 Tipo : GET
+
 Parametros :
 
-- from
-- to
-- amount
+- from <Simbolo da moeda de origem>
+- to <Simbola da moeda de destino>
+- amount <Valor para ser convertido>
