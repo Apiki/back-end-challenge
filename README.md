@@ -1,4 +1,6 @@
 # Flads - Back-end Challenge
+### Resposta ao desafio para os futuros programadores back-end da Apiki.
+### Uma API de conversão de moedas.
 
 ### Instruções básicas
 - Existem 4 recursos, um para cada tipo de conversão.
@@ -16,6 +18,8 @@
 
 ### Exemplo de requisição feita usando o Postman:
 ![alt text](https://github.com/flads/back-end-challenge/blob/master/image-postman.png)
+
+## Executando o projeto em um servidor local
 
 ### 1. Clone este repositório
 ```
