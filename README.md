@@ -14,6 +14,9 @@
 - [value]: valor a ser convertido.
 - [price]: cotação do dólar ou do euro.
 
+### Exemplo de requisição feita usando o Postman:
+![alt text](https://github.com/flads/back-end-challenge/blob/master/image-postman.png)
+
 ### 1. Clone este repositório
 ```
 git clone https://github.com/flads/back-end-challenge.git
