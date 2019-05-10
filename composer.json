@@ -1,0 +1,15 @@
+{
+    "name": "flads/back-end-challenge",
+    "description": "Resposta ao desafio para os futuros programadores back-end da Apiki.",
+    "require": {
+        "slim/slim": "^3.12",
+        "vlucas/phpdotenv": "^3.3",
+        "rain/raintpl": "^3.1"
+    },
+    "authors": [
+        {
+            "name": "Fábio Lucas",
+            "email": "fabio.souza.rn@hotmail.com"
+        }
+    ]
+}
