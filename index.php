@@ -4,9 +4,6 @@ session_start();
 
 require_once("vendor/autoload.php");
 
-$dotenv = Dotenv\Dotenv::create(__DIR__);
-$dotenv -> load();
-
 // require_once("src/php-functions/functions.php");
 // require_once("config/config.php");
 

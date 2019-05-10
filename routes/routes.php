@@ -1,8 +1,5 @@
 <?php
 
-use \Flads\Sql;
-use \Flads\Model\User;
-
 // EXEMPLO DE URL:
 /*
 {
@@ -11,22 +8,22 @@ use \Flads\Model\User;
     -> url: domínio que está sendo utilizado, no nosso caso estamos usando o "localhost" mesmo.
     -> moeda-to-moeda: de qual moeda para qual moeda o valor vai ser convertido.
     -> value: valor a ser convertido.
-    -> price: cotação da moeda a qual vai ser convertida
+    -> price: cotação do dólar ou do euro.
 }
 */
 
 /* CONVERSÃO DE REAL PARA DÓLAR */
 $app->get('/real-to-dolar/{value}/{price}', function ($request, $response, $args)
 {
-    $value = $args[value];
-    $price = $args[price];
+    $value = $args["value"];
+    $price = str_replace(",", ".", $args["price"]);
 
-    $conversion = $value * $price;
+    $conversion = $value / $price;
 
     $result = [
         "coin" => "$",
         "value" => $conversion
-    ]
+    ];
 
     return $response -> withJson($result);
 });
@@ -35,15 +32,15 @@ $app->get('/real-to-dolar/{value}/{price}', function ($request, $response, $args
 /* CONVERSÃO DE DÓLAR PARA REAL */
 $app->get('/dolar-to-real/{value}/{price}', function ($request, $response, $args)
 {
-    $value = $args[value];
-    $price = $args[price];
+    $value = $args["value"];
+    $price = str_replace(",", ".", $args["price"]);
 
     $conversion = $value * $price;
 
     $result = [
         "coin" => "R$",
         "value" => $conversion
-    ]
+    ];
 
     return $response -> withJson($result);
 });
@@ -52,15 +49,15 @@ $app->get('/dolar-to-real/{value}/{price}', function ($request, $response, $args
 /* CONVERSÃO DE REAL PARA EURO */
 $app->get('/real-to-euro/{value}/{price}', function ($request, $response, $args)
 {
-    $value = $args[value];
-    $price = $args[price];
+    $value = $args["value"];
+    $price = str_replace(",", ".", $args["price"]);
 
-    $conversion = $value * $price;
+    $conversion = $value / $price;
 
     $result = [
         "coin" => "€",
         "value" => $conversion
-    ]
+    ];
 
     return $response -> withJson($result);
 });
@@ -69,15 +66,15 @@ $app->get('/real-to-euro/{value}/{price}', function ($request, $response, $args)
 /* CONVERSÃO DE EURO PARA REAL */
 $app->get('/euro-to-real/{value}/{price}', function ($request, $response, $args)
 {
-    $value = $args[value];
-    $price = $args[price];
+    $value = $args["value"];
+    $price = str_replace(",", ".", $args["price"]);
 
     $conversion = $value * $price;
 
     $result = [
         "coin" => "R$",
         "value" => $conversion
-    ]
+    ];
 
     return $response -> withJson($result);
 });
