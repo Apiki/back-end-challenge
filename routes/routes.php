@@ -22,7 +22,7 @@ $app->get('/real-to-dolar/{value}/{price}', function ($request, $response, $args
 
     $result = [
         "coin" => "$",
-        "value" => $conversion
+        "value" => round($conversion, 2)
     ];
 
     return $response -> withJson($result);
@@ -39,7 +39,7 @@ $app->get('/dolar-to-real/{value}/{price}', function ($request, $response, $args
 
     $result = [
         "coin" => "R$",
-        "value" => $conversion
+        "value" => round($conversion, 2)
     ];
 
     return $response -> withJson($result);
@@ -56,7 +56,7 @@ $app->get('/real-to-euro/{value}/{price}', function ($request, $response, $args)
 
     $result = [
         "coin" => "€",
-        "value" => $conversion
+        "value" => round($conversion, 2)
     ];
 
     return $response -> withJson($result);
@@ -73,7 +73,7 @@ $app->get('/euro-to-real/{value}/{price}', function ($request, $response, $args)
 
     $result = [
         "coin" => "R$",
-        "value" => $conversion
+        "value" => round($conversion, 2)
     ];
 
     return $response -> withJson($result);
