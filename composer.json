@@ -1,0 +1,20 @@
+{
+    "name": "ricardosaraiva/cotar-moeda",
+    "description": "Cotação de moeda",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ricardo Saraiva",
+            "email": "ricardobboy_@hotmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "^3.12"
+    },
+    "autoload": {
+        "psr-4": {
+            "Controller\\" : "public/Controller/",
+            "Src\\" : "Src/"
+        }
+    }
+}
