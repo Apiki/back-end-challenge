@@ -3,6 +3,10 @@
 namespace Src\Tipos;
 
 class TipoFloat extends Tipo {
+
+    /**
+     * @throws TipoException
+     */
     public function validar() {
         if (!preg_match('/^[0-9]+(.[0-9]+)?$/', $this->valor)) {
             throw new TipoException(
@@ -13,6 +17,9 @@ class TipoFloat extends Tipo {
         }        
     }
 
+    /**
+     * @return float
+     */
     public function getValor() {
         return (float) $this->valor;
     }

@@ -7,10 +7,19 @@ use Src\Tipos\TipoFloat;
 use Src\Tipos\TipoException;
 use Src\Cotacao\BancoCentral\Cotacao as CotacaoMoeda;
 
+use Slim\Http\Response;
+use Slim\Http\Request;
+
 
 class Cotacao {
     
-    public function cotar ($req, $res, $arg) {
+    /**
+     * @param Request $req
+     * @param Response $res
+     * @param array $arg
+     * @return void
+     */
+    public function cotar (Request $req, Response $res, $arg) {
 
         try {
 
