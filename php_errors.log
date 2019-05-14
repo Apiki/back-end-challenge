@@ -1,0 +1,42 @@
+[13-May-2019 22:08:53 America/Sao_Paulo] PHP Warning:  Unknown: failed to open stream: No such file or directory in Unknown on line 0
+[13-May-2019 22:08:53 America/Sao_Paulo] PHP Fatal error:  Unknown: Failed opening required '/var/www/html/apiki-teste/php/index.php' (include_path='.:/usr/share/php') in Unknown on line 0
+[13-May-2019 22:11:45 America/Sao_Paulo] PHP Warning:  Missing argument 3 for {closure}(), called in /var/www/html/apiki-teste/php/vendor/slim/slim/Slim/App.php on line 530 and defined in /var/www/html/apiki-teste/php/rotas.php on line 12
+[13-May-2019 22:11:45 America/Sao_Paulo] PHP Stack trace:
+[13-May-2019 22:11:45 America/Sao_Paulo] PHP   1. {main}() /var/www/html/apiki-teste/php/public/index.php:0
+[13-May-2019 22:11:45 America/Sao_Paulo] PHP   2. Slim\App->run() /var/www/html/apiki-teste/php/public/index.php:16
+[13-May-2019 22:11:45 America/Sao_Paulo] PHP   3. Slim\App->process() /var/www/html/apiki-teste/php/vendor/slim/slim/Slim/App.php:313
+[13-May-2019 22:11:45 America/Sao_Paulo] PHP   4. Slim\App->callMiddlewareStack() /var/www/html/apiki-teste/php/vendor/slim/slim/Slim/App.php:405
+[13-May-2019 22:11:45 America/Sao_Paulo] PHP   5. Slim\App->__invoke() /var/www/html/apiki-teste/php/vendor/slim/slim/Slim/MiddlewareAwareTrait.php:117
+[13-May-2019 22:11:45 America/Sao_Paulo] PHP   6. {closure:/var/www/html/apiki-teste/php/rotas.php:12-14}() /var/www/html/apiki-teste/php/vendor/slim/slim/Slim/App.php:530
+[13-May-2019 22:11:45 America/Sao_Paulo] PHP Notice:  Undefined variable: response in /var/www/html/apiki-teste/php/rotas.php on line 13
+[13-May-2019 22:11:45 America/Sao_Paulo] PHP Stack trace:
+[13-May-2019 22:11:45 America/Sao_Paulo] PHP   1. {main}() /var/www/html/apiki-teste/php/public/index.php:0
+[13-May-2019 22:11:45 America/Sao_Paulo] PHP   2. Slim\App->run() /var/www/html/apiki-teste/php/public/index.php:16
+[13-May-2019 22:11:45 America/Sao_Paulo] PHP   3. Slim\App->process() /var/www/html/apiki-teste/php/vendor/slim/slim/Slim/App.php:313
+[13-May-2019 22:11:45 America/Sao_Paulo] PHP   4. Slim\App->callMiddlewareStack() /var/www/html/apiki-teste/php/vendor/slim/slim/Slim/App.php:405
+[13-May-2019 22:11:45 America/Sao_Paulo] PHP   5. Slim\App->__invoke() /var/www/html/apiki-teste/php/vendor/slim/slim/Slim/MiddlewareAwareTrait.php:117
+[13-May-2019 22:11:45 America/Sao_Paulo] PHP   6. {closure:/var/www/html/apiki-teste/php/rotas.php:12-14}() /var/www/html/apiki-teste/php/vendor/slim/slim/Slim/App.php:530
+[13-May-2019 22:11:46 America/Sao_Paulo] PHP Warning:  Missing argument 3 for {closure}(), called in /var/www/html/apiki-teste/php/vendor/slim/slim/Slim/App.php on line 530 and defined in /var/www/html/apiki-teste/php/rotas.php on line 12
+[13-May-2019 22:11:46 America/Sao_Paulo] PHP Stack trace:
+[13-May-2019 22:11:46 America/Sao_Paulo] PHP   1. {main}() /var/www/html/apiki-teste/php/public/index.php:0
+[13-May-2019 22:11:46 America/Sao_Paulo] PHP   2. Slim\App->run() /var/www/html/apiki-teste/php/public/index.php:16
+[13-May-2019 22:11:46 America/Sao_Paulo] PHP   3. Slim\App->process() /var/www/html/apiki-teste/php/vendor/slim/slim/Slim/App.php:313
+[13-May-2019 22:11:46 America/Sao_Paulo] PHP   4. Slim\App->callMiddlewareStack() /var/www/html/apiki-teste/php/vendor/slim/slim/Slim/App.php:405
+[13-May-2019 22:11:46 America/Sao_Paulo] PHP   5. Slim\App->__invoke() /var/www/html/apiki-teste/php/vendor/slim/slim/Slim/MiddlewareAwareTrait.php:117
+[13-May-2019 22:11:46 America/Sao_Paulo] PHP   6. {closure:/var/www/html/apiki-teste/php/rotas.php:12-14}() /var/www/html/apiki-teste/php/vendor/slim/slim/Slim/App.php:530
+[13-May-2019 22:11:46 America/Sao_Paulo] PHP Notice:  Undefined variable: response in /var/www/html/apiki-teste/php/rotas.php on line 13
+[13-May-2019 22:11:46 America/Sao_Paulo] PHP Stack trace:
+[13-May-2019 22:11:46 America/Sao_Paulo] PHP   1. {main}() /var/www/html/apiki-teste/php/public/index.php:0
+[13-May-2019 22:11:46 America/Sao_Paulo] PHP   2. Slim\App->run() /var/www/html/apiki-teste/php/public/index.php:16
+[13-May-2019 22:11:46 America/Sao_Paulo] PHP   3. Slim\App->process() /var/www/html/apiki-teste/php/vendor/slim/slim/Slim/App.php:313
+[13-May-2019 22:11:46 America/Sao_Paulo] PHP   4. Slim\App->callMiddlewareStack() /var/www/html/apiki-teste/php/vendor/slim/slim/Slim/App.php:405
+[13-May-2019 22:11:46 America/Sao_Paulo] PHP   5. Slim\App->__invoke() /var/www/html/apiki-teste/php/vendor/slim/slim/Slim/MiddlewareAwareTrait.php:117
+[13-May-2019 22:11:46 America/Sao_Paulo] PHP   6. {closure:/var/www/html/apiki-teste/php/rotas.php:12-14}() /var/www/html/apiki-teste/php/vendor/slim/slim/Slim/App.php:530
+[13-May-2019 22:12:30 America/Sao_Paulo] PHP Warning:  Missing argument 3 for {closure}(), called in /var/www/html/apiki-teste/php/vendor/slim/slim/Slim/App.php on line 530 and defined in /var/www/html/apiki-teste/php/rotas.php on line 12
+[13-May-2019 22:12:30 America/Sao_Paulo] PHP Stack trace:
+[13-May-2019 22:12:30 America/Sao_Paulo] PHP   1. {main}() /var/www/html/apiki-teste/php/public/index.php:0
+[13-May-2019 22:12:30 America/Sao_Paulo] PHP   2. Slim\App->run() /var/www/html/apiki-teste/php/public/index.php:16
+[13-May-2019 22:12:30 America/Sao_Paulo] PHP   3. Slim\App->process() /var/www/html/apiki-teste/php/vendor/slim/slim/Slim/App.php:313
+[13-May-2019 22:12:30 America/Sao_Paulo] PHP   4. Slim\App->callMiddlewareStack() /var/www/html/apiki-teste/php/vendor/slim/slim/Slim/App.php:405
+[13-May-2019 22:12:30 America/Sao_Paulo] PHP   5. Slim\App->__invoke() /var/www/html/apiki-teste/php/vendor/slim/slim/Slim/MiddlewareAwareTrait.php:117
+[13-May-2019 22:12:30 America/Sao_Paulo] PHP   6. {closure:/var/www/html/apiki-teste/php/rotas.php:12-14}() /var/www/html/apiki-teste/php/vendor/slim/slim/Slim/App.php:530

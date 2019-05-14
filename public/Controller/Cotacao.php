@@ -31,7 +31,7 @@ class Cotacao {
             $cotar = $cotacao->cotar($de, $para, $valor);
 
             return $res->withJson([
-                'valor' => number_format($cotar->getValor()->getValor(), 2, ',', '.'),
+                'valor' => number_format($cotar->getValor()->getValor(), 2, '.', ''),
                 'simbolo' => $cotar->getMoeda()->getSimbolo()
             ]);
 
