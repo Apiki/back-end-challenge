@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+	<meta charset="UTF-8">
+   <title>pagina princiapl</title>
+</head>
+
+<body>
+   <form method="post" action="conversor.php">
+      <select title="Conversão" name="conversao" tabindex="20">
+         <option value="dolar" selected="">Real para Dólar</option>
+         <option value="real">Dólar para real</option>
+         <option value="euro">Real para Euro</option>
+         <option value="real">Euro para Real</option>
+      </select> <br />
+
+      <label for="valor-converter">Valor para converter:</label>
+      <input type="text" id="valor-converter" name="valor-converter" /><br />
+      <label for="cotacao">Cotação:</label>
+      <input type="text" id="cotacao" name="cotacao" /><br />
+      <input type="submit" value="Converter" name="submit" />
+   </form>
+
+</body>
+
+</html>
