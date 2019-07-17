@@ -4,7 +4,7 @@ Desafio para os futuros programadores back-end da Apiki.
 
 ## Introdução
 
-Desenvolva uma API que faça conversão de moedas.
+Desenvolva uma **REST API** que faça conversão de moedas.
 
 **Especifícações**:
 
