@@ -9,7 +9,16 @@ Desenvolva uma API que faça conversão de moedas.
 **Especifícações**:
 
 * A requisição deve receber a cotação via parâmetro;
-* A resposta deve conter o valor convertido e o símbolo da moeda;
+* A URL da requisição deve seguir o seguinte formato:
+   * http://localhost/exchange/{amount}/{from}/{to}/{rate}
+   * http://localhost/exchange/10/BRL/USD/4.50
+* A resposta deve seguir o seguinte formato:
+   ```json
+   {
+     "valorConvertido": 2.22,
+     "simboloMoeda": "R$"
+   }
+   ```
 * Conversões:
     * De Real para Dólar;
     * De Dólar para Real;
