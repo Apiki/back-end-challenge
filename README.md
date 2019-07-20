@@ -8,10 +8,9 @@ Desenvolva uma **REST API** que faça conversão de moedas.
 
 **Especifícações**:
 
-* A requisição deve receber a cotação via parâmetro;
 * A URL da requisição deve seguir o seguinte formato:
-   * http://localhost/exchange/{amount}/{from}/{to}/{rate}
-   * http://localhost/exchange/10/BRL/USD/4.50
+   * http://localhost:8000/exchange/{amount}/{from}/{to}/{rate}
+   * http://localhost:8000/exchange/10/BRL/USD/4.50
 * A resposta deve seguir o seguinte formato:
    ```json
    {
@@ -24,6 +23,9 @@ Desenvolva uma **REST API** que faça conversão de moedas.
     * De Dólar para Real;
     * De Real para Euro;
     * De Euro para Real;
+* Serão executados testes automatizados para validação dos requisitos:
+   * Levantar servidor embutido do PHP: `php -S localhost:8000 index.php`;
+   * Executando testes: `composer test`;
 
 ## Instruções
 
@@ -33,7 +35,7 @@ Desenvolva uma **REST API** que faça conversão de moedas.
 
 ## Pré-requisitos
 
-* PHP >= 5.6
+* PHP >= 7.2
 * Orientado a objetos
 
 ## Dúvidas
