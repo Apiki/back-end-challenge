@@ -14,8 +14,8 @@ Desenvolva uma **REST API** que faça conversão de moedas.
 * A resposta deve seguir o seguinte formato:
    ```json
    {
-     "valorConvertido": 2.22,
-     "simboloMoeda": "R$"
+     "valorConvertido": 45,
+     "simboloMoeda": "$"
    }
    ```
 * Conversões:
