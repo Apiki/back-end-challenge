@@ -4,7 +4,7 @@
  *
  * PHP version 7.2
  *
- * Este será o arquivo chamado ne execução dos testes automátizados.
+ * Este será o arquivo chamado na execução dos testes automátizados.
  *
  * @category Challenge
  * @package  Back-end
