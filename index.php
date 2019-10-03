@@ -4,11 +4,11 @@
  *
  * PHP version 7.2
  *
- * Este será o arquivo chamado ne execução dos testes automátizados.
+ * Este será o arquivo chamado em execução dos testes automátizados.
  *
  * @category Challenge
  * @package  Back-end
- * @author   Seu Nome <seu-email@seu-provedor.com>
+ * @author   André Rabelo <rabeloand@hotmail.com>
  * @license  http://opensource.org/licenses/MIT MIT
  * @link     https://github.com/apiki/back-end-challenge
  */
