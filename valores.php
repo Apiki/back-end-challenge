@@ -6,6 +6,7 @@ private $amount;
 private $from;
 private $to;
 private $rate;
+$resposta = array();
 
 
 //Amount

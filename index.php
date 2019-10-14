@@ -70,7 +70,7 @@ if (isset($_SERVER['PATH_INFO']))
 		if ($count > 0)
 		{
 			$errvar5 = "Verifique os parametros";
-			resposta(400,$errvar5,$errvar6);
+			$conversao->resposta(400,$errvar5,$errvar6);
 			 
 		}
 
@@ -84,32 +84,7 @@ if (isset($_SERVER['PATH_INFO']))
 		$simbolo = $conversao->tpMoeda($conversao->getTo());
 
 		
-		resposta(200,$valorConvertido,$simbolo);
-		}
-
-		public function resposta($status,$msg1,$msg2)
-		{
-			header("HTTP/1.1 ".$status);
-
-			if ($status == 200)
-			{
-				$resposta['valorConvertido']=$msg1;
-				$resposta['simboloMoeda']=$msg2;
-				
-				$json_response = json_encode($resposta,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT );
-
-				echo $json_response;
-			}
-
-			if ($status == 400)
-			{
-				$resposta['erro']=$msg1;
-				$resposta['campos']=$msg2;
-				
-				$json_response = json_encode($resposta,JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT );
-
-				echo $json_response;
-			}
+		$conversao->resposta(200,$valorConvertido,$simbolo);
 		}
 
 
@@ -118,7 +93,7 @@ if (isset($_SERVER['PATH_INFO']))
 	{
 		$err1 = "Requisição Inválida";
 		$err2 = "Verifique a quantidade de argumentos {amount}/{from}/{to}/{rate}";
-		resposta(400,$err1,$err2);
+		$conversao->resposta(400,$err1,$err2);
 	}
 }
 
@@ -126,7 +101,7 @@ else
 {
 	$err1 = "Requisição Inválida";
 	$err2 = "Verifique a quantidade de argumentos {amount}/{from}/{to}/{rate}";
-	resposta(400,$err1,$err2);
+	$conversao->resposta(400,$err1,$err2);
 }
 
 
