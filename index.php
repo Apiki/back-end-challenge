@@ -82,12 +82,12 @@ if (isset($_SERVER['PATH_INFO']))
 	}
 }
 
-else
+/*else
 {
 	$err1 = "Requisição Inválida";
 	$err2 = "Verifique a Requisição";
 	$conversao->resposta(400,$err1,$err2);
-}
+}*/
 
 
 
