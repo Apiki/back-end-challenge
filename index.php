@@ -15,7 +15,8 @@
 declare(strict_types=1);
 
 header('Content-type: text/plain; charset=utf-8');
-require "valores.php";
+
+include ('valores.php');
 
 $conversao = new Valores();
 
