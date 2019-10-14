@@ -38,28 +38,28 @@ if (isset($_SERVER['PATH_INFO']))
 
 		// Valida os parametros passados
 
-		if ($conversao->validarInt($parametros[1]) == false)
+		if ($conversao->validarInt($parametros[1]) === false)
 		{
 			$errvar1 =  "Quantidade a converter é inválida ou zero {amount}";
 			$count ++;
 			$errvar6 = $errvar6. " - " .$errvar1;
 		}
 
-		if ($conversao->validarMoeda($parametros[2]) == false)
+		if ($conversao->validarMoeda($parametros[2]) === false)
 		{
 			$errvar2= "Moeda a converter diferente de (BRL,USD,EUR) {from}";
 			$count ++;
 			$errvar6 = $errvar6. " - " .$errvar2;
 		}
 
-		if ($conversao->validarMoeda($parametros[3]) == false)
+		if ($conversao->validarMoeda($parametros[3]) === false)
 		{
 			$errvar3= "Moeda de conversão diferente de (BRL,USD,EUR) {to}";
 			$count ++;
 			$errvar6 = $errvar6. " - " .$errvar3;
 		}
 
-		if ($conversao->validarInt($parametros[4]) == false)
+		if ($conversao->validarInt($parametros[4]) === false)
 		{
 			$errvar4= "Taxa de conversão é inválida ou zero {rate}";
 			$count ++;
