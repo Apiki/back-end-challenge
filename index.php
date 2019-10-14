@@ -55,7 +55,7 @@ if (isset($_SERVER['PATH_INFO']))
 		if ($count > 0)
 		{
 			$errvar5 = "Verifique os parametros";
-			$conversao->resposta(200,$errvar5,$errvar6);
+			$conversao->resposta(400,$errvar5,$errvar6);
 			 
 		}
 
