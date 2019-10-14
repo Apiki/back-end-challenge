@@ -20,8 +20,7 @@ include ('valores.php');
 
 $conversao = new Valores();
 
-if (isset($_SERVER['PATH_INFO']))
-{	
+	
 	$url =  $_SERVER['PATH_INFO'];
 	$parametros = explode("/", $url);
 
@@ -96,14 +95,9 @@ if (isset($_SERVER['PATH_INFO']))
 		$err2 = "Verifique a quantidade de argumentos {amount}/{from}/{to}/{rate}";
 		$conversao->resposta(400,$err1,$err2);
 	}
-}
 
-else
-{
-	$err1 = "Requisição Inválida";
-	$err2 = "Verifique a quantidade de argumentos {amount}/{from}/{to}/{rate}";
-	$conversao->resposta(400,$err1,$err2);
-}
+
+
 
 
 
