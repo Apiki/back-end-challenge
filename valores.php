@@ -87,6 +87,7 @@ public function resposta($status,$msg1,$msg2)
 
 	if ($status == 200)
 	{
+		$resposta = [];
 		$resposta['valorConvertido']=$msg1;
 		$resposta['simboloMoeda']=$msg2;
 		
@@ -97,6 +98,7 @@ public function resposta($status,$msg1,$msg2)
 
 	if ($status == 400)
 	{
+		$resposta = [];
 		$resposta['erro']=$msg1;
 		$resposta['campos']=$msg2;
 		
