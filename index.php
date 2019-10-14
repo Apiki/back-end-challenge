@@ -1,26 +1,11 @@
 <?php
-/**
- * Back-end Challenge.
- *
- * PHP version 7.2
- *
- * Este será o arquivo chamado na execução dos testes automátizados.
- *
- * @category Challenge
- * @package  Back-end
- * @author   Bryan França <bryanfranca2@hotmail.com>
- * @license  http://opensource.org/licenses/MIT MIT
- * @link     https://github.com/apiki/back-end-challenge
- */
-declare(strict_types=1);
-
 header('Content-type: text/plain; charset=utf-8');
-
-include ('valores.php');
+require "valores.php";
 
 $conversao = new Valores();
 
-	
+if (isset($_SERVER['PATH_INFO']))
+{	
 	$url =  $_SERVER['PATH_INFO'];
 	$parametros = explode("/", $url);
 
@@ -95,9 +80,14 @@ $conversao = new Valores();
 		$err2 = "Verifique a quantidade de argumentos {amount}/{from}/{to}/{rate}";
 		$conversao->resposta(400,$err1,$err2);
 	}
+}
 
-
-
+else
+{
+	$err1 = "Requisição Inválida";
+	$err2 = "Verifique a quantidade de argumentos {amount}/{from}/{to}/{rate}";
+	$conversao->resposta(400,$err1,$err2);
+}
 
 
 
