@@ -11,7 +11,7 @@ if (isset($_SERVER['PATH_INFO']))
 
 	// Valida a quantidade de parametros
 
-	if(sizeof($parametros) == 5)
+	if(sizeof($parametros) == 4)
 	{
 		$conversao->setAmount($parametros[1]);
 		$conversao->setFrom($parametros[2]);
@@ -85,7 +85,7 @@ if (isset($_SERVER['PATH_INFO']))
 else
 {
 	$err1 = "Requisição Inválida";
-	$err2 = "Verifique a quantidade de argumentos {amount}/{from}/{to}/{rate}";
+	$err2 = "Verifique a Requisição";
 	$conversao->resposta(400,$err1,$err2);
 }
 
