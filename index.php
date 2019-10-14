@@ -53,8 +53,9 @@ $conversao = new Valores();
 	 	// Caso tenha algum parametro inválido, retorna o 400, caso não, retorna o 200
 		if ($count > 0)
 		{
+			$errvar7 = "Parametros invalidos";
 			$errvar5 = "Verifique os parametros";
-			$conversao->resposta(400,$errvar5,$errvar6);
+			$conversao->resposta(400,$errvar5,$errvar7);
 			 
 		}
 
