@@ -1,51 +1,50 @@
 <?php
-header('Content-type: text/plain; charset=utf-8');
-require "valores.php";
+header('Content-type: application/json; charset=utf-8');
+require  __DIR__ .'/valores.php';
 
 $conversao = new Valores();
 
 	
-	$url =  $_SERVER['PATH_INFO'];
-	$parametros = explode("/", $url);
+	$parametros = explode('/', $_SERVER['REQUEST_URI']);
 
 	// Valida a quantidade de parametros
 
-	if(sizeof($parametros) == 5)
+	if (count($parametros) == 6)
 	{
-		$conversao->setAmount($parametros[1]);
-		$conversao->setFrom($parametros[2]);
-		$conversao->setTo($parametros[3]);
-		$conversao->setRate($parametros[4]);
+		$conversao->setAmount($parametros[2]);
+		$conversao->setFrom($parametros[3]);
+		$conversao->setTo($parametros[4]);
+		$conversao->setRate($parametros[5]);
 
 		$count = 0;
 		$errvar6 = "";
 
 		// Valida os parametros passados
 
-		if ($conversao->validarInt($parametros[1]) === false)
+		if ($conversao->validarInt($parametros[2]) === false)
 		{
-			$errvar1 =  "Quantidade a converter é inválida ou zero {amount}";
+			$errvar1 =  "Quantidade a converter é inválida, nula ou menor que zero {amount}";
 			$count ++;
 			$errvar6 = $errvar6. " - " .$errvar1;
 		}
 
-		if ($conversao->validarMoeda($parametros[2]) === false)
+		if ($conversao->validarMoeda($parametros[3]) === false)
 		{
 			$errvar2= "Moeda a converter diferente de (BRL,USD,EUR) {from}";
 			$count ++;
 			$errvar6 = $errvar6. " - " .$errvar2;
 		}
 
-		if ($conversao->validarMoeda($parametros[3]) === false)
+		if ($conversao->validarMoeda($parametros[4]) === false)
 		{
 			$errvar3= "Moeda de conversão diferente de (BRL,USD,EUR) {to}";
 			$count ++;
 			$errvar6 = $errvar6. " - " .$errvar3;
 		}
 
-		if ($conversao->validarInt($parametros[4]) === false)
+		if ($conversao->validarInt($parametros[5]) === false)
 		{
-			$errvar4= "Taxa de conversão é inválida ou zero {rate}";
+			$errvar4= "Taxa de conversão é inválida, nula ou menor que zero {rate}";
 			$count ++;
 			$errvar6 = $errvar6. " - " .$errvar4;
 		}
@@ -53,9 +52,8 @@ $conversao = new Valores();
 	 	// Caso tenha algum parametro inválido, retorna o 400, caso não, retorna o 200
 		if ($count > 0)
 		{
-			$errvar7 = "Parametros invalidos";
 			$errvar5 = "Verifique os parametros";
-			$conversao->resposta(400,$errvar5,$errvar7);
+			$conversao->resposta(400,$errvar5,$errvar6);
 			 
 		}
 
@@ -76,7 +74,7 @@ $conversao = new Valores();
 	}
 	else
 	{
-		$err1 = "Requisição Inválida";
+		$err1 = "Parametros Invalidos";
 		$err2 = "Verifique a quantidade de argumentos {amount}/{from}/{to}/{rate}";
 		$conversao->resposta(400,$err1,$err2);
 	}
