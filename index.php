@@ -16,7 +16,7 @@ declare(strict_types=1);
 require __DIR__ . '/vendor/autoload.php';
 
 header('Content-type: application/json');
-require __DIR__ . '/conversor.php';
+require __DIR__ .'/Conversor.php';
 
 $tmp = explode('/', $_SERVER['REQUEST_URI']); 
 
