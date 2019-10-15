@@ -1,9 +1,9 @@
 <?php
 class Conversor{
     public function converter($valor, $de, $para, $cotacao){
-        if (Conversor::validarEntrada($valor, $cotacao) && Conversor::validarConversão($de, $para)){
+        if ($this->validarEntrada($valor, $cotacao) && $this->validarConversão($de, $para)){
             $valorConvertido = $valor * $cotacao;
-            $moeda = Conversor::obterMoeda($para);
+            $moeda = $this->obterMoeda($para);
             
             $Resultado = array("valorConvertido" => $valorConvertido, "simboloMoeda"=> $moeda);
             return $Resultado;
@@ -28,7 +28,7 @@ class Conversor{
     }
     
     private function validarConversão($de, $para){
-        if(Conversor::obterMoeda($de) && Conversor::obterMoeda($para)){
+        if($this->obterMoeda($de) && $this->obterMoeda($para)){
             if ($de == "BRL" && $para == "USD") {return true;            } 
             else if ($de == "USD" && $para == "BRL") {return true;}
             else if ($de == "BRL" && $para == "EUR") {return true;}
@@ -43,14 +43,9 @@ class Conversor{
     private function obterMoeda($moeda){
         switch ($moeda) {
             case 'BRL': return 'R$';
-            break; 
             case 'USD': return '$';
-            break;
             case 'EUR': return '€';
-            break;
             default: return false;
-            break;
         }
     }
 }
-?>
