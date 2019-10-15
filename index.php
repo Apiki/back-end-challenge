@@ -1,6 +1,7 @@
 <?php
 header('Content-type: application/json; charset=utf-8');
 require  __DIR__ .'/valores.php';
+require __DIR__ . '/vendor/autoload.php';
 
 $conversao = new Valores();
 
