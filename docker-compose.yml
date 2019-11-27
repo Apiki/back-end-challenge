@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+  app:
+    image: apiki/php-7.3
+    build: .
+    volumes:
+      - .:/app
+    working_dir: /app
+    ports:
+      - 8000:8000

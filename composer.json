@@ -16,5 +16,10 @@
     "psr-4": {
       "App\\": "src/"
     }
+  },
+  "require": {
+    "league/route": "^4.3",
+    "zendframework/zend-diactoros": "^2.2",
+    "zendframework/zend-httphandlerrunner": "^1.1"
   }
 }
