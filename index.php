@@ -8,7 +8,7 @@
  *
  * @category Challenge
  * @package  Back-end
- * @author   Seu Nome <seu-email@seu-provedor.com>
+ * @author   Seu Nome <thiagoavalente@gmail.com>
  * @license  http://opensource.org/licenses/MIT MIT
  * @link     https://github.com/apiki/back-end-challenge
  */
@@ -16,10 +16,7 @@ declare(strict_types=1);
 
 require __DIR__ . '/vendor/autoload.php';
 
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
-
 use App\Controllers\ConversionController;
 
 $app = AppFactory::create();
