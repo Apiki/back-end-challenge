@@ -23,4 +23,14 @@ $app = AppFactory::create();
 
 $app->get('/exchange/{amount}/{from}/{to}/{rate}', ConversionController::class . ':convert');
 
-$app->run();
+try {
+    $app->run();
+} catch (Exception $e) {
+    switch($e->getMessage()) {
+        case "Not found.":
+            http_response_code(400);
+        break;
+        default: 
+            http_response_code(500);
+    }
+}
