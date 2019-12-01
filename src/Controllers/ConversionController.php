@@ -72,12 +72,12 @@ class ConversionController
       }
 
      /**
-      * Validate the args
+      * This function will validate the arguments sended
       * 
       * @param  args arguments of the request
       * @return bool
       */
-     protected static function isValidated($args) {
+     protected static function isValidated($args): bool {
           // Check if from and to is string
           if(!is_string($args['from']) || !is_string($args['to'])) {
                return false;
