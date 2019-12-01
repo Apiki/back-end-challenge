@@ -15,3 +15,15 @@
 declare(strict_types=1);
 
 require __DIR__ . '/vendor/autoload.php';
+
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Slim\Factory\AppFactory;
+
+use App\Controllers\ConversionController;
+
+$app = AppFactory::create();
+
+$app->get('/exchange/{amount}/{from}/{to}/{rate}', ConversionController::class . ':convert');
+
+$app->run();
