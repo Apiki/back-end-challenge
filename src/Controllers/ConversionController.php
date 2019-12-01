@@ -58,7 +58,6 @@ class ConversionController
           return round($amount*$rate, 2);
      }
 
-
      /**
       * Create the response in array type
       * @param  value The converted value
