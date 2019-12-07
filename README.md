@@ -4,17 +4,28 @@ Desafio para os futuros programadores back-end da Apiki.
 
 ## Introdução
 
-Desenvolva uma API que faça conversão de moedas.
+Desenvolva uma **REST API** que faça conversão de moedas.
 
 **Especifícações**:
 
-* A requisição deve receber a cotação via parâmetro;
-* A resposta deve conter o valor convertido e o símbolo da moeda;
+* A URL da requisição deve seguir o seguinte formato:
+   * http://localhost:8000/exchange/{amount}/{from}/{to}/{rate}
+   * http://localhost:8000/exchange/10/BRL/USD/4.50
+* A resposta deve seguir o seguinte formato:
+   ```json
+   {
+     "valorConvertido": 45,
+     "simboloMoeda": "$"
+   }
+   ```
 * Conversões:
     * De Real para Dólar;
     * De Dólar para Real;
     * De Real para Euro;
     * De Euro para Real;
+* Serão executados testes automatizados para validação dos requisitos:
+   * Levantar servidor embutido do PHP: `php -S localhost:8000 index.php`;
+   * Executando testes: `composer test`;
 
 ## Instruções
 
@@ -24,7 +35,7 @@ Desenvolva uma API que faça conversão de moedas.
 
 ## Pré-requisitos
 
-* PHP >= 5.6
+* PHP >= 7.2
 * Orientado a objetos
 
 ## Dúvidas
