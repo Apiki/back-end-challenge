@@ -34,3 +34,4 @@ else{
    	$answer = "Modelo de URL diferente do esperado";
 }
 echo json_encode($answer, JSON_UNESCAPED_UNICODE);
+

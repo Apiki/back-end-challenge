@@ -8,7 +8,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "test": "codecept run",
+    "test": "./vendor/bin/codecept run",
     "lint": "./vendor/bin/phpcs src/",
     "lint:fix": "./vendor/bin/phpcbf src/"
   },
