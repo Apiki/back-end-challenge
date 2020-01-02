@@ -111,7 +111,8 @@ class Validator
             }
 
 
-        }
+        }elseif (!$filter_result)
+            return 0;
 
 
        return 1;
