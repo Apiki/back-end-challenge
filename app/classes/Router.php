@@ -26,8 +26,9 @@
             echo "Consistência da URL: ".self::checkPatternUri($request_uri, $pattern)."<br>";
             echo var_dump(self::getParamsURI($request_uri, $pattern))."<br>";*/
 
-            if (!self::checkPatternUri($request_uri, $pattern)){}
-                throw new Exception('Parâmetros Inválidos', 400);
+            if (!self::checkPatternUri($request_uri, $pattern))
+                throw new Exception('Parâmetros Inválidosxxx', 400);
+
 
             $arguments = self::getParamsURI($request_uri, $pattern);
 
