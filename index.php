@@ -32,16 +32,16 @@
         $validator = new Validator();
 
         if (!$validator->validaString('Moeda de Origem',$moeda_origem, 3,3,"EUR,USD,BRL"))
-            throw new Exception('Erro de Entrada',400);
+            Router::makeResponse('Formato de entrada Inválido', 400);
 
         if (!$validator->validaString('Moeda de  Destino',$moeda_destino, 3,3,'EUR,USD,BRL'))
-            throw new Exception('Erro de Entrada',400);
+            Router::makeResponse('Formato de entrada Inválido', 400);
 
         if (!$validator->validaFloat('Quantidade',$qtd, 0.01 ))
-            throw new Exception('Erro de Entrada',400);
+            Router::makeResponse('Formato de entrada Inválido', 400);
 
         if (!$validator->validaFloat('Cotação Atual',$cotacao, 0.01 ))
-            throw new Exception('Erro de Entrada',400);
+            Router::makeResponse('Formato de entrada Inválido', 400);
 
 
 
@@ -53,13 +53,20 @@
 
 
         //Responsta JSON
-        header("Content-type: application/json; charset=utf-8");
+        $response = [
+            'valorConvertido' => $valor_total,
+            'simboloMoeda' => $obj_moeda_destino->getSimbolo()
+        ];
+
+        Router::makeResponse($response, 200);
+        
+        /*header("Content-type: application/json; charset=utf-8");
         echo json_encode(
             [
                 'valorConvertido' => $valor_total,
                 'simboloMoeda' => $obj_moeda_destino->getSimbolo()
             ]
-        );
+        );*/
 
 
 
