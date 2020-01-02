@@ -37,8 +37,8 @@
         if (!$validator->validaString('Moeda de  Destino',$moeda_destino, 3,3,'EUR,USD,BRL'))
             Router::makeResponse('Formato de entrada Inválido', 400);
 
-        /*if (!$validator->validaFloat('Quantidade',$qtd, 0.01 ))
-            Router::makeResponse('Formato de entrada Inválido', 400);*/
+        if (!$validator->validaFloat('Quantidade',$qtd, 0.01 ))
+            Router::makeResponse('Formato de entrada Inválido', 400);
 
         if (!$validator->validaFloat('Cotação Atual',$cotacao, 0.01, null, false ))
             Router::makeResponse('Formato de entrada Inválido', 400);
