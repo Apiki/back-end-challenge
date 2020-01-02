@@ -20,22 +20,49 @@
 
     require 'app/classes/Router.php';
     require 'app/classes/Currency.php';
-
-    echo "Erro Aqui";
+    require 'app/classes/Validator.php';
 
 
     $router = new Router();
 
     $router->get('exchange/{qtd}/{moeda_origem}/{moeda_destino}/{cotacao}', function($qtd, $moeda_origem, $moeda_destino, $cotacao){
 
-        echo ("$qtd $moeda_origem $moeda_destino $cotacao")."<br>";
 
-        $obj_moeda_origem = Currency::factory($moeda_origem);
+        //Realiza-se as validações unitárias básicas
+        $validator = new Validator();
+
+        if (!$validator->validaString('Moeda de Origem',$moeda_origem, 3,3,"EUR,USD,BRL"))
+            throw new Exception('Erro de Entrada',400);
+
+        if (!$validator->validaString('Moeda de  Destino',$moeda_destino, 3,3,'EUR,USD,BRL'))
+            throw new Exception('Erro de Entrada',400);
+
+        if (!$validator->validaFloat('Quantidade',$qtd, 0.01 ))
+            throw new Exception('Erro de Entrada',400);
+
+        if (!$validator->validaFloat('Cotação Atual',$cotacao, 0.01 ))
+            throw new Exception('Erro de Entrada',400);
+
+
+
+        //Realiza-se o cálculo simples abaixo
+        $valor_total = (float)$qtd * (float)$cotacao;
+
+        //Cria-se uma instância da moeda de destino, através de uma Factory
         $obj_moeda_destino = Currency::factory($moeda_destino);
 
 
+        //Responsta JSON
+        header("Content-type: application/json; charset=utf-8");
+        echo json_encode(
+            [
+                'valorConvertido' => $valor_total,
+                'simboloMoeda' => $obj_moeda_destino->getSimbolo()
+            ]
+        );
 
-        echo $obj_moeda_origem->getSimbolo()." - ".$obj_moeda_destino->getSimbolo();
+
+
 
 
     });

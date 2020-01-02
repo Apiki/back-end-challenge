@@ -10,7 +10,7 @@ require 'app/classes/Dolar.php';
 require 'app/classes/Euro.php';
 
 
-class Currency
+abstract class Currency
 {
 
 

@@ -5,7 +5,7 @@
     * Classe básica para extração de parâmetros da URL (Wildcards) e outras verificações de rota/requisição
     */
 
-   
+
     class Router {
 
 
@@ -27,7 +27,7 @@
             echo var_dump(self::getParamsURI($request_uri, $pattern))."<br>";*/
 
             if (!self::checkPatternUri($request_uri, $pattern))
-                throw new Exception('Parâmetros Inválidos', 500);
+                throw new Exception('Parâmetros Inválidos', 400);
 
             $arguments = self::getParamsURI($request_uri, $pattern);
 
