@@ -4,17 +4,25 @@
  * User: Carlos
  */
 
-
 require 'app/classes/Real.php';
 require 'app/classes/Dolar.php';
 require 'app/classes/Euro.php';
 
 
-abstract class Currency
+/**
+ * Class Currency
+ * Esta classe é responsável pela Factory que retorna um objeto de acordo com a moeda desejada.
+ */
+abstract class MoedaFactory
 {
 
 
-    public static function factory($moeda_name){
+    /**
+     * Método Factory Simples
+     * @param $moeda_name
+     * @return Dolar|Euro|null|Real
+     */
+    public static function getMoeda($moeda_name){
 
         $moeda_name = mb_strtoupper($moeda_name);
 

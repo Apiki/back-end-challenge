@@ -4,6 +4,12 @@
  * User: Carlos
  */
 
+
+/**
+ * Class Validator
+ * Classe de Validação Básica.
+ * Atualmente, esta classe valida apenas Floats e Strings
+ */
 class Validator
 {
 
@@ -15,7 +21,6 @@ class Validator
      * @param null $max_size
      * @param null $acceptable_values
      * @param bool $blank_or_null
-     * @param bool $error_msg
      * @return boolean
      */
     public function validaString($field, $str, $min_size = null, $max_size = null, $acceptable_values = null, $blank_or_null = false): bool {
@@ -77,7 +82,7 @@ class Validator
      * @param type $max_value
      * @return boolean
      */
-    public function validaFloat($field, $n, $min_value = null, $max_value = null, $blank_or_null = false) {
+    public function validaFloat($field, $n, $min_value = null, $max_value = null, $blank_or_null = false):bool {
 
         //Valida Blank or Null
         if ($blank_or_null && ($n === null || $n === "")){

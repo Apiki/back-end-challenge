@@ -19,7 +19,7 @@
     require __DIR__ . '/vendor/autoload.php';
 
     require 'app/classes/Router.php';
-    require 'app/classes/Currency.php';
+    require 'app/classes/MoedaFactory.php';
     require 'app/classes/Validator.php';
 
 
@@ -48,29 +48,17 @@
         //Realiza-se o cálculo simples abaixo
         $valor_total = (float)$qtd * (float)$cotacao;
 
-        //Cria-se uma instância da moeda de destino, através de uma Factory
-        $obj_moeda_destino = Currency::factory($moeda_destino);
+        //Cria-se uma instância da moeda de destino, através de uma Factory (Padrão de Projeto Factory)
+        $obj_moeda_destino = MoedaFactory::getMoeda($moeda_destino);
 
 
-        //Responsta JSON
+        //Cria-se a resposta status 200 - JSON
         $response = [
             'valorConvertido' => $valor_total,
             'simboloMoeda' => $obj_moeda_destino->getSimbolo()
         ];
 
         Router::makeResponse($response, 200);
-
-        /*header("Content-type: application/json; charset=utf-8");
-        echo json_encode(
-            [
-                'valorConvertido' => $valor_total,
-                'simboloMoeda' => $obj_moeda_destino->getSimbolo()
-            ]
-        );*/
-
-
-
-
 
     });
 
