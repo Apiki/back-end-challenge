@@ -14,7 +14,13 @@
   },
   "autoload": {
     "psr-4": {
-      "App\\": "src/"
+      "App\\": "src/",
+      "App\\Controllers\\": "src/controllers/",
+      "App\\Helpers\\": "src/helpers/"
     }
+  },
+  "require": {
+    "slim/slim": "3.*",
+    "symfony/intl": "^5.0"
   }
 }
