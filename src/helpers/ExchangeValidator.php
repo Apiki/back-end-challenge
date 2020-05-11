@@ -6,38 +6,56 @@ use Symfony\Component\Intl\Currencies;
 
 class ExchangeValidator
 {
-    public static function validate($amount, $from, $to, $rate)
+    public static function validate($request, $response)
     {
-        $errorMsg = [];
+        $error = 0;
 
-        $isValidAmount = self::validateValue($amount);
+        $isValidAmount = self::validateValue($request->getAttribute('amount'));
         if ($isValidAmount !== true) {
-            $errorMsg['amount'] = $isValidAmount['msg'];
+            $error++;
+            $response->getBody()->write(json_encode(['error'=> 'Bad Request']));
+            return $response
+                    ->withHeader('Content-Type', 'application/json')
+                    ->withStatus(400);
         }
 
-        $isValidFrom = self::validateCurrency($from);
+        $isValidFrom = self::validateCurrency($request->getAttribute('from'));
         if ($isValidFrom !== true) {
-            $errorMsg['from'] = $isValidFrom['msg'];
+            $error++;
+            $response->getBody()->write(json_encode(['error'=> 'Bad Request']));
+            return $response
+                    ->withHeader('Content-Type', 'application/json')
+                    ->withStatus(400);
         }
 
-        $isValidTo = self::validateCurrency($to);
+        $isValidTo = self::validateCurrency($request->getAttribute('to'));
         if ($isValidTo !== true) {
-            $errorMsg['to'] = $isValidTo['msg'];
+            $error++;
+            $response->getBody()->write(json_encode(['error'=> 'Bad Request']));
+            return $response
+                    ->withHeader('Content-Type', 'application/json')
+                    ->withStatus(400);
         }
 
-        $isValidRate = self::validateValue($rate);
+        $isValidRate = self::validateValue($request->getAttribute('rate'));
         if ($isValidRate !== true) {
-            $errorMsg['rate'] = $isValidRate['msg'];
+            $error++;
+            $response->getBody()->write(json_encode(['error'=> 'Bad Request']));
+            return $response
+                    ->withHeader('Content-Type', 'application/json')
+                    ->withStatus(400);
         }
 
-        if (sizeof($errorMsg) > 0) {
-            foreach ($errorMsg as $key => $value) {
-                $msg[$key] = $value;
-            }
-            return json_encode($msg);
+        if ($error > 0) {
+            $response->getBody()->write(json_encode(['error'=> 'Bad Request']));
+            return $response
+                    ->withHeader('Content-Type', 'application/json')
+                    ->withStatus(400);
         }
 
-        return true;
+        return $response
+                ->withHeader('Content-Type', 'application/json')
+                ->withStatus(200);
     }
 
     private static function validateValue($value)
@@ -46,8 +64,8 @@ class ExchangeValidator
             $value = str_replace('.', '', $value);
             $value = str_replace(',', '.', $value);
         }
-        if (empty($value) || null === $value || !is_numeric($value)) {
-            return array('msg' => 'Formato inválido de valor.');
+        if (empty($value) || null === $value || !is_numeric($value) || ($value < 0)) {
+            return false;
         }
         return true;
     }
@@ -55,7 +73,7 @@ class ExchangeValidator
     private static function validateCurrency($type)
     {
         if (!Currencies::exists($type)) {
-            return array('msg' => 'Formato inválido de moeda.');
+            return false;
         }
         return true;
     }

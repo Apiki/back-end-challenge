@@ -10,7 +10,7 @@
   "scripts": {
     "test": "./vendor/bin/codecept run",
     "lint": "./vendor/bin/phpcs src/",
-    "lint:fix": "./vendor/bin/phpcbf srclc/"
+    "lint:fix": "./vendor/bin/phpcbf src/"
   },
   "autoload": {
     "psr-4": {

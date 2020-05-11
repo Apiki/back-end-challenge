@@ -4,7 +4,7 @@
  *
  * PHP version 7.2
  *
- * Este será o arquivo chamado na execução dos testes automátizados.
+ * Este serÃ¡ o arquivo chamado na execuÃ§Ã£o dos testes automÃ¡tizados.
  *
  * @category Challenge
  * @package  Back-end
@@ -14,21 +14,36 @@
  */
 declare(strict_types=1);
 
-use Psr\Http\Message\ServerRequestInterface as Request;
-use Psr\Http\Message\ResponseInterface as Response;
+use Slim\App;
+use App\Helpers\ValidateEndpoint;
 
 require __DIR__ . '/vendor/autoload.php';
 
-$configuration = [
+$app = new App([
     'settings' => [
         'displayErrorDetails' => true,
     ],
-];
-$c = new Slim\Container($configuration);
-$app = new Slim\App($c);
+]);
 
-$app->group('/exchange', function () use ($app){
-    $this->get('/{amount}/{from}/{to}/{rate}', '\App\Controllers\ExchangeController:exchange');
+$app->get('/', function ($request, $response, $args) {
+    return $response->withJson(['msg' => 'Bad Request'], 400)
+            ->withHeader('Content-Type', 'application/json');
 });
+
+$app->get('/exchange/{amount}/{from}/{to}/{rate}', '\App\Controllers\ExchangeController:exchange');
+
+$app->get('/exchange/{amount}/{from}/{to}[/]', function($request, $response, $args) use ($app) {
+    return ValidateEndpoint::routeHandler($response);
+});
+$app->get('/exchange/{amount}/{from}[/]', function($request, $response, $args) use ($app) {
+    return ValidateEndpoint::routeHandler($response);
+});
+$app->get('/exchange/{amount}[/]', function($request, $response, $args) use ($app) {
+    return ValidateEndpoint::routeHandler($response);
+});
+$app->get('/exchange[/]', function($request, $response, $args) use ($app) {
+    return ValidateEndpoint::routeHandler($response);
+});
+
 
 $app->run();
