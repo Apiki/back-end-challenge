@@ -8,9 +8,9 @@
   },
   "license": "MIT",
   "scripts": {
-    "test": "./vendor/bin/codecept run",
-    "lint": "./vendor/bin/phpcs src/",
-    "lint:fix": "./vendor/bin/phpcbf src/"
+    "test": "codecept run",
+    "lint": "phpcs src/",
+    "lint:fix": "phpcbf src/"
   },
   "autoload": {
     "psr-4": {
