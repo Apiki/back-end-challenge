@@ -19,43 +19,43 @@ require __DIR__ . '/vendor/autoload.php';
 include('class/Route.php');
 
 Route::add('/',function(){
-    http_response_code(400);
+    echo json_response(400);
 });
 
 Route::add('/exchange/([0-9.-]+)', function() {
-    http_response_code(400);
+    echo json_response(400);
 }, 'get');
 
 Route::add('/exchange/([0-9.-]+)/([A-Z]+)', function() {
-    http_response_code(400);
+    echo json_response(400);
 }, 'get');
 
 Route::add('/exchange/([0-9.-]+)/([A-Z]+)/([A-Z]+)', function() {
-    http_response_code(400);
+    echo json_response(400);
 }, 'get');
 
 Route::add('/exchange/([a-z])/([A-Z]+)/([A-Z]+)/([0-9.]+)', function() {
-    http_response_code(400);
+    echo json_response(400);
 }, 'get');
 
 Route::add('/exchange/([0-9.]+)/([A-Z]+)/([A-Z]+)/([a-z])', function() {
-    http_response_code(400);
+    echo json_response(400);
 }, 'get');
 
 Route::add('/exchange/(-[0-9]+)/([A-Z]+)/([A-Z]+)/([0-9.]+)', function() {
-    http_response_code(400);
+    echo json_response(400);
 }, 'get');
 
 Route::add('/exchange/([0-9.]+)/([A-Z]+)/([A-Z]+)/(-[0-9.]+)', function() {
-    http_response_code(400);
+    echo json_response(400);
 }, 'get');
 
 Route::add('/exchange/([0-9]+)/([a-z]+)/([A-Z]+)/([0-9.]+)', function() {
-    http_response_code(400);
+    echo json_response(400);
 }, 'get');
 
 Route::add('/exchange/([0-9]+)/([A-Z]+)/([a-z]+)/([0-9.]+)', function() {
-    http_response_code(400);
+    echo json_response(400);
 }, 'get');
 
 Route::add('/exchange/([0-9.]+)/([A-Z]+)/([A-Z]+)/([0-9.]+)', function($amount, $from, $to, $rate) {
