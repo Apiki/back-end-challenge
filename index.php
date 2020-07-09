@@ -22,6 +22,10 @@ Route::add('/',function(){
     echo json_response(400);
 });
 
+Route::add('/exchange',function(){
+    echo json_response(400);
+});
+
 Route::add('/exchange/([0-9.-]+)', function() {
     echo json_response(400);
 }, 'get');
@@ -76,15 +80,11 @@ Route::add('/exchange/([0-9.]+)/([A-Z]+)/([A-Z]+)/([0-9.]+)', function($amount, 
 Route::run('/');
 
 
-function json_response($code = 200, $message = null)
+function json_response($code)
 {
-    // clear the old headers
     header_remove();
-    // set the actual code
     http_response_code($code);
-    // set the header to make sure cache is forced
     header("Cache-Control: no-transform,public,max-age=300,s-maxage=900");
-    // treat this as json
     header('Content-Type: application/json');
     $status = array(
         200 => '200 OK',
@@ -92,11 +92,8 @@ function json_response($code = 200, $message = null)
         422 => 'Unprocessable Entity',
         500 => '500 Internal Server Error'
         );
-    // ok, validation error, or failure
     header('Status: '.$status[$code]);
-    // return the encoded json
-    return json_encode(array(
-        'status' => $code < 300, // success or not?
-        'message' => $message
-        ));
+    return json_encode([
+        'status' => $code
+    ]);
 }
