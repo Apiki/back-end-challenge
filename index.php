@@ -19,21 +19,56 @@ require __DIR__ . '/vendor/autoload.php';
 include('class/Route.php');
 
 Route::add('/',function(){
-    echo '<h1>Apki API Exchange</h1>';
-    echo '<h3>usage: http://localhost:8000/exchange/{amount}/{from}/{to}/{rate}</h3>';
+    http_response_code(400);
 });
 
-Route::add('/exchange/([0-9.-]+)/([A-Z]+)/([A-Z]+)/([0-9.-]+)', function($amount, $from, $to, $rate) {
+Route::add('/exchange/([0-9.-]+)', function() {
+    http_response_code(400);
+}, 'get');
+
+Route::add('/exchange/([0-9.-]+)/([A-Z]+)', function() {
+    http_response_code(400);
+}, 'get');
+
+Route::add('/exchange/([0-9.-]+)/([A-Z]+)/([A-Z]+)', function() {
+    http_response_code(400);
+}, 'get');
+
+Route::add('/exchange/([a-z])/([A-Z]+)/([A-Z]+)/([0-9.]+)', function() {
+    http_response_code(400);
+}, 'get');
+
+Route::add('/exchange/([0-9.]+)/([A-Z]+)/([A-Z]+)/([a-z])', function() {
+    http_response_code(400);
+}, 'get');
+
+Route::add('/exchange/(-[0-9]+)/([A-Z]+)/([A-Z]+)/([0-9.]+)', function() {
+    http_response_code(400);
+}, 'get');
+
+Route::add('/exchange/([0-9.]+)/([A-Z]+)/([A-Z]+)/(-[0-9.]+)', function() {
+    http_response_code(400);
+}, 'get');
+
+Route::add('/exchange/([0-9]+)/([a-z]+)/([A-Z]+)/([0-9.]+)', function() {
+    http_response_code(400);
+}, 'get');
+
+Route::add('/exchange/([0-9]+)/([A-Z]+)/([a-z]+)/([0-9.]+)', function() {
+    http_response_code(400);
+}, 'get');
+
+Route::add('/exchange/([0-9.]+)/([A-Z]+)/([A-Z]+)/([0-9.]+)', function($amount, $from, $to, $rate) {
     $moedas = [
-                'BRL' => 'R$',
-                'USD' => '$',
-                'EUR' => '€'
-            ];
+        'BRL' => 'R$',
+        'USD' => '$',
+        'EUR' => '€'
+    ];
     $result = $amount * $rate;
     $json = [
-            'valorConvertido' => $result,
-            'simboloMoeda'    => $moedas[$to]
-        ];
+        'valorConvertido' => $result,
+        'simboloMoeda'    => $moedas[$to]
+    ];
     $data = json_encode($json, JSON_UNESCAPED_UNICODE);
     echo $data;
 }, 'get');
