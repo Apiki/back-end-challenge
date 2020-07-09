@@ -18,11 +18,15 @@ require __DIR__ . '/vendor/autoload.php';
 
 include('class/Route.php');
 
-Route::add('/',function(){
+Route::add('/', function(){
     echo json_response(400);
 });
 
-Route::add('/exchange',function(){
+Route::add('/exchange', function(){
+    echo json_response(400);
+});
+
+Route::add('/exchange/', function(){
     echo json_response(400);
 });
 
