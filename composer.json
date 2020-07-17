@@ -16,5 +16,11 @@
     "psr-4": {
       "App\\": "src/"
     }
+  },
+  "require": {
+    "league/route": "^4.5",
+    "laminas/laminas-diactoros": "^2.3",
+    "laminas/laminas-httphandlerrunner": "^1.2",
+    "league/container": "^3.3"
   }
 }
