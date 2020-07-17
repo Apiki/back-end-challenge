@@ -10,9 +10,10 @@ class ExchangeController
         $symbol = $coins::getSymbol($data['to']);
         $amount = 0;
         if($symbol == 'R$'){
-            $amount = (float) $data['amount'] * (float) $data['rate'];
+            //var_dump((float) str_replace(',', '.',$data['rate']));exit;
+            $amount = (float) str_replace(',', '.',$data['amount']) * (float) str_replace(',', '.', $data['rate']);
         }else{
-            $amount = (float) $data['amount'] / (float) $data['rate'];
+            $amount = (float) str_replace(',', '.', $data['amount']) / (float) str_replace(',', '.', $data['rate']);
         }
         return ["valorConvertido"=>$amount, "simboloMoeda"=>$symbol];
     }
