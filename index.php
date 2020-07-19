@@ -13,9 +13,7 @@
  * @link     https://github.com/apiki/back-end-challenge
  */
  	
-	header('Content-Type: application/json; charset=utf-8');
-
-declare(strict_types=1);
+declare(strict_types=1, encoding='UTF-8');
 
 require __DIR__ . '/vendor/autoload.php';
 
