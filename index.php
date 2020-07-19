@@ -1,4 +1,4 @@
-<?php
+
 /**
  * Back-end Challenge.
  *
