@@ -15,6 +15,10 @@
  	
 	header('Content-Type: application/json; charset=utf-8');
 
+declare(strict_types=1);
+
+require __DIR__ . '/vendor/autoload.php';
+
 	require_once 'API/APIKI/Apiki.php';
 
 	if (isset($_REQUEST)) {		echo REST_API_APIKI::abrir($_REQUEST);		}
