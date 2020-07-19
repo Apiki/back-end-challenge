@@ -40,13 +40,6 @@ class REST_API_APIKI
 			}
 
 
-		    if (count($dados) !== 4 || $dados[0] == "") { 
-
-		    	http_response_code(400);
-               	return;
-		    }
-
-
 		    $amount 	= $dados[0];	//Parâmetro - Quantodade de moedas
 		    $from 		= $dados[1];	//Parâmetro - Moeda de atual
 		    $to 		= $dados[2];	//Parâmetro - Moeda de desejada
@@ -67,7 +60,7 @@ class REST_API_APIKI
 			$moedas 	= array('BRL', 'USD', 'EUR');
 
 
-		    if ($rate == '' || $amount =='' || $from =='' || $to =='' || !is_numeric($amount_tmp) || !is_numeric($rate_tmp) || !in_array($from, $moedas) || !in_array($from, $moedas)) { 
+		    if (count($dados) !== 4 || $dados[0] == "" || $rate == '' || $amount =='' || $from =='' || $to =='' || !is_numeric($amount_tmp) || !is_numeric($rate_tmp) || !in_array($from, $moedas) || !in_array($from, $moedas)) { 
 
 		    	http_response_code(400);
                	return;
@@ -82,12 +75,6 @@ class REST_API_APIKI
 		    		return json_encode(array($retorno));
 		    		
 		    	}	
-
-		    } else {
-
-		    	http_response_code(400);
-               	return;
-
 		    }
 
 
@@ -97,5 +84,4 @@ class REST_API_APIKI
 	}
 }
 
-echo REST_API_APIKI::abrir($_REQUEST);
-?>
+	echo REST_API_APIKI::abrir($_REQUEST);	
