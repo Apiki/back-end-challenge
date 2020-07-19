@@ -16,6 +16,13 @@ class REST_API_APIKI
 
 		    $dados = explode('/', $chamar['url']);
 
+		    if (count($dados) !== 4) { 
+
+		    	http_response_code(400);
+               	return;
+		    }
+
+
 		    $amount 	= $dados[0];	//Parâmetro - Quantodade de moedas
 		    $from 		= $dados[1];	//Parâmetro - Moeda de atual
 		    $to 		= $dados[2];	//Parâmetro - Moeda de desejada
@@ -33,10 +40,10 @@ class REST_API_APIKI
 			$rate_tmp	 = str_replace('.', '',  $rate);
 			$rate_tmp	 = str_replace(',', '',  $rate_tmp);
 
-		    if (count($parametros) !== 4 || $rate == '' || $amount =='' || $from =='' || $to =='' || !is_numeric($amount_tmp) || !is_numeric($rate_tmp)) { 
+		    if ($rate == '' || $amount =='' || $from =='' || $to =='' || !is_numeric($amount_tmp) || !is_numeric($rate_tmp)) { 
 
-		    	return json_encode(array('Status' => 'Erro 400', 'Reason' => 'Bad Request'));
-		    	exit();
+		    	http_response_code(400);
+               	return;
 		    }
 		    /***********final-validação*************/
 
@@ -51,7 +58,9 @@ class REST_API_APIKI
 
 		    } else {
 
-		    	return json_encode(array('Status' => 'Erro 400', 'Reason' => 'Bad Request'));
+		    	http_response_code(400);
+               	return;
+
 		    }
 
 
