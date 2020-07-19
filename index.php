@@ -22,38 +22,28 @@ class REST_API_APIKI
 {
 
 
-	public function abrir($chamar) 
+	public function abrir($requisicao) 
 	{
 
 
 		if (isset($_REQUEST)) {
 
-
 			
-			if (substr_count($chamar['url'], '/') >0) {
+			if (substr_count($_SERVER['REQUEST_URI'], '/') >=5) {
 
+			    $dados = explode('/', $requisicao['url']);
 
-			    $dados = explode('/', $chamar['url']);
 			} else {
 
-					return json_encode(array(
-	                    'status'      =>  400,
-	                    'message'   =>  'Bad Request'
-	                ), 400); 				
+		    	http_response_code(400);
+               	return;
 			}
-
-
 
 
 		    if (count($dados) !== 4 || $dados[0] == "") { 
 
-		    	//http_response_code(400);
-		    	//return json_encode(http_response_code(400));
-				return json_encode(array(
-                    'status'      =>  400,
-                    'message'   =>  'Bad Request'
-                ), 400); 		    	
-               	//return;
+		    	http_response_code(400);
+               	return;
 		    }
 
 
@@ -74,7 +64,10 @@ class REST_API_APIKI
 			$rate_tmp	 = str_replace('.', '',  $rate);
 			$rate_tmp	 = str_replace(',', '',  $rate_tmp);
 
-		    if ($rate == '' || $amount =='' || $from =='' || $to =='' || !is_numeric($amount_tmp) || !is_numeric($rate_tmp)) { 
+			$moedas 	= array('BRL', 'USD', 'EUR');
+
+
+		    if ($rate == '' || $amount =='' || $from =='' || $to =='' || !is_numeric($amount_tmp) || !is_numeric($rate_tmp) || !in_array($from, $moedas) || !in_array($from, $moedas)) { 
 
 		    	http_response_code(400);
                	return;
