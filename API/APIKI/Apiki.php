@@ -5,10 +5,14 @@ require_once 'Exchange.php';
 
 class REST_API_APIKI
 {
+
+
 	public function abrir($chamar) 
 	{
 
+
 		if (isset($_REQUEST)) {
+
 
 		    $dados = explode('/', $chamar['url']);
 
@@ -22,14 +26,19 @@ class REST_API_APIKI
 		    $parametros = array();
 		    $parametros = $dados;
 
-		    //valido os parâmetros passados pelo usuário na url
-		    if (count($parametros) !== 4 || $rate == '' || $amount =='' || $from =='' || $to =='') { 
+		    //valido os parâmetros passados pelo usuário na url		    
+			$amount_tmp	 = str_replace('.', '',  $amount);
+			$amount_tmp	 = str_replace(',', '',  $amount_tmp);
 
-		    	return json_encode(array('Status' => 'Erro 412', 'Reason' => 'Falha de pré-condição'));
+			$rate_tmp	 = str_replace('.', '',  $rate);
+			$rate_tmp	 = str_replace(',', '',  $rate_tmp);
+
+		    if (count($parametros) !== 4 || $rate == '' || $amount =='' || $from =='' || $to =='' || !is_numeric($amount_tmp) || !is_numeric($rate_tmp)) { 
+
+		    	return json_encode(array('Status' => 'Erro 400', 'Reason' => 'Bad Request'));
 		    	exit();
-
 		    }
-		    /***********end-block*************/
+		    /***********final-validação*************/
 
 		    if (class_exists($classe)) {
 
@@ -37,13 +46,12 @@ class REST_API_APIKI
 		    		$retorno = call_user_func_array(array(new $classe, $metodo), array($parametros));
 
 		    		return json_encode(array($retorno));
-		    		//return json_encode($retorno, 1);
 		    		
 		    	}	
 
 		    } else {
 
-		    	return json_encode(array('Status' => 'Erro 400', 'Reason' => 'Solicitação Inválida'));
+		    	return json_encode(array('Status' => 'Erro 400', 'Reason' => 'Bad Request'));
 		    }
 
 
@@ -51,14 +59,6 @@ class REST_API_APIKI
 
 		}		
 	}
-	/*********************/
-
-
-
-
-
 }
-/*********************/
-
 
 ?>
