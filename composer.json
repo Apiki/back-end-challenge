@@ -10,7 +10,10 @@
   "scripts": {
     "test": "./vendor/bin/codecept run",
     "lint": "./vendor/bin/phpcs src/",
-    "lint:fix": "./vendor/bin/phpcbf src/"
+    "lint:fix": "./vendor/bin/phpcbf src/",
+    "test-windows": "codecept run",
+    "lint-windows": "phpcs src/",
+    "lint-windows:fix": "phpcbf src/"
   },
   "autoload": {
     "psr-4": {
