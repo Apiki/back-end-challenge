@@ -12,10 +12,12 @@
  * @license  http://opensource.org/licenses/MIT MIT
  * @link     https://github.com/apiki/back-end-challenge
  */
- 	
+	
 	declare(strict_types=1, encoding='UTF-8');
+	
 
-	require_once 'API/APIKI/Apiki.php';
+	require __DIR__ . '/vendor/autoload.php';
+	require 'API/APIKI/Apiki.php';
 
 	if (isset($_REQUEST)) {		echo REST_API_APIKI::abrir($_REQUEST);		}
 
