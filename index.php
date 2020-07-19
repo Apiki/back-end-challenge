@@ -13,9 +13,7 @@
  * @link     https://github.com/apiki/back-end-challenge
  */
  	
-declare(strict_types=1, encoding='UTF-8');
-
-require __DIR__ . '/vendor/autoload.php';
+	declare(strict_types=1, encoding='UTF-8');
 
 	require_once 'API/APIKI/Apiki.php';
 
