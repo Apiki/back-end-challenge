@@ -19,9 +19,9 @@ class Exchange
 		
 		if ($to == 'BRL') { $simboloMoeda 	 = 'R$'; }
 		if ($to == 'USD') { $simboloMoeda 	 = '$'; }
-		if ($to == 'EUR') { $simboloMoeda 	 = '€;'; }
+		if ($to == 'EUR') { $simboloMoeda 	 = '€'; }
 		    
-		$resultado		 =array("valorConvertido"=>$valorConvertido,"simboloMoeda"=>$simboloMoeda);
+		$resultado = array("valorConvertido"=>$valorConvertido,"simboloMoeda"=>$simboloMoeda);
 
 		return $resultado;
 	}
