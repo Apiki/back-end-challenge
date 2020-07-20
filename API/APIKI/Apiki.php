@@ -20,53 +20,50 @@ class REST_API_APIKI
 			    $dados = explode('/', $requisicao['url']);
 
 
-		    $amount 	= $dados[0];	//Parâmetro - Quantodade de moedas
-		    $from 		= $dados[1];	//Parâmetro - Moeda de atual
-		    $to 		= $dados[2];	//Parâmetro - Moeda de desejada
-		    $rate 		= $dados[3];	//Parâmetro - Taxa da moeda desejada
+			    $amount 	= $dados[0];	//Parâmetro - Quantodade de moedas
+			    $from 		= $dados[1];	//Parâmetro - Moeda de atual
+			    $to 		= $dados[2];	//Parâmetro - Moeda de desejada
+			    $rate 		= $dados[3];	//Parâmetro - Taxa da moeda desejada
 
-		    $classe 	= 'Exchange';	//Classe - Contém a função responsável pela conversão da moeda
-		    $metodo 	= 'convertCoin';//Função - Convenverte a moeda
-		    $parametros = array();
-		    $parametros = $dados;
+			    $classe 	= 'Exchange';	//Classe - Contém a função responsável pela conversão da moeda
+			    $metodo 	= 'convertCoin';//Função - Convenverte a moeda
+			    $parametros = array();
+			    $parametros = $dados;
 
-		    //valido os parâmetros passados pelo usuário na url		    
-			$amount_tmp	 = str_replace('.', '',  $amount);
-			$amount_tmp	 = str_replace(',', '',  $amount_tmp);
+			    	//valido os parâmetros passados pelo usuário na url		    
+				$amount_tmp	 = str_replace('.', '',  $amount);
+				$amount_tmp	 = str_replace(',', '',  $amount_tmp);
 
-			$rate_tmp	 = str_replace('.', '',  $rate);
-			$rate_tmp	 = str_replace(',', '',  $rate_tmp);
+				$rate_tmp	 = str_replace('.', '',  $rate);
+				$rate_tmp	 = str_replace(',', '',  $rate_tmp);
 
-			$moedas 	= array('BRL', 'USD', 'EUR');
+				$moedas 	= array('BRL', 'USD', 'EUR');
 
 
-		    if ($dados[0] == "" || count($dados) !== 4 || $rate == '' || $amount =='' || $from =='' || $to =='' || !is_numeric($amount_tmp) || !is_numeric($rate_tmp) || !in_array($from, $moedas) || !in_array($from, $moedas)) { 
+				    if ($dados[0] == "" || count($dados) !== 4 || $rate == '' || $amount =='' || $from =='' || $to =='' || !is_numeric($amount_tmp) || !is_numeric($rate_tmp) || !in_array($from, $moedas) || !in_array($from, $moedas)) { 
 
-	            http_response_code(400);
-	            echo json_encode('');
-	            return;
-		    } else {
+			            http_response_code(400);
+			            echo json_encode('');
+			            return;
 
-		    if (class_exists($classe)) {
+				    } else {
 
-		    	if (method_exists($classe, $metodo)) {
-		    		$retorno = call_user_func_array(array(new $classe, $metodo), array($parametros));
+				    		$retorno = call_user_func_array(array(new $classe, $metodo), array($parametros));
 
-		    		return json_encode(array($retorno));
-		    		
-		    	}	
-		    }
+				    		return json_encode($retorno);				    		
+				    }
 
 		    }
 		    /***********final-validação*************/
 
 
 
-		}		
-	} 	 else {
+		} else {
 
 	            http_response_code(400);
 	            echo json_encode('');
 	            return;
-            }
+         
+		} 	
+	} 
 }
