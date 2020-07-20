@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Back-end Challenge.
  *
@@ -12,10 +13,24 @@
  * @license  http://opensource.org/licenses/MIT MIT
  * @link     https://github.com/apiki/back-end-challenge
  */
-	declare(strict_types = 1);
 
-	require __DIR__ . '/vendor/autoload.php';
-	require_once 'API/APIKI/ConvertCoin.php';
+    declare (strict_types = 1);
+    require 'class/Router.php';
 
-	$open = new REST_API_APIKI();
-	echo($open->abrir($_REQUEST));
+    Route::add('/exchange/([0-9.-]+)/([A-Z]+)/([A-Z]+)/([0-9.-]+)', function($amount, $from, $to, $rate) {
+    
+    $simboloMoeda    = array('BRL' => 'R$', 'USD' => '$', 'EUR' => '€');
+    $amount          = str_replace(',', '.',  $amount);
+    $rate            = str_replace(',', '.',  $rate);
+ 
+    $valorConvertido = round($amount * $rate,2) ;                    
+    $resultado       = array("valorConvertido"=>$valorConvertido,"simboloMoeda"=>$simboloMoeda);
+        
+    $resultado  = ['valorConvertido' => $valorConvertido, 'simboloMoeda' => $simboloMoeda[$to]];
+ 
+    $retorno = json_encode($resultado);
+    echo($retorno);
+    
+}, 'get');
+
+Route::run('/');
