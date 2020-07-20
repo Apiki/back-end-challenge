@@ -14,7 +14,7 @@
  */
 	declare(strict_types = 1);
 
-
+	require __DIR__ . '/vendor/autoload.php';
 	require_once 'API/APIKI/ConvertCoin.php';
 
 	$open = new REST_API_APIKI();
