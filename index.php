@@ -17,5 +17,5 @@
 	require 'API/APIKI/Apiki.php';
 
 
-	$open = new REST_API_APIKI();
+	$open = new Apiki();
 	echo($open->abrir($_REQUEST));
