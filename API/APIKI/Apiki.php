@@ -49,7 +49,7 @@ class Apiki
 		    if (count($dados) !== 4 || $dados[0] == "" || $rate == '' || $amount =='' || $from =='' || $to =='' || !is_numeric($amount_tmp) || !is_numeric($rate_tmp) || !in_array($from, $moedas) || !in_array($from, $moedas)) { 
 
 		    	http_response_code(400);
-               	return;
+               		return;
                	
 		    } else {
 
