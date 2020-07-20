@@ -83,6 +83,7 @@ class Route  {
 
           if($path_match_found){
             
+            http_response_code(400);
             header("HTTP/1.0 400 Bad Request");
             
             if(self::$methodNotAllowed){
@@ -92,11 +93,13 @@ class Route  {
 
           } else {
 
+            http_response_code(400);
             header("HTTP/1.0 400 Bad Request");
             
             if(self::$pathNotFound){
             
               call_user_func_array(self::$pathNotFound, Array($path));
+              http_response_code(400);
             
             }
           }
