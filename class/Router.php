@@ -65,6 +65,7 @@ class Route  {
               array_shift($matches);
 
               if($basepath!=''&&$basepath!='/'){
+                
                 array_shift($matches);
               }
 
@@ -82,7 +83,7 @@ class Route  {
 
           if($path_match_found){
             
-            header("HTTP/1.0 405 Method Not Allowed");
+            header("HTTP/1.0 400 Bad Request");
             
             if(self::$methodNotAllowed){
             
@@ -91,7 +92,7 @@ class Route  {
 
           } else {
 
-            header("HTTP/1.0 404 Not Found");
+            header("HTTP/1.0 400 Bad Request");
             
             if(self::$pathNotFound){
             
