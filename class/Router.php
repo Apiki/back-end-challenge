@@ -2,30 +2,30 @@
 
 class Route  {
 
-      private static $routes = Array();
-      private static $pathNotFound = null;
-      private static $methodNotAllowed = null;
+        private static $routes = Array();
+        private static $pathNotFound = null;
+        private static $methodNotAllowed = null;
 
-      public static function add($expression, $function, $method = 'get'){
+        public static function add($expression, $function, $method = 'get'){
         
         array_push(self::$routes,Array(
           'expression' => $expression,
           'function'   => $function,
           'method'     => $method
         ));
-      }
+        }
 
-      public static function pathNotFound($function)  {
+        public static function pathNotFound($function)  {
         
         self::$pathNotFound = $function;
-      }
+        }
 
-      public static function methodNotAllowed($function)  {
+        public static function methodNotAllowed($function)  {
 
         self::$methodNotAllowed = $function;
-      }
+        }
 
-      public static function run($basepath = '/'){
+        public static function run($basepath = '/'){
 
         $parsed_url = parse_url($_SERVER['REQUEST_URI']);
 
@@ -46,27 +46,27 @@ class Route  {
 
         foreach(self::$routes as $route){
 
-          if ($basepath!=''&&$basepath!='/')  {
+        if ($basepath!=''&&$basepath!='/')  {
 
             $route['expression'] = '('.$basepath.')'.$route['expression'];
-          }
+        }
 
           $route['expression'] = '^'.$route['expression'];
 
           $route['expression'] = $route['expression'].'$';
 
-          if(preg_match('#'.$route['expression'].'#',$path,$matches)){
+          if (preg_match('#'.$route['expression'].'#',$path,$matches))  {
 
             $path_match_found = true;
 
             // Verifico se o metodo chamado está correto
             if(strtolower($method) == strtolower($route['method'])){
 
-              array_shift($matches);
+            array_shift($matches);
 
               if($basepath!=''&&$basepath!='/'){
                 
-                array_shift($matches);
+              array_shift($matches);
               }
 
               call_user_func_array($route['function'], $matches);
@@ -83,24 +83,20 @@ class Route  {
 
           if($path_match_found){
             
-            http_response_code(400);
-            header("HTTP/1.0 400 Bad Request");
+            header("HTTP/1.0 400");
             
             if(self::$methodNotAllowed){
             
-              call_user_func_array(self::$methodNotAllowed, Array($path,$method));
+            call_user_func_array(self::$methodNotAllowed, Array($path,$method));
             }
 
           } else {
 
-            http_response_code(400);
-            header("HTTP/1.0 400 Bad Request");
+            header("HTTP/1.0 400");
             
             if(self::$pathNotFound){
             
-              call_user_func_array(self::$pathNotFound, Array($path));
-              http_response_code(400);
-            
+            call_user_func_array(self::$pathNotFound, Array($path));
             }
           }
         }

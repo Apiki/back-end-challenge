@@ -15,10 +15,9 @@
  */
 
     declare (strict_types = 1);
-    require __DIR__ . '/vendor/autoload.php';
-
-
     require 'class/Router.php';
+
+    require __DIR__ . '/vendor/autoload.php';
 
     Route::add('/exchange/([0-9.-]+)/([A-Z]+)/([A-Z]+)/([0-9.-]+)', function($amount, $from, $to, $rate) {
     
@@ -29,9 +28,9 @@
     $valorConvertido = round($amount * $rate,2) ;                    
     $resultado       = array("valorConvertido"=>$valorConvertido,"simboloMoeda"=>$simboloMoeda);
         
-    $resultado  = ['valorConvertido' => $valorConvertido, 'simboloMoeda' => $simboloMoeda[$to]];
+    //$resultado  = ['valorConvertido' => $valorConvertido, 'simboloMoeda' => $simboloMoeda[$to]];
  
-    $retorno = json_encode($resultado);
+    $retorno = json_encode(['valorConvertido' => $valorConvertido, 'simboloMoeda' => $simboloMoeda[$to]]);
     echo($retorno);
     
 }, 'get');
