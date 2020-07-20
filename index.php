@@ -15,6 +15,9 @@
  */
 
     declare (strict_types = 1);
+    require __DIR__ . '/vendor/autoload.php';
+
+
     require 'class/Router.php';
 
     Route::add('/exchange/([0-9.-]+)/([A-Z]+)/([A-Z]+)/([0-9.-]+)', function($amount, $from, $to, $rate) {
