@@ -53,3 +53,22 @@
 }, 'get');
 
 Route::run('/');
+
+    function retornarErro($erro)
+    {
+
+        header_remove();
+
+        http_response_code($erro);
+
+        header("Cache-Control: no-transform,public,max-age=300,s-maxage=900");
+
+        header('Content-Type: application/json');
+
+        $status = array(200 => '200 OK',400 => '400 Bad Request',422 => 'Unprocessable Entity',500 => '500 Internal Server Error');
+
+        header("HTTP/1.1 ".$status[$erro]);
+        
+        $json_response = json_encode($status[$erro], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        echo $json_response;
+    }
