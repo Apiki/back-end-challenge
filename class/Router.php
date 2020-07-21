@@ -83,8 +83,8 @@ class Route  {
 
           if($path_match_found){
             
-            header("HTTP/1.0 400");
-            
+            header("HTTP/1.0 400 Bad Request");
+
             if(self::$methodNotAllowed){
             
             call_user_func_array(self::$methodNotAllowed, Array($path,$method));
@@ -92,7 +92,7 @@ class Route  {
 
           } else {
 
-            header("HTTP/1.0 400");
+            header("HTTP/1.0 400 Bad Request");
             
             if(self::$pathNotFound){
             
@@ -102,3 +102,22 @@ class Route  {
         }
       }
 }
+
+    public function retornarErro($code)
+    {
+
+        header_remove();
+
+        http_response_code($code);
+
+        header("Cache-Control: no-transform,public,max-age=300,s-maxage=900");
+
+        header('Content-Type: application/json');
+
+        $status = array(200 => '200 OK',400 => '400 Bad Request',422 => 'Unprocessable Entity',500 => '500 Internal Server Error');
+
+        header("HTTP/1.1 ".$status[$code]);
+        
+        $json_response = json_encode($status[$code], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+        echo $json_response;
+    }
