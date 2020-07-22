@@ -27,8 +27,19 @@
          *  Valida se é número
          */
 
-        public function ValidaValor($v) {
-            return !preg_match('/[^0-9.]+/', $v);
+        public function ValidaValor($valor) {
+
+            $check = false;
+
+            if(!is_numeric($valor)){
+                $check = true;
+            }
+
+            if($valor > 0){
+                $check = true;
+            }
+
+            return $check;
         }
 
         /*
