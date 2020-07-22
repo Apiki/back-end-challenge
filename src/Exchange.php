@@ -1,5 +1,5 @@
 <?php
-
+    declare (strict_types = 1);
     namespace Source;
 
     class Exchange {
@@ -12,7 +12,7 @@
 
         public function validaMoeda($from, $to) {
             /*
-             * possiveis combinações
+             * Combinações possíveis
             */
             $combine = [
                 "BRL" => array("USD", "EUR"),
@@ -20,7 +20,7 @@
                 "EUR" => array("BRL")
             ];
 
-            return isset($from) && in_array($to, $combine[$from]);
+            return isset($combine[$from]) && in_array($to, $combine[$from]);
         }
 
         /*
