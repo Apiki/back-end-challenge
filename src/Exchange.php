@@ -1,10 +1,12 @@
 <?php
-    declare (strict_types = 1);
+    declare (strict_types=1);
+
     namespace Source;
 
     class Exchange {
 
-        public $simbolos = array("BRL" => "R$", "USD" => "$", "EUR" => "€");
+        public $simbolos = ["BRL" => "R$", "USD" => "$", "EUR" => "€"];
+
 
         /*
          *  valida regra
@@ -15,12 +17,18 @@
              * Combinações possíveis
             */
             $combine = [
-                "BRL" => array("USD", "EUR"),
-                "USD" => array("BRL"),
-                "EUR" => array("BRL")
+                "BRL" => ["USD", "EUR"],
+                "USD" => ["BRL"],
+                "EUR" => ["BRL"],
             ];
 
-            return isset($combine[$from]) && in_array($to, $combine[$from]);
+            if(empty($from) && empty($to)) {
+                $result = false;
+            } else {
+                $result = !empty($combine[$from]) ? in_array($to, $combine[$from]) ? true : false : false;
+
+            }
+            return $result;
         }
 
         /*
@@ -31,7 +39,7 @@
 
             $check = false;
 
-            if (preg_match('/^(\d+(\.\d+)?)$/', $valor) > 0 && $valor > 0 ) {
+            if(preg_match('/^(\d+(\.\d+)?)$/', $valor) > 0 && $valor > 0) {
                 $check = true;
             }
 

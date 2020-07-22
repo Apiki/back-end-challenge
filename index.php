@@ -22,11 +22,11 @@ require __DIR__ . '/vendor/autoload.php';
     array_shift($url);
     $response = [];
 
-    if($url[0] === 'exchange') {
+    if($url[0] === 'exchange' and count($url) === 5) {
 
         $exchange = new Exchange;
 
-        if(!$exchange->validaMoeda($url[2], $url[3])) {
+        if($exchange->validaMoeda($url[2], $url[3]) === false) {
             http_response_code(400);
             $response = '';
         } elseif($exchange->ValidaValor($url[1]) === false or $exchange->ValidaValor($url[4]) === false) {
