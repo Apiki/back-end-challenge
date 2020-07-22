@@ -31,11 +31,7 @@
 
             $check = false;
 
-            if(is_numeric($valor)){
-                $check = true;
-            }
-
-            if($valor > 0){
+            if (preg_match('/^(\d+(\.\d+)?)$/', $valor) > 0 && $valor > 0 ) {
                 $check = true;
             }
 
