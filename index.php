@@ -8,7 +8,7 @@
  *
  * @category Challenge
  * @package  Back-end
- * @author   Seu Nome <seu-email@seu-provedor.com>
+ * @author   Raphael Willisk <rwillisk@gmail.com>
  * @license  http://opensource.org/licenses/MIT MIT
  * @link     https://github.com/apiki/back-end-challenge
  */
@@ -16,7 +16,6 @@ declare(strict_types=1);
 
 require __DIR__ . '/vendor/autoload.php';
 
-    ini_set('default_charset', 'utf-8');
     use Source\Exchange;
 
     $url = explode('/', $_SERVER['REQUEST_URI']);
@@ -28,10 +27,10 @@ require __DIR__ . '/vendor/autoload.php';
         $exchange = new Exchange;
 
         if(!$exchange->validaMoeda($url[2], $url[3])) {
-            header("HTTP/1.1 400 Bad Request");
+            http_response_code(400);
             $response = '';
-        } elseif($exchange->ValidaValor($url[1]) == false or $exchange->ValidaValor($url[4]) == false) {
-            header("HTTP/1.1 400 Bad Request");
+        } elseif($exchange->ValidaValor($url[1]) === false or $exchange->ValidaValor($url[4]) === false) {
+            http_response_code(400);
             $response = '';
         } else {
             $moeda = $exchange->simboloMoeda($url[3]);
