@@ -7,6 +7,12 @@
     "codeception/codeception": "^3.0"
   },
   "license": "MIT",
+  "authors": [
+    {
+      "name": "Raphael Willisk,",
+      "email": "rwillisk@gmail.com"
+    }
+  ],
   "scripts": {
     "test": "./vendor/bin/codecept run",
     "lint": "./vendor/bin/phpcs src/",
@@ -14,7 +20,7 @@
   },
   "autoload": {
     "psr-4": {
-      "App\\": "src/"
+      "Source\\": "src/"
     }
   }
 }
