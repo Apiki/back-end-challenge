@@ -27,6 +27,7 @@ class Conversao {
                     "Status"=>"Erro", 
                     "Mensagem"=>'Informe corretamente todos os parametros. http://localhost:8000/exchange/{amount}/{from}/{to}/{rate}'
                     );
+            http_response_code(400);
             echo \json_encode($erro,JSON_UNESCAPED_SLASHES);
             exit();
         } else {
@@ -51,6 +52,7 @@ class Conversao {
                 "Status"=>"Erro", 
                 "Mensagem"=>'Informe uma moeda aceita. BRL, USD, EUR'
                 );
+        http_response_code(400);
         echo \json_encode($erro);
         exit();
         }
@@ -59,6 +61,15 @@ class Conversao {
 
     public function verificaMoedas()
     {
+        if ($this->from == $this->to) {
+            $erro = array(
+                "Status"=>"Erro", 
+                "Mensagem"=>'Informe moedas diferentes. São aceitas BRL, USD, EUR'
+                );
+        http_response_code(400);
+        echo \json_encode($erro,JSON_UNESCAPED_UNICODE);
+        exit();
+        }
         if ($this->verificaMoeda($this->from) && $this->verificaMoeda($this->to)){
             return true;
         }
@@ -66,6 +77,15 @@ class Conversao {
 
     public function converter()
     {
+        if ($this->amont < 0 || $this->rate < 0) {
+            $erro = array(
+                "Status"=>"Erro", 
+                "Mensagem"=>'Informe valores maiores que 0'
+                );
+        http_response_code(400);
+        echo \json_encode($erro);
+        exit();
+        }
         $total = $this->amont * $this->rate;
         $retorno = array(
             "valorConvertido" => $total,

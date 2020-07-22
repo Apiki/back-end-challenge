@@ -71,6 +71,13 @@ class ApiCest
         $I->seeResponseIsJson();
     }
 
+    public function tryApiEqualsFromTo(ApiTester $I)
+    {
+        $I->sendGET('/10/EUR/EUR/15');
+        $I->seeResponseCodeIs(400);
+        $I->seeResponseIsJson();
+    }
+
     public function tryApiBrlToUsd(ApiTester $I)
     {
         $I->sendGET('/7.8/BRL/USD/0.5');
