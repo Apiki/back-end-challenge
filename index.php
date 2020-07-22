@@ -16,6 +16,7 @@ declare(strict_types=1);
 
 require __DIR__ . '/vendor/autoload.php';
 
+    ini_set('default_charset', 'utf-8');
     use Source\Exchange;
 
     $url = explode('/', $_SERVER['REQUEST_URI']);
@@ -28,10 +29,10 @@ require __DIR__ . '/vendor/autoload.php';
 
         if(!$exchange->validaMoeda($url[2], $url[3])) {
             header("HTTP/1.1 400 Bad Request");
-            $response = ['status' => "error", "message" => "Por favor, informe uma moeda válida"];
+            $response = '';
         } elseif($exchange->ValidaValor($url[1]) == false or $exchange->ValidaValor($url[4]) == false) {
             header("HTTP/1.1 400 Bad Request");
-            $response = ['status' => "error", "message" => "Valor inválido, tente novamente"];
+            $response = '';
         } else {
             $moeda = $exchange->simboloMoeda($url[3]);
             $value = $exchange->valorConvertido($url[1], $url[4]);
@@ -40,7 +41,7 @@ require __DIR__ . '/vendor/autoload.php';
         }
     } else {
         header("HTTP/1.1 400 Bad Request");
-        $response = ['status' => "error", "message" => "URL inválida"];
+        $response = '';
     }
 
-    return print_r(json_encode($response, JSON_UNESCAPED_UNICODE));
+    echo json_encode($response);
