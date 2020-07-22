@@ -39,8 +39,8 @@ require __DIR__ . '/vendor/autoload.php';
             $response = ['valorConvertido' => $value, 'simboloMoeda' => $moeda];
         }
     } else {
-        header("HTTP/1.1 404 Not Found");
-        $response = ['status' => "error", "message" => "URL não encontrada"];
+        header("HTTP/1.1 400 Bad Request");
+        $response = ['status' => "error", "message" => "URL inválida"];
     }
 
     return print_r(json_encode($response, JSON_UNESCAPED_UNICODE));
