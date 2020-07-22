@@ -31,7 +31,7 @@
 
             $check = false;
 
-            if(!is_numeric($valor)){
+            if(is_numeric($valor)){
                 $check = true;
             }
 
