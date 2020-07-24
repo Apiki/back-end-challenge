@@ -12,4 +12,8 @@ class BRL implements Coin
     
     use CoinTrait;
 
+    public function getSymble()
+    {
+        return self::SYMBLE;
+    }
 }

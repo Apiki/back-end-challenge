@@ -12,5 +12,10 @@ class EUR implements Coin
     const SYMBLE = '€';
     const CODE = 'EUR';
 
+    public function getSymble()
+    {
+        return self::SYMBLE;
+    }
+
 }
 

@@ -4,6 +4,8 @@ namespace App;
 
 trait CoinTrait
 {
+    protected $value;
+    
     public function setValue($value)
     {
         $this->value = $this->valueVerify($value);
@@ -12,11 +14,6 @@ trait CoinTrait
     public function getValue()
     {
         return $this->value;
-    }
-
-    public function getSymble()
-    {
-        return self::SYMBLE;
     }
 
     public function valueVerify($value)
