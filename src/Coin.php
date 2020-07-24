@@ -6,6 +6,6 @@ interface Coin
 {
     public function setValue($value);
     public function getValue();
-    public function getSymble();
+    public function getSymbol();
     public function valueVerify($value);
 }

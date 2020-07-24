@@ -14,7 +14,7 @@ class Exchange
     public function run() {
         return [
             'valorConvertido' => $this->from->getValue() * $this->rate,
-            'simboloMoeda' => $this->to->getSymble(),
+            'simboloMoeda' => $this->to->getSymbol(),
         ];
     }
 }

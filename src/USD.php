@@ -7,13 +7,13 @@ use App\Coin;
 class USD implements Coin
 {
 
-    const SYMBLE = '$';
+    const SYMBOL = '$';
     const CODE = 'USD';
 
     use CoinTrait;
 
-    public function getSymble()
+    public function getSymbol()
     {
-        return self::SYMBLE;
+        return self::SYMBOL;
     }
 }

@@ -7,13 +7,13 @@ use App\Coin;
 class BRL implements Coin
 {
     
-    const SYMBLE = 'R$';
+    const SYMBOL = 'R$';
     const CODE = 'BRL';
     
     use CoinTrait;
 
-    public function getSymble()
+    public function getSymbol()
     {
-        return self::SYMBLE;
+        return self::SYMBOL;
     }
 }

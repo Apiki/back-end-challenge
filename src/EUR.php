@@ -9,12 +9,12 @@ class EUR implements Coin
  
     use CoinTrait;
 
-    const SYMBLE = '€';
+    const SYMBOL = '€';
     const CODE = 'EUR';
 
-    public function getSymble()
+    public function getSymbol()
     {
-        return self::SYMBLE;
+        return self::SYMBOL;
     }
 
 }
