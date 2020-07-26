@@ -22,7 +22,7 @@ require_once 'class/Exchange.php';
 class REST_API_APIKI
 {
 
-	publoc function processaRequest()
+	public function processaRequest()
 	{
 
 			$paramentrosUrl = explode('/', $_SERVER['REQUEST_URI']);
