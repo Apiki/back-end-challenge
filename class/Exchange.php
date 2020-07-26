@@ -37,7 +37,7 @@ class Exchange
 		        header('Content-Type: application/json');
 		        header("HTTP/1.1 "."400 Bad Request");
 		        
-		        resultado =  json_encode("400 Bad Request", JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT;
+		        $resultado =  json_encode("400 Bad Request", JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 		}
 
 		return $resultado;
