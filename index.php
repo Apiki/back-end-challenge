@@ -53,7 +53,7 @@ class REST_API_APIKI
 
 
 		    //valido os parâmetros passados pelo usuário na url		    
-			if (  in_array($from, $moedas) && in_array($to, $moedas) && is_numeric($paramentrosUrl[2])  && is_numeric($paramentrosUrl[5]) )
+			if (  in_array($from, $moedas) && in_array($to, $moedas) && is_numeric($paramentrosUrl[2])  && is_numeric($paramentrosUrl[5]) && $paramentrosUrl[2] >0)
 			{ 
 
 				//chamo a classe Exchange
