@@ -13,57 +13,79 @@
  * @license  http://opensource.org/licenses/MIT MIT
  * @link     https://github.com/apiki/back-end-challenge
  */
+	declare(strict_types = 1);
+	require __DIR__ . '/vendor/autoload.php';
 
-    declare (strict_types=1);
-    require 'class/Router.php';
 
-    //require __DIR__ . '/vendor/autoload.php';
+require_once 'class/Exchange.php';
 
-    //Validação de erros de requisição na url
-    $parametros = explode('/', $_SERVER['REQUEST_URI']);
-    
-    if (count($parametros) <6) { echo retornarErro(); return null;  }
+class REST_API_APIKI
+{
 
-    Route::add('/',function() { retornarErro(); return null; });
-    Route::add('/exchange',function() {  retornarErro(); return null; });
-    Route::add('/exchange/([0-9.-]+)', function() { retornarErro(); return null; }, 'get');
-    Route::add('/exchange/([0-9.-]+)/', function() { retornarErro(); return null; }, 'get');
-    Route::add('/exchange/([0-9.-]+)/([A-Z]+)', function() { retornarErro(); return null; }, 'get');
-    Route::add('/exchange/([0-9.-]+)/([A-Z]+)/([A-Z]+)', function() { retornarErro(); return null; }, 'get');
-    Route::add('/exchange/([a-z])/([A-Z]+)/([A-Z]+)/([0-9.]+)', function() { retornarErro(); return null; }, 'get');
-    Route::add('/exchange/([0-9.]+)/([A-Z]+)/([A-Z]+)/([a-z])', function() { retornarErro(); return null; }, 'get');
-    Route::add('/exchange/(-[0-9]+)/([A-Z]+)/([A-Z]+)/([0-9.]+)', function() { retornarErro(); return null; }, 'get');
-    Route::add('/exchange/([0-9.]+)/([A-Z]+)/([A-Z]+)/(-[0-9.]+)', function() { retornarErro(); return null; }, 'get');
-    Route::add('/exchange/([0-9]+)/([a-z]+)/([A-Z]+)/([0-9.]+)', function() { retornarErro(); return null; }, 'get');
-    Route::add('/exchange/([0-9]+)/([A-Z]+)/([a-z]+)/([0-9.]+)', function() { retornarErro(); return null; }, 'get');  
-    /***final da validação***/
 
-    /***se todas as condições forem satisfeitas***/
-    Route::add('/exchange/([0-9.]+)/([A-Z]+)/([A-Z]+)/([0-9.]+)', function($amount, $from, $to, $rate) {
-    
-    $simboloMoeda=array('BRL' => 'R$', 'USD' => '$', 'EUR' => '€');
-    $amount=str_replace(',', '.',  $amount);
-    $rate=str_replace(',', '.',  $rate);
- 
-    $valorConvertido = round($amount * $rate,2) ;                    
+	function processaRequest()
+	{
 
-    $resultado = json_encode(['valorConvertido' => $valorConvertido, 'simboloMoeda' => $simboloMoeda[$to]]);
-    echo($resultado);
-    
-}, 'get');
+			$paramentrosUrl = explode('/', $_SERVER['REQUEST_URI']);
+			$moedas = array('USD', 'BRL', 'EUR');
 
-Route::run('/');
+	    if (substr_count($_SERVER['REQUEST_URI'], '/') !== 5) {
 
-    function retornarErro()
-    {
+	        $erro = 400;
+	        header_remove();
+	        http_response_code($erro);
+	        header("Cache-Control: no-transform,public,max-age=300,s-maxage=900");
+	        header('Content-Type: application/json');
+	        header("HTTP/1.1 "."400 Bad Request");
+	        
+	        echo json_encode("400 Bad Request", JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 
-        $erro = 400;
-        header_remove();
-        http_response_code($erro);
-        header("Cache-Control: no-transform,public,max-age=300,s-maxage=900");
-        header('Content-Type: application/json');
-        header("HTTP/1.1 "."400 Bad Request");
-        
-        $json_response = json_encode("400 Bad Request", JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-        echo $json_response;
-    }
+	    } else {			
+
+			//pego os parâmetros passados pelo usuário na url
+			$amount 	= $paramentrosUrl[2];	//Parâmetro - Quantodade de moedas
+			$from 		= $paramentrosUrl[3];	//Parâmetro - Moeda de atual
+			$to 		= $paramentrosUrl[4];	//Parâmetro - Moeda de desejada
+			$rate 		= $paramentrosUrl[5];	//Parâmetro - Taxa da moeda desejada
+		    $classe 	= 'Exchange';	//Classe - Contém a função responsável pela conversão da moeda
+		    $metodo 	= 'convertCoin';//Função - Convenverte a moeda
+		    //$parametros = $paramentrosUrl;
+
+
+		    //valido os parâmetros passados pelo usuário na url		    
+			if (  in_array($from, $moedas) && in_array($to, $moedas) && is_numeric($paramentrosUrl[2])  && is_numeric($paramentrosUrl[5]) )
+			{ 
+
+				//chamo a classe Exchange
+			    if (class_exists($classe)) {
+
+			    	if (method_exists($classe, $metodo)) {
+
+			    		$retorno = call_user_func_array(array(new $classe, $metodo), array($paramentrosUrl));
+			    		return $retorno;
+			    	}
+			    }
+				//%%%%%%%%347
+
+			} else {
+
+		        $erro = 400;
+		        header_remove();
+		        http_response_code($erro);
+		        header("Cache-Control: no-transform,public,max-age=300,s-maxage=900");
+		        header('Content-Type: application/json');
+		        header("HTTP/1.1 "."400 Bad Request");
+		        
+		        echo json_encode("400 Bad Request", JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+
+			}			
+		}
+	}
+}
+
+if (isset($_REQUEST)) {
+
+	$open = new REST_API_APIKI();
+	echo($open->processaRequest($_REQUEST));
+
+}
