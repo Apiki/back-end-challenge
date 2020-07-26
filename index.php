@@ -42,14 +42,11 @@ class REST_API_APIKI
 	    } else {			
 
 			//pego os parâmetros passados pelo usuário na url
-			$amount 	= $paramentrosUrl[2];	//Parâmetro - Quantodade de moedas
 			$from 		= $paramentrosUrl[3];	//Parâmetro - Moeda de atual
 			$to 		= $paramentrosUrl[4];	//Parâmetro - Moeda de desejada
-			$rate 		= $paramentrosUrl[5];	//Parâmetro - Taxa da moeda desejada
 		    $classe 	= 'Exchange';	//Classe - Contém a função responsável pela conversão da moeda
 		    $metodo 	= 'convertCoin';//Função - Convenverte a moeda
 		    //$parametros = $paramentrosUrl;
-
 
 		    //valido os parâmetros passados pelo usuário na url		    
 			if (  in_array($from, $moedas) && in_array($to, $moedas) && is_numeric($paramentrosUrl[2])  && is_numeric($paramentrosUrl[5]) && $paramentrosUrl[2] >0 && is_numeric($paramentrosUrl[5]) >0)
@@ -84,7 +81,7 @@ class REST_API_APIKI
 
 if (isset($_REQUEST)) {
 
-	$open = new REST_API_APIKI();
+	$open = new REST_API_APIKI;
 	echo($open->processaRequest($_REQUEST));
 
 }
