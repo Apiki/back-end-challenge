@@ -12,7 +12,6 @@ class Exchange
 
 		//pego os parâmetros passados pelo usuário na url
 		$amount 	= $parametros[2];	//Parâmetro - Quantodade de moedas
-		$from 		= $parametros[3];	//Parâmetro - Moeda de atual
 		$to 		= $parametros[4];	//Parâmetro - Moeda de desejada
 		$rate 		= $parametros[5];	//Parâmetro - Taxa da moeda desejada
 
