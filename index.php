@@ -82,6 +82,6 @@ class REST_API_APIKI
 if (isset($_REQUEST)) {
 
 	$open = new REST_API_APIKI;
-	echo($open->processaRequest($_REQUEST));
+	echo($open->processaRequest());
 
 }
