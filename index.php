@@ -13,8 +13,8 @@
  * @license  http://opensource.org/licenses/MIT MIT
  * @link     https://github.com/apiki/back-end-challenge
  */
-	declare(strict_types = 1);
-	require __DIR__ . '/vendor/autoload.php';
+declare(strict_types = 1);
+require __DIR__ . '/vendor/autoload.php';
 
 
 require_once 'class/Exchange.php';
@@ -22,7 +22,7 @@ require_once 'class/Exchange.php';
 class REST_API_APIKI
 {
 
-	function processaRequest()
+	publoc function processaRequest()
 	{
 
 			$paramentrosUrl = explode('/', $_SERVER['REQUEST_URI']);
