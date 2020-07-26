@@ -22,7 +22,6 @@ require_once 'class/Exchange.php';
 class REST_API_APIKI
 {
 
-
 	function processaRequest()
 	{
 
@@ -53,7 +52,7 @@ class REST_API_APIKI
 
 
 		    //valido os parâmetros passados pelo usuário na url		    
-			if (  in_array($from, $moedas) && in_array($to, $moedas) && is_numeric($paramentrosUrl[2])  && is_numeric($paramentrosUrl[5]) && $paramentrosUrl[2] >0)
+			if (  in_array($from, $moedas) && in_array($to, $moedas) && is_numeric($paramentrosUrl[2])  && is_numeric($paramentrosUrl[5]) && $paramentrosUrl[2] >0 && is_numeric($paramentrosUrl[5]) >0)
 			{ 
 
 				//chamo a classe Exchange
