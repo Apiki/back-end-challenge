@@ -24,7 +24,7 @@ class Exchange extends Base
                 "not_found",
                 "Valor incorreto"
             )->back();
-            return;
+            exit;
         }
     }
 
