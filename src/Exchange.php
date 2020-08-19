@@ -11,16 +11,6 @@ class Exchange extends Base
         parent::__construct();
     }
 
-    public function index()
-    {
-        $this->call(
-            400,
-            "not_found",
-            "Not found"
-        )->back();
-        return;
-    }
-
     public function convert($amount, $from, $to, $rate): void
     {
         if(in_array($from, $this->coins) && in_array($to, $this->coins) && $this->checkValue($amount) && $this->checkValue($rate)){

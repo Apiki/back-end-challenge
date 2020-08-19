@@ -17,7 +17,6 @@ declare(strict_types=1);
 require __DIR__ . '/vendor/autoload.php';
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-    $r->addRoute('GET', '/', 'App\\Exchange/index');
     $r->addRoute('GET', '/exchange/{amount}/{from}/{to}/{rate}', 'App\\Exchange/convert');
 });
 
@@ -32,13 +31,13 @@ $uri = rawurldecode($uri);
 $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
+        echo json_encode(["message" => "Not found"]);
         http_response_code(400);
-        header("HTTP/1.1 "."400 Bad Request");
         break;
     case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
         $allowedMethods = $routeInfo[1];
+        echo json_encode(["message" => "Method Not Allowed"]);
         http_response_code(405);
-        header("HTTP/1.1 "."405 Method Not Allowed");
         break;
     case FastRoute\Dispatcher::FOUND:
         $handler = $routeInfo[1];
