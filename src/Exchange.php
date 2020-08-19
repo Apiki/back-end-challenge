@@ -20,7 +20,7 @@ class Exchange extends Base
             $this->back($response);
         }else{
             $this->call(
-                404,
+                400,
                 "not_found",
                 "Valor incorreto"
             )->back();
