@@ -72,25 +72,14 @@ if (!simboloMoeda::getvalormoedaentrada($dados[2])) {
     return $json_response;
 }
 
-
-
-
 $api = new ApiMoeda((float)$dados[2], $dados[3], (float)$dados[5], $dados[4]);
 $moedaentrada = $api->retonaMoedaEntrada();
 $simboloentrada = $api->retornaSimboloEntrada();
 $moedasaida = $api->retonaMoedaSaida();
 $simbolosaida = $api->retornaSimboSaida();;
 
-
-
 $moedacalculada = TaxadeConversao::calculaConversao($moedaentrada, $moedasaida);
-
-
-
 header("HTTP/1.1 " . 200);
-
-
 $json_response = json::retornarjson($moedacalculada, $simbolosaida);
 echo $json_response;
-
 return  $json_response;
