@@ -4,10 +4,6 @@ namespace App\Apiki\conversodemoedas\Infra\API;
 
 class ApiMoeda
 {
-    private float $moedaentrada;
-    private string $simboloentrada;
-    private float $moedasaida;
-    private string $simbolosaida;
 
     public function __construct(float $moedaentrada, string $simboloentrada, float $moedasaida, string $simbolosaida)
     {

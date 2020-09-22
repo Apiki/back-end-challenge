@@ -8,9 +8,6 @@ class TaxadeConversao
 {
 
 
-    private float $moedaentrada;
-    private float $moedasaida;
-
     public function __construct(float $moedaentrada, float $moedasaida)
     {
         $this->moedaentrada = $moedaentrada;

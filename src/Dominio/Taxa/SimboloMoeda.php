@@ -5,9 +5,6 @@ namespace App\Apiki\conversodemoedas\Dominio\Taxa;
 class  simboloMoeda
 {
 
-    private string $simboloentrada;
-    private string $simbolosaida;
-
 
     public  function __construct(string $simboloentrada, string $simbolosaida)
     {
