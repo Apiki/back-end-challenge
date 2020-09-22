@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 use App\Apiki\conversodemoedas\Dominio\Taxa\TaxadeConversao;
 use App\Apiki\conversodemoedas\Infra\API\ApiMoeda;
-use App\Apiki\conversodemoedas\Dominio\Taxa\simboloMoeda;
+use App\Apiki\conversodemoedas\Dominio\Taxa\SimboloMoeda;
 use App\Apiki\conversodemoedas\Infra\ConvertJson\json;
 use App\Apiki\conversodemoedas\Dominio\Moeda\ValidarMoeda;
 
