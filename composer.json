@@ -8,13 +8,13 @@
   },
   "license": "MIT",
   "scripts": {
-    "test": "./vendor/bin/codecept run",
+    "test": "codecept run",
     "lint": "./vendor/bin/phpcs src/",
     "lint:fix": "./vendor/bin/phpcbf src/"
   },
   "autoload": {
     "psr-4": {
-      "App\\": "src/"
+      "App\\Apiki\\conversodemoedas\\": "src/"
     }
   }
 }
