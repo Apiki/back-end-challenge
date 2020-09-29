@@ -22,6 +22,7 @@ class Conversor
             echo json_encode(["message" => "Currency Not Accepted!"]);
             return false;
         }
+        
         if($currencyFrom == $currencyTo){
             http_response_code(400);
             header('Content-Type: application/json');
