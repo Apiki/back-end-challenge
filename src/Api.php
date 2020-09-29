@@ -1,31 +1,28 @@
 <?php
-
-require 'Conversor.php';
-
-class Api
-{
-    public static function convert($url)
+    require 'Conversor.php';
+    class Api
     {
-        $valueFrom = $url[2];
-        $currencyFrom = $url[3];
-        $currencyTo = $url[4];
-        $valueTo = $url[5];
+        public static function convert($url)
+        {
+            $valueFrom = $url[2];
+            $currencyFrom = $url[3];
+            $currencyTo = $url[4];
+            $valueTo = $url[5];
 
-        $convert = new Conversor;
-        $convert->convert($valueFrom, $currencyFrom, $currencyTo, $valueTo);
-        // Conversor::convert($valueFrom, $currencyFrom, $currencyTo, $valueTo);
-    }
-
-    public static function checkUrl($url)
-    {
-        $url = explode('/',$url);
-        if ($url[1] != 'exchange' || count($url) < 5) {
-            http_response_code(400);
-            header('Content-Type: application/json');
-            echo json_encode(["message" => "Page not Found"]);
-            return false;
+            $convert = new Conversor;
+            return $convert->convert($valueFrom, $currencyFrom, $currencyTo, $valueTo);
         }
-        self::convert($url);
-    }
 
-}
+        public static function checkUrl($url)
+        {
+            $url = explode('/',$url);
+            if ($url[1] != 'exchange' || count($url) < 5) {
+                http_response_code(400);
+                header('Content-Type: application/json');
+                return json_encode(["message" => "Page not Found"]);
+            }
+            header('Content-Type: application/json');
+            return self::convert($url);
+        }
+
+    }
