@@ -21,6 +21,7 @@ class Api
         $url = explode('/',$url);
         if ($url[1] != 'exchange' || count($url) < 5) {
             http_response_code(404);
+            header('Content-Type: application/json');
             echo json_encode(["message" => "Page not Found"]);
             return false;
         }

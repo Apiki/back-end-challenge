@@ -18,11 +18,13 @@ class Conversor
 
         if(!$this->checkCurrency($currencyFrom, $currencyTo)){
             http_response_code(400);
+            header('Content-Type: application/json');
             echo json_encode(["message" => "Currency Not Accepted!"]);
             return false;
         }
         if($currencyFrom == $currencyTo){
             http_response_code(400);
+            header('Content-Type: application/json');
             echo json_encode(["message" => "Invalid Conversion!"]);
             return false;
         }
@@ -31,6 +33,7 @@ class Conversor
         $this->valorConvertido = $this->calculateConversion($valueFrom,$valueTo);
 
         http_response_code(200);
+        header('Content-Type: application/json');
         echo json_encode(["valorConvertido" => $this->valorConvertido, "simboloMoeda" => $this->simboloMoeda]);
         return true;
         

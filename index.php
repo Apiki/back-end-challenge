@@ -16,7 +16,7 @@ declare(strict_types=1);
 
 require __DIR__ . '/vendor/autoload.php';
 
-require 'Api.php';
+require __DIR__ . '/src/Api.php';
 
 if(isset($_SERVER['REQUEST_URI'])){
     Api::checkUrl($_SERVER['REQUEST_URI']);
