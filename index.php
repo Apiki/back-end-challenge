@@ -19,5 +19,5 @@ require __DIR__ . '/vendor/autoload.php';
 require __DIR__ . '/src/Api.php';
 
 if(isset($_SERVER['REQUEST_URI'])){
-    echo Api::checkUrl($_SERVER['REQUEST_URI']);
+    return Api::checkUrl($_SERVER['REQUEST_URI']);
 }
