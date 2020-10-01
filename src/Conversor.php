@@ -7,6 +7,19 @@
 
         public function convert($valueFrom, $currencyFrom, $currencyTo, $valueTo)
         {
+            try {
+                $this->checkParamsValidity($valueFrom, $currencyFrom, $currencyTo, $valueTo);
+
+                $this->simboloMoeda = $this->acceptedCurrency[$currencyTo];
+                $this->valorConvertido = $this->calculateConversion($valueFrom,$valueTo);
+                return true;
+            }catch(Exception $e) {
+                throw new Exception($e->getMessage());
+            }
+        }
+
+        public function checkParamsValidity($valueFrom, $currencyFrom, $currencyTo, $valueTo)
+        {
             if(!$this->checkCurrency($currencyFrom, $currencyTo)){
                 throw new Exception("Currency Not Accepted!");
             }
@@ -18,10 +31,6 @@
             if($currencyFrom == $currencyTo){
                 throw new Exception("Invalid Conversion!");
             }
-
-            $this->simboloMoeda = $this->acceptedCurrency[$currencyTo];
-            $this->valorConvertido = $this->calculateConversion($valueFrom,$valueTo);
-            return true;
         }
 
         public function calculateConversion($valueFrom, $valueTo)
