@@ -2,35 +2,26 @@
     class Conversor
     {
         protected $acceptedCurrency = ['BRL' => 'R$', 'USD' => '$', 'EUR' => '€'];
-        protected $valorConvertido;
-        protected $simboloMoeda;
-
-        public function __construct()
-        {
-
-        }
+        public $valorConvertido;
+        public $simboloMoeda;
 
         public function convert($valueFrom, $currencyFrom, $currencyTo, $valueTo)
         {
-            $currencyFrom = strtoupper($currencyFrom);
-            $currencyTo = strtoupper($currencyTo);
-
             if(!$this->checkCurrency($currencyFrom, $currencyTo)){
-                http_response_code(400);
-                return json_encode(["message" => "Currency Not Accepted!"]);
+                throw new Exception("Currency Not Accepted!");
+            }
+
+            if(!$this->checkValues($valueFrom, $valueTo)){
+                throw new Exception("Negative Number!");
             }
             
             if($currencyFrom == $currencyTo){
-                http_response_code(400);
-                
-                return json_encode(["message" => "Invalid Conversion!"]);
+                throw new Exception("Invalid Conversion!");
             }
 
             $this->simboloMoeda = $this->acceptedCurrency[$currencyTo];
             $this->valorConvertido = $this->calculateConversion($valueFrom,$valueTo);
-
-            http_response_code(200);
-            return json_encode(["valorConvertido" => $this->valorConvertido, "simboloMoeda" => $this->simboloMoeda]);
+            return true;
         }
 
         public function calculateConversion($valueFrom, $valueTo)
@@ -44,6 +35,15 @@
                 return true;
             }else{
                 return false;
+            }
+        }
+
+        public function checkValues($valueFrom, $valueTo)
+        {
+            if ($valueFrom < 0 || $valueTo < 0) {
+                return false;
+            }else{
+                return true;
             }
         }
     }
