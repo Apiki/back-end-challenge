@@ -27,7 +27,7 @@
         {
             $url = explode('/',$url);
             header('Content-Type: application/json');
-            if ($url[1] != 'exchange' || count($url) < 5) {
+            if ($url[1] != 'exchange' || count($url) < 6) {
                 http_response_code(400);
                 return json_encode(["message" => "Page not Found"]);
             }
