@@ -106,7 +106,7 @@ class ApiCest
 
     public function tryApiEurToBrl(ApiTester $I)
     {
-        $I->sendGET('http://localhost:8000/exchange/7/EUR/BRL/5');
+        $I->sendGET('/7/EUR/BRL/5');
         $I->seeResponseCodeIs(200);
         $I->seeResponseIsJson();
         $I->seeResponseContainsJson([
