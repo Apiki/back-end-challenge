@@ -8,7 +8,7 @@
  *
  * @category Challenge
  * @package  Back-end
- * @author   Gustavo Bonetti <gustavobonetti8@seu-provedor.com>
+ * @author   Gustavo Bonetti <gustavobonetti8@gmail.com>
  * @license  http://opensource.org/licenses/MIT MIT
  * @link     https://github.com/apiki/back-end-challenge
  */
