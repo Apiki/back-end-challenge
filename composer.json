@@ -16,5 +16,10 @@
     "psr-4": {
       "App\\": "src/"
     }
+  },
+  "require": {
+    "slim/slim": "4.*",
+    "slim/psr7": "^1.2",
+    "php-di/php-di": "^6.2"
   }
 }
