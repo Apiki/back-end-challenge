@@ -6,19 +6,16 @@ use Psr\Container\ContainerInterface;
 use Slim\Factory\AppFactory;
 
 $container = new \DI\Container();
-AppFactory::setContainer($container);
-
-$app = AppFactory::create();
-$app->setBasePath(BASEPATH);
-$app->addRoutingMiddleware();
-
-$container = $app->getContainer();
 $container->set('CurrencyExchangeController', function (ContainerInterface $c) {
     $currencyExchangeService = $c->get('currencyExchangeService');
     return new CurrencyExchangeController($currencyExchangeService);
 });
 
-$app->get('/exchange/[{amount}[/{from}[/{to}[/{rate}]]]]', CurrencyExchangeController::class . ':calculateCurrencyValue');
+AppFactory::setContainer($container);
+$app = AppFactory::create();
+$app->setBasePath(BASEPATH);
+
+$app->get('/exchange[/[{amount}[/[{from}[/[{to}[/[{rate}]]]]]]]]', CurrencyExchangeController::class . ':calculateCurrencyValue');
 
 try {
     $app->run();

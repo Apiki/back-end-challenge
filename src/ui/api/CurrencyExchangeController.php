@@ -23,6 +23,12 @@ final class CurrencyExchangeController
 
     public function calculateCurrencyValue(Request $request, Response $response, $args): Response
     {
+        $httpMethod = $request->getMethod();
+
+        if ($httpMethod !== 'GET') {
+            return $this->returnJsonStatus($response, 'Method Not Allowed', 405);
+        }
+
         try {
             $amount = array_key_exists('amount', $args) ? $args['amount'] : '';
             $fromCurrency = array_key_exists('from', $args) ? $args['from'] : '';
@@ -30,7 +36,7 @@ final class CurrencyExchangeController
             $rate = array_key_exists('rate', $args) ? $args['rate'] : '';
             $money = $this->currencyExchangeService->convertAmountToCurrency($amount, $fromCurrency, $toCurrency, $rate);
         } catch (\Exception $ex) {
-            return $this->return400JsonStatus($response, $ex->getMessage());
+            return $this->returnJsonStatus($response, $ex->getMessage(), 400);
         }
 
         $responseBody = [
@@ -43,16 +49,16 @@ final class CurrencyExchangeController
         return $response->withHeader('Content-Type', 'application/json');
     }
 
-    private function return400JsonStatus(Response $response, string $message = 'Bad Request'): Response
+    private function returnJsonStatus(Response $response, string $message = 'Bad Request', int $status = 400): Response
     {
         $responseBody = [
-            'status' => 400,
+            'status' => $status,
             'message' => $message,
         ];
 
         $response->getBody()->write(json_encode($responseBody));
         return $response
             ->withHeader('Content-Type', 'application/json')
-            ->withStatus(400);
+            ->withStatus($status);
     }
 }
