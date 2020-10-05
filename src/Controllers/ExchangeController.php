@@ -33,7 +33,7 @@ class ExchangeController
                 break;
             default:
                 http_response_code(405);
-                $response = $this->notFoundResponse();
+                $response = 'Method not found';
                 break;
         }
         return json_encode($response);
