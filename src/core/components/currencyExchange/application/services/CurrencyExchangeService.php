@@ -13,11 +13,16 @@ final class CurrencyExchangeService
         $currency = new Currency($fromCurrency);
         $money = new Money($amount, $currency);
 
+        $this->checkIfCurrencyExchangeRateIsValid($rate);
+
+        return $money->convertTo(new Currency($toCurrency), $rate);
+    }
+
+    private function checkIfCurrencyExchangeRateIsValid($rate)
+    {
         if (!$this->validateRate($rate)) {
             throw new CurrencyExchangeRateIsNotValid();
         }
-
-        return $money->convertTo(new Currency($toCurrency), $rate);
     }
 
     private function validateRate($rate): bool
