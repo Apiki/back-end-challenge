@@ -16,7 +16,7 @@
 
         /**
          ** Execute URI and Rules validation, if pass returns json
-         * @return json
+         * @return string
          */
         public function run() {
             if(!$this->validRoute()) {
