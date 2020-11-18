@@ -59,12 +59,25 @@
         }
 
         /**
-         ** Function to validate URL
+         ** Function to validate Route
          * @return bool
          */
-        protected function validUri(): bool {
+        protected function validRoute(): bool {
 
-            //Valid if there are parameters
+            // Valid checks
+            if(!($this->checkParameters() && $this->checkExchange() && $this->checkValue())) {
+                return false;
+            }
+
+            return true;
+
+        }
+
+        /**
+         ** Valid if there are parameters
+         * @return bool
+         */
+        private function checkParameters(): bool {
             if(!(isset($this->url[1]) && isset($this->url[2]) && isset($this->url[3]) && isset($this->url[4]) && isset($this->url[5]))) {
                 $this->header              = self::HTTP_400;
                 $this->code                = self::CODE_400;
@@ -73,7 +86,14 @@
                 return false;
             }
 
-            //Valid if exchange exists
+            return true;
+        }
+
+        /**
+         ** Valid if exchange exists
+         * @return bool
+         */
+        private function checkExchange(): bool {
             if(!(count($this->url) === 6 && isset($this->url[1]) && $this->url[1] === 'exchange')) {
                 $this->header              = self::HTTP_400;
                 $this->code                = self::CODE_400;
@@ -82,7 +102,14 @@
                 return false;
             }
 
-            // Valid if there is value
+            return true;
+        }
+
+        /**
+         ** Valid if there is value
+         * @return bool
+         */
+        private function checkValue(): bool {
             if($this->url[2] <= 0 || $this->url[5] <= 0) {
                 $this->header              = self::HTTP_400;
                 $this->code                = self::CODE_400;
@@ -93,4 +120,5 @@
 
             return true;
         }
+
     }

@@ -19,7 +19,7 @@
          * @return json
          */
         public function run() {
-            if(!$this->validUri()) {
+            if(!$this->validRoute()) {
                 header($this->header);
                 http_response_code($this->code);
 
