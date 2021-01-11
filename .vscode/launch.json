@@ -1,0 +1,26 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Passe o mouse para ver as descrições dos atributos existentes.
+    // Para obter mais informações, visite: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Listen for XDebug",
+            "type": "php",
+            "request": "launch",
+			"port": 9000,
+            "stopOnEntry": true,
+            "pathMappings": {
+                "/media/sf_Projetos/back-end-challenge-nfw": "${workspaceRoot}/",
+            }
+        },
+        {
+            "name": "Launch currently open script",
+            "type": "php",
+            "request": "launch",
+            "program": "${file}",
+            "cwd": "${fileDirname}",
+            "port": 9000
+        }
+    ]
+}

@@ -15,3 +15,9 @@
 declare(strict_types=1);
 
 require __DIR__ . '/vendor/autoload.php';
+
+include __DIR__ . "/src/exchange.php";
+
+$app = new App();
+
+$app->run();
