@@ -16,5 +16,10 @@
     "psr-4": {
       "App\\": "src/"
     }
+  },
+  "require": {
+    "php": "^7.2",
+    "coffeecode/router": "^1.0",
+    "league/plates": "v4.0.0-alpha"
   }
 }
