@@ -24,7 +24,7 @@ use CoffeeCode\Router\Router;
  * API ROUTES
  * index.
  */
-$route = new Router("http://localhost:8000", ':');
+$route = new Router(url(), ':');
 $route->namespace('App\Controllers\Api');
 
 //exchange
