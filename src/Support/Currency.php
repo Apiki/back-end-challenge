@@ -46,8 +46,8 @@ class Currency
     {
         $convertedAmount = $data["amount"] * $data["rate"];
         $response = [
-            "valorConvertido" => floatval(number_format($convertedAmount, 2)),
-            "simboloMoeda" => $this->symbol($data["to"])
+            'valorConvertido' => floatval(number_format($convertedAmount, 2)),
+            'simboloMoeda' => $this->symbol($data["to"])
         ];
 
         return $response;
