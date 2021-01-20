@@ -40,12 +40,7 @@ if ($route->error()) {
     header('Content-Type: application/json; charset=UTF-8');
     http_response_code(400);
 
-    echo json_encode([
-        'errors' => [
-            'type ' => 'invalid_data',
-            'message' => 'Favor informe os dados corretamente',
-        ],
-    ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    echo json_encode([], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 }
 
 ob_end_flush();

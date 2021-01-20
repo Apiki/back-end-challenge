@@ -25,10 +25,7 @@ class Exchange extends Api
 
         if (empty($data)) {
             $this->call(
-                400,
-                'invalid_data',
-                'Favor informe os dados corretamente'
-            )->back();
+                400)->back();
 
             return;
         }
@@ -36,10 +33,7 @@ class Exchange extends Api
         $currency = new Currency();
         if (!$currency->verify($data)) {
             $this->call(
-                400,
-                'invalid_data',
-                'Favor informe os dados corretamente'
-            )->back();
+                400)->back();
 
             return;
         }
