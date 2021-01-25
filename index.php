@@ -59,9 +59,9 @@ class ClasseConversao {
 		}
 	}
 	
-	$fred = new ClasseConversao();
+	$conv = new ClasseConversao();
 	
-	$meu_json = $fred->ConverterValores();
+	$meu_json = $conv->ConverterValores();
 ?>
 	<pre>
 		<?php var_dump($meu_json); ?>
