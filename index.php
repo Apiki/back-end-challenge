@@ -25,7 +25,7 @@ class ClasseConversao {
 
 			$simbolo = "";
 			
-			$to = "";
+			/*$to = "";*/
 			
 			if (isset($_GET['amount'])){
 				$amount = $_GET['amount'];                          //Parâmetro - Quantia	
