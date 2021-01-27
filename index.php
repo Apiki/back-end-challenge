@@ -1,39 +1,51 @@
-
 <?php
-
-/* http://localhost:8000/exchange/10/BRL/USD/4.50
-
-...deve ser traduzido pelo servidor como:
-http://localhost/exchange/index.php?amount=10&from=BRL&to=USD&rate=4.50
-
-A conversão é feita pelo arquivo .htacces.
-Conteúdo do .htaccess:
-
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^exchange/(.)/(.)/(.)/(.)$ index.php?amount=$1&from=$2&to=$3&rate=$4 [L,QSA]
-*/
-
-	class ClasseConversao {
+	class exchange {
 		public function ConverterValores(){
-
-            $amount = $_GET['amount'];                          //Parâmetro - Quantia
-			$rate = $_GET['rate'];                              //Parâmetro - Moeda de desejada
-			$total = $amount * $rate;                           //Parâmetro - Taxa da moeda desejada
-			$total = number_format($total, 2, ',', '.');        //Parâmetro - Resultado
-            $simbolo = '-';                                     //Parâmetro - Símbolo da moeda desejado
+			$valid = true;
+			//CHECAR SE OS PARAMETROS FORAM PASSADOS
+			if ( !isset($_GET['parametros']) ) $valid = false;
 			
-			switch( $to ){
-				case 'USD':
-					$simbolo = '$';
-					break;
-				case 'BRL':
-					$simbolo = 'R$';
-					break;
-				case 'EUR':
-					$simbolo = '€';
-					break;
+			$ar = explode("/", $_GET['parametros']);
+			
+			//CHECAR SE FORAM PASSADOS 4 PARAMETROS
+			if ( count($ar) != 4 ) $valid = false;
+			
+			//CARREGAR OS PARAMETROS NAS VARIÁVEIS
+			$amount	= $ar[0];
+			$from 	= $ar[1];
+			$to 	= $ar[2];
+			$rate 	= $ar[3];
+			
+			//VALIDAR VALORES
+			if ( !is_numeric($amount) ) $valid = false;
+			if ( !is_numeric($rate) ) $valid = false;
+			if ( strlen($from) != 3 ) $valid = false;
+			if ( strlen($to) != 3 ) $valid = false;
+			
+			//PARAMETROS INVÁLIDOS: TERMINAR A EXECUÇÃO
+			if ( !$valid ) {
+				echo '400';
+				return;
+			}
+			
+			//CALCULAR O TOTAL
+			$total = $amount * $rate;
+			$total = number_format($total, 2, ',', '.');
+			
+			//DEFINIR SÍMBOLO DA MOEDA
+			$simbolo = '-';
+			if ( $to != "" ) {
+				switch( $to ){
+					case 'USD':
+						$simbolo = '$';
+						break;
+					case 'BRL':
+						$simbolo = 'R$';
+						break;
+					case 'EUR':
+						$simbolo = '€';
+						break;
+				}
 			}
 
 			$vetor = array(
@@ -45,12 +57,8 @@ RewriteRule ^exchange/(.)/(.)/(.)/(.)$ index.php?amount=$1&from=$2&to=$3&rate=$4
 		}
 	}
 	
-	$fred = new ClasseConversao();
+	$obj_exchange = new exchange();
 	
-	$meu_json = $fred->ConverterValores();
+	$meu_json = $obj_exchange->ConverterValores();
 ?>
-	<pre>
-		<?php var_dump($meu_json); ?>
-	</pre>
-
-   
+<?php echo $meu_json; ?>
