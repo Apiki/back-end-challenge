@@ -1,29 +1,6 @@
-
 <?php
-/**
- * Back-end Challenge.
- *
- * PHP version 7.2
- *
- * Este será o arquivo chamado na execução dos testes automátizados.
- *
- * @category Challenge
- * @package  Back-end
- * @author   Seu Nome <seu-email@seu-provedor.com>
- * @license  http://opensource.org/licenses/MIT MIT
- * @link     https://github.com/apiki/back-end-challenge
- */
-declare(strict_types=1);
-
-require __DIR__ . '/vendor/autoload.php';
-
-?>
-
-<?php
-
-
 	class exchange {
-		public function ConverterValores(){
+		public function convertervalores(){
 			$valid = true;
 			//CHECAR SE OS PARAMETROS FORAM PASSADOS
 			if ( !isset($_GET['parametros']) ) $valid = false;
@@ -72,8 +49,8 @@ require __DIR__ . '/vendor/autoload.php';
 			}
 
 			$vetor = array(
-					'valorConvertido' => $total, 
-					'simboloMoeda' => $simbolo
+					'valorconvertido' => $total, 
+					'simbolomoeda' => $simbolo
 				);
 
 			return json_encode($vetor);
@@ -82,6 +59,6 @@ require __DIR__ . '/vendor/autoload.php';
 	
 	$obj_exchange = new exchange();
 	
-	$meu_json = $obj_exchange->ConverterValores();
+	$meu_json = $obj_exchange->convertervalores();
 ?>
 <?php echo $meu_json; ?>
