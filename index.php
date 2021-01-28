@@ -52,29 +52,25 @@ class Conversor {
 
         //De Real para Dólar;
         if($array[3] === 'BRL' && $array[4] === 'USD'){
-            $resultado['valorConvertido'] = (double)filter_var(number_format($array[2] * $array[5] , 2), 
-                                            FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+            $resultado['valorConvertido'] = (double)filter_var(number_format($array[2] * $array[5] , 2), FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
             $resultado['simboloMoeda'] = '$';
         }
 
         //De Dólar para Real;
         if($array[3] === 'USD' && $array[4] === 'BRL'){
-            $resultado['valorConvertido'] = (double)filter_var(number_format($array[2] / $array[5] , 2), 
-                                            FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+            $resultado['valorConvertido'] = (double)filter_var(number_format($array[2] / $array[5] , 2), FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
             $resultado['simboloMoeda'] = 'R$';
         }
 
         //De Real para Euro;
         if($array[3] === 'BRL' && $array[4] === 'EUR'){
-            $resultado['valorConvertido'] = (double)filter_var(number_format($array[2] * $array[5] , 2), 
-                                            FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+            $resultado['valorConvertido'] = (double)filter_var(number_format($array[2] * $array[5] , 2), FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
             $resultado['simboloMoeda'] = '€';
         }
 
         //De Euro para Real;
         if($array[3] === 'EUR' && $array[4] === 'BRL'){
-            $resultado['valorConvertido'] = (double)filter_var(number_format($array[2] / $array[5] , 2), 
-                                            FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+            $resultado['valorConvertido'] = (double)filter_var(number_format($array[2] / $array[5] , 2), FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
             $resultado['simboloMoeda'] = 'R$';
         }
 
@@ -104,7 +100,6 @@ class Conversor {
                 return 'Essa URL não converte EUR em USD ou vice e versa! Por favor, ajuste a URL!';
         }
             
-
         if(!is_numeric($array[5])){
             return 'O parametro {rate} deve ser informado e possuir valor numérico!';
         }else{
