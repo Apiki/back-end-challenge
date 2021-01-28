@@ -25,15 +25,20 @@ class Conversor {
 
     public static function iniciar($REQUEST_URI){
 
+        // Pega a URL transforma em array separado pela "/"(barra)
+        // Depois utilizo o array_filter para eliminar posições do array com elemntos vazios.
         $url = explode('/', $REQUEST_URI);
         $url = array_filter($url);
 
+        // Validação do tamanho padrão de parametros da URL que deve ser 5.
         if(sizeof($url) !== 5){
             return 'A URL não está sendo informada corretamente!';
         }else{
+            // Valida todos os parametros passados na URL.
             $erros = Conversor::validacaoParams($url);
             if(is_null($erros)){
-                return json_encode(Conversor::converter($url));
+                //Faz a conversão da moeda de acordo com as regras e retorna um JSON.
+                return json_encode(Conversor::converter($url), JSON_UNESCAPED_UNICODE);
             }else{
                 return $erros;
             }
@@ -47,25 +52,29 @@ class Conversor {
 
         //De Real para Dólar;
         if($array[3] === 'BRL' && $array[4] === 'USD'){
-            $resultado['valorConvertido'] = floatval(number_format($array[2] * $array[5] , 2));
+            $resultado['valorConvertido'] = (double)filter_var(number_format($array[2] * $array[5] , 2), 
+                                            FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
             $resultado['simboloMoeda'] = '$';
         }
 
         //De Dólar para Real;
         if($array[3] === 'USD' && $array[4] === 'BRL'){
-            $resultado['valorConvertido'] = floatval(number_format($array[2] / $array[5] , 2));
+            $resultado['valorConvertido'] = (double)filter_var(number_format($array[2] / $array[5] , 2), 
+                                            FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
             $resultado['simboloMoeda'] = 'R$';
         }
 
         //De Real para Euro;
         if($array[3] === 'BRL' && $array[4] === 'EUR'){
-            $resultado['valorConvertido'] = floatval(number_format($array[2] * $array[5] , 2));
-            $resultado['simboloMoeda'] = 'E';
+            $resultado['valorConvertido'] = (double)filter_var(number_format($array[2] * $array[5] , 2), 
+                                            FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+            $resultado['simboloMoeda'] = '€';
         }
 
         //De Euro para Real;
         if($array[3] === 'EUR' && $array[4] === 'BRL'){
-            $resultado['valorConvertido'] = floatval(number_format($array[2] / $array[5] , 2));
+            $resultado['valorConvertido'] = (double)filter_var(number_format($array[2] / $array[5] , 2), 
+                                            FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
             $resultado['simboloMoeda'] = 'R$';
         }
 
@@ -89,6 +98,12 @@ class Conversor {
         
         if($array[3] === $array[4])
             return 'O código da moeda do {from} e {to} não podem ser iguais!';
+
+        if(($array[3] === 'USD' || $array[4] === 'EUR') || ($array[3] === 'EUR' || $array[4] === 'USD')){
+            if(($array[4] !== 'BRL' && $array[3] !== 'BRL'))
+                return 'Essa URL não converte EUR em USD ou vice e versa! Por favor, ajuste a URL!';
+        }
+            
 
         if(!is_numeric($array[5])){
             return 'O parametro {rate} deve ser informado e possuir valor numérico!';
