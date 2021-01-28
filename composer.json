@@ -8,9 +8,12 @@
   },
   "license": "MIT",
   "scripts": {
-    "test": "./vendor/bin/codecept run",
+    "test": "php -S localhost:8000 index.php",
     "lint": "./vendor/bin/phpcs src/",
     "lint:fix": "./vendor/bin/phpcbf src/"
+  },
+  "config": {
+    "process-timeout": 0
   },
   "autoload": {
     "psr-4": {
