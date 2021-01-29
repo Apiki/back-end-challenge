@@ -58,4 +58,4 @@
 	
 	$meu_json = $obj_exchange->converter_valores();
 
-<?php echo $meu_json; ?>
+  echo $meu_json;
