@@ -25,7 +25,7 @@ include_once __DIR__.'/index.php';*/
 		public function convertervalores(){
 			$valid = true;
 			//CHECAR SE OS PARAMETROS FORAM PASSADOS
-			if ( !isset($_GET["parametros"]) ) $valid = false;
+			if ( !isset($_GET['parametros']) ) $valid = false;
 			
 			$var = explode("/", $_GET['parametros']);
 			
