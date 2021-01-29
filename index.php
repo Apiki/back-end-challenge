@@ -16,18 +16,18 @@
 
 require __DIR__ . '/exchange/autoload.php';
 
-chdir(__DIR__ . '/src/');*/
+chdir(__DIR__ . '/src/');
 
-include_once __DIR__.'/index.php';
+include_once __DIR__.'/index.php';*/
 
 
 	class exchange {
 		public function convertervalores(){
 			$valid = true;
 			//CHECAR SE OS PARAMETROS FORAM PASSADOS
-			if ( !isset($_GET['parametros']) ) $valid = false;
+			if ( !isset($_GET["parametros"]) ) $valid = false;
 			
-			$var = explode('/', $_GET['parametros']);
+			$var = explode("/", $_GET['parametros']);
 			
 			//CHECAR SE FORAM PASSADOS 4 PARAMETROS
 			if ( count($var) != 4 ) $valid = false;
@@ -82,5 +82,5 @@ include_once __DIR__.'/index.php';
 	$obj_exchange = new exchange();
 	
 	$meu_json = $obj_exchange->convertervalores();
-?>
+
 <?php echo $meu_json; ?>
