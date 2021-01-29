@@ -27,16 +27,16 @@ include_once __DIR__.'/src/public/index.php';*/
 			//CHECAR SE OS PARAMETROS FORAM PASSADOS
 			if ( !isset($_GET['parametros']) ) $valid = false;
 			
-			$ar = explode("/", $_GET['parametros']);
+			$var = explode("/", $_GET['parametros']);
 			
 			//CHECAR SE FORAM PASSADOS 4 PARAMETROS
 			if ( count($ar) != 4 ) $valid = false;
 			
 			//CARREGAR OS PARAMETROS NAS VARIÁVEIS
-			$amount	= $ar[0];
-			$from 	= $ar[1];
-			$to 	= $ar[2];
-			$rate 	= $ar[3];
+			$amount	= $var[0];
+			$from 	= $var[1];
+			$to 	= $var[2];
+			$rate 	= $var[3];
 			
 			//VALIDAR VALORES
 			if ( !is_numeric($amount) ) $valid = false;
