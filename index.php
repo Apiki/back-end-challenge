@@ -18,7 +18,7 @@ require __DIR__ . '/exchange/autoload.php';
 
 chdir(__DIR__ . '/src/');*/
 
-include_once __DIR__.'/src/public/index.php';
+include_once __DIR__.'/index.php';
 
 
 	class exchange {
