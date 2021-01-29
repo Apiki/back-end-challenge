@@ -27,7 +27,7 @@ include_once __DIR__.'/index.php';
 			//CHECAR SE OS PARAMETROS FORAM PASSADOS
 			if ( !isset($_GET['parametros']) ) $valid = false;
 			
-			$var = explode("/", $_GET['parametros']);
+			$var = explode("\", $_GET['parametros']);
 			
 			//CHECAR SE FORAM PASSADOS 4 PARAMETROS
 			if ( count($var) != 4 ) $valid = false;
