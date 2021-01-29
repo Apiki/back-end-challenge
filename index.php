@@ -1,32 +1,24 @@
 <?php
 	class exchange {
-		public function convertervalores(){
-			$valid = true;
+		public function converter_valores(){
 			//CHECAR SE OS PARAMETROS FORAM PASSADOS
-			if ( !isset($_GET['parametros']) ) $valid = false;
-			
-			$ar = explode("/", $_GET['parametros']);
-			
-			//CHECAR SE FORAM PASSADOS 4 PARAMETROS
-			if ( count($ar) != 4 ) $valid = false;
+			if ( !isset($_GET['amount']) ) $this->abort();
+			if ( !isset($_GET['from']) ) $this->abort();
+			if ( !isset($_GET['to']) ) $this->abort();
+			if ( !isset($_GET['rate']) ) $this->abort();
 			
 			//CARREGAR OS PARAMETROS NAS VARIÁVEIS
-			$amount	= $ar[0];
-			$from 	= $ar[1];
-			$to 	= $ar[2];
-			$rate 	= $ar[3];
+			$amount	= $_GET['amount'];
+			$from 	= $_GET['from'];
+			$to 	= $_GET['to'];
+			$rate 	= $_GET['rate'];
 			
 			//VALIDAR VALORES
-			if ( !is_numeric($amount) ) $valid = false;
-			if ( !is_numeric($rate) ) $valid = false;
-			if ( strlen($from) != 3 ) $valid = false;
-			if ( strlen($to) != 3 ) $valid = false;
+			if ( !is_numeric($amount) ) $this->abort();
+			if ( !is_numeric($rate) ) $this->abort();
+			if ( strlen($from) != 3 ) $this->abort();
+			if ( strlen($to) != 3 ) $this->abort();
 			
-			//PARAMETROS INVÁLIDOS: TERMINAR A EXECUÇÃO
-			if ( !$valid ) {
-				echo '400';
-				return;
-			}
 			
 			//CALCULAR O TOTAL
 			$total = $amount * $rate;
@@ -49,16 +41,21 @@
 			}
 
 			$vetor = array(
-					'valorconvertido' => $total, 
-					'simbolomoeda' => $simbolo
+					'valorConvertido' => $total, 
+					'simboloMoeda' => $simbolo
 				);
 
 			return json_encode($vetor);
+		}
+		
+		function abort() {
+			echo '400';
+			die();
 		}
 	}
 	
 	$obj_exchange = new exchange();
 	
-	$meu_json = $obj_exchange->convertervalores();
+	$meu_json = $obj_exchange->converter_valores();
 ?>
 <?php echo $meu_json; ?>
