@@ -20,7 +20,7 @@ chdir(__DIR__ . '/src/');
 
 include_once __DIR__.'/src/public/index.php';*/
 
-<?php
+
 	class exchange {
 		public function convertervalores(){
 			$valid = true;
