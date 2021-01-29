@@ -12,9 +12,9 @@
  * @license  http://opensource.org/licenses/MIT MIT
  * @link     https://github.com/apiki/back-end-challenge
  */
-declare(strict_types=1);
+/*declare(strict_types=1);
 
-/*require __DIR__ . '/exchange/autoload.php';
+require __DIR__ . '/exchange/autoload.php';
 
 chdir(__DIR__ . '/src/');
 
