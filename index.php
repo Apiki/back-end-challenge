@@ -14,8 +14,8 @@
  */
 declare(strict_types=1);
 
-require __DIR__ . '/exchange/autoload.php';
+/*require __DIR__ . '/exchange/autoload.php';
 
-/*chdir(__DIR__ . '/src/');
+chdir(__DIR__ . '/src/');
 
 include_once __DIR__.'/src/public/index.php';*/
