@@ -30,7 +30,7 @@ include_once __DIR__.'/index.php';
 			$var = explode("/", $_GET['parametros']);
 			
 			//CHECAR SE FORAM PASSADOS 4 PARAMETROS
-			if ( count($ar) != 4 ) $valid = false;
+			if ( count($var) != 4 ) $valid = false;
 			
 			//CARREGAR OS PARAMETROS NAS VARIÁVEIS
 			$amount	= $var[0];
