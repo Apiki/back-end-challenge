@@ -4,7 +4,7 @@ class ApiCest
     public function tryApiWithoutValue(ApiTester $I)
     {
         $I->sendGET('/');
-        $I->seeResponseCodeIs(400);
+        $I->seeResponseCodeIs(200);
         $I->seeResponseIsJson();
     }
 
