@@ -82,5 +82,5 @@ include_once __DIR__.'/index.php';*/
 	$obj_exchange = new exchange();
 	
 	$meu_json = $obj_exchange->convertervalores();
-
+?>
 <?php echo $meu_json; ?>
