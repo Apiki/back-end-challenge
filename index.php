@@ -48,14 +48,14 @@
 			return json_encode($vetor);
 		}
 		
-		public function abort() {
+		function abort() {
 			echo '400';
-			exit();
+			die();
 		}
 	}
 	
 	$obj_exchange = new exchange();
 	
 	$meu_json = $obj_exchange->converter_valores();
-
-  echo $meu_json;
+?>
+<?php echo $meu_json; ?>
