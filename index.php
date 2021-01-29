@@ -21,6 +21,7 @@ define("MOEDA", ['BRL', 'USD', 'EUR',]);
 //Cotações atuais estáticas para validar na URL;
 define("COTACAO_DOLAR", 5.45);
 define("COTACAO_EURO", 6.59);
+
 class Conversor {
 
     public static function iniciar($REQUEST_URI){
@@ -115,8 +116,5 @@ class Conversor {
 
 }
 
-if(isset($_REQUEST)){
-    
+if(isset($_REQUEST))
     echo Conversor::iniciar($_SERVER['REQUEST_URI']);
-
-}
