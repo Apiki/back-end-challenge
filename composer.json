@@ -1,5 +1,5 @@
 {
-  "name": "apiki/back-end-challenge",
+  "name": "daviesdesenvolvedor/back-end-challenge",
   "description": "Desafio para candidatos a back-end.",
   "type": "project",
   "require-dev": {
@@ -7,6 +7,12 @@
     "codeception/codeception": "^3.0"
   },
   "license": "MIT",
+  "authors": [
+    {
+      "name": "Frederico Davies",
+      "email": "fred.davies@outlook.com"
+    }
+   ],  
   "scripts": {
     "test": "./vendor/bin/codecept run",
     "lint": "./vendor/bin/phpcs src/",
