@@ -14,7 +14,7 @@
 namespace App;
 
 /**
- * Conversos básico de algumas moedas.
+ * Conversor básico de algumas moedas.
  *
  * @category Challenge
  * @package  Back-end
@@ -24,6 +24,11 @@ namespace App;
  */
 class Exchanger
 {
+    /**
+     * Parâmetros requeridos para realização de uma conversão.
+     *
+     * @var array
+     */
     protected $requiredParams = [
         'amount',
         'from',
@@ -31,24 +36,47 @@ class Exchanger
         'rate',
     ];
 
+    /**
+     * Campos a serem exibidos na resposta.
+     *
+     * @var array
+     */
     protected $responseKeys = [
         'valorConvertido',
         'simboloMoeda',
     ];
 
+    /**
+     * Siglas das moedas conhecidas com seus respectivos símbolos.
+     *
+     * @var array
+     */
     protected $knownCurrencies = [
         'BRL' => 'R$',
         'EUR' => '€',
         'USD' => '$',
     ];
 
+    /**
+     * Parâmetros recebidos na requisição.
+     *
+     * @var array|false
+     */
     protected $requestParams = [];
 
+    /**
+     * Setup da classe.
+     */
     public function __construct()
     {
         $this->parseRequestParams();
     }
 
+    /**
+     * Faz parsing da URI de requisição e separa em parâmetros.
+     *
+     * @return void
+     */
     protected function parseRequestParams()
     {
         $rawRequestParams = preg_replace(
@@ -65,6 +93,14 @@ class Exchanger
         }
     }
 
+    /**
+     * Monta uma resposta JSON a partir dos valores recebidos.
+     *
+     * @param array ...$responseValues Valores para os respectivos campos de
+     *                                 $this->responseKeys.
+     *
+     * @return void
+     */
     protected function buildResponse(string ...$responseValues)
     {
         $response = [];
