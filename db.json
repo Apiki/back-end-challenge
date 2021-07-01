@@ -1,0 +1,18 @@
+[
+    {
+        "moeda": "BRL",
+        "nome": "Real",
+        "simboloMoeda": "R$"
+    },
+    {
+        "moeda": "USD",
+        "nome": "Dolar",
+        "simboloMoeda": "$"
+    },
+    {
+        "moeda": "EUR",
+        "nome": "Euro",
+        "simboloMoeda": "€"
+    }
+]
+
