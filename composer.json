@@ -15,7 +15,10 @@
   "autoload": {
     "psr-4": {
       "App\\": "src/"
-    }
+    },
+    "files": [
+      "config.php"
+    ]
   },
   "require": {
     "coffeecode/router": "^1.0"

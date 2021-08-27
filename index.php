@@ -18,14 +18,11 @@ require __DIR__ . '/vendor/autoload.php';
 
 use CoffeeCode\Router\Router;
 
-$router = new Router("https://localhost/back-end-challenge");
+$router = new Router(URL_BASE);
+
 
 $router->group("exchange");
 $router->get("/{amount}/{from}/{to}/{rate}", function ($data) {
-    echo "<h1>Ola Mundo!</h1>";
-    echo "<br/>";
-    var_dump($data);
-    echo "<br/>";
     $to = $data['to'];
     $amount = floatval($data['amount']);
     $rate = floatval($data['rate']);
@@ -41,10 +38,9 @@ $router->get("/{amount}/{from}/{to}/{rate}", function ($data) {
         $finalResult -> simboloMoeda = '$';
     }
     if ($to === 'EUR') {
-        $finalResult -> simboloMoeda = '€';
+        $finalResult -> simboloMoeda = '₤';
     }
 
-    echo "<br/>";
     echo json_encode($finalResult);
 });
 
