@@ -16,5 +16,8 @@
     "psr-4": {
       "App\\": "src/"
     }
+  },
+  "require": {
+    "coffeecode/router": "^1.0"
   }
 }
