@@ -15,3 +15,33 @@
 declare(strict_types=1);
 
 require __DIR__ . '/vendor/autoload.php';
+
+use CoffeeCode\Router\Router;
+
+$router = new Router(URL_BASE);
+
+
+$router->group("exchange");
+$router->get("/{amount}/{from}/{to}/{rate}", function ($data) {
+    $to = $data['to'];
+    $amount = floatval($data['amount']);
+    $rate = floatval($data['rate']);
+    
+    $finalResult = (object) [
+        'valorConvertido' => $amount * $rate,
+      ];
+
+      if ($to === 'BRL') {
+          $finalResult -> simboloMoeda = 'R$';
+      }
+      if ($to === 'USD') {
+        $finalResult -> simboloMoeda = '$';
+    }
+    if ($to === 'EUR') {
+        $finalResult -> simboloMoeda = '₤';
+    }
+
+    echo json_encode($finalResult);
+});
+
+$router->dispatch();
