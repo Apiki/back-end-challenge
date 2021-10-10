@@ -2,6 +2,8 @@
 
 Desafio para os futuros programadores back-end da Apiki.
 
+Obs.: Não se esqueça de ativar o "composer update" na pasta raiz do projeto.
+
 ## Introdução
 
 Desenvolva uma **REST API** que faça conversão de moedas.
