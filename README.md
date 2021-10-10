@@ -1,5 +1,7 @@
 # Back-end Challenge
 
+NÃO ESQUERCER DE ATUALIZAR O COMPOSER COM O COMANDO "composer update"!
+
 Desafio para os futuros programadores back-end da Apiki.
 
 ## Introdução

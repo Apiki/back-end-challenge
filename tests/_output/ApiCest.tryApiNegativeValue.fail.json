@@ -1,0 +1,4 @@
+<br />
+<b>Warning</b>:  require_once(/vendor/autoload.php): failed to open stream: No such file or directory in <b>C:\wamp64\www\money\index.php</b> on line <b>21</b><br />
+<br />
+<b>Fatal error</b>:  require_once(): Failed opening required '/vendor/autoload.php' (include_path='.;C:\php\pear') in <b>C:\wamp64\www\money\index.php</b> on line <b>21</b><br />
