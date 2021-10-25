@@ -15,3 +15,8 @@
 declare(strict_types=1);
 
 require __DIR__ . '/vendor/autoload.php';
+
+use App\controllers\Exchange;
+
+$Exchange = new Exchange;
+$Exchange->index();
