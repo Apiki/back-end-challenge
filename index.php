@@ -16,7 +16,13 @@ declare(strict_types=1);
 
 require __DIR__ . '/vendor/autoload.php';
 
-use App\controllers\Exchange;
+use App\core\Controller;
 
-$Exchange = new Exchange;
-$Exchange->index();
+try{
+	$controller = new Controller;
+	$controller = $controller->load();
+}catch(\Exception $e){
+	echo $e->getMessage();
+}
+
+
