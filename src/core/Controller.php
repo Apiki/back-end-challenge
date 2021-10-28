@@ -64,8 +64,8 @@ class Controller {
 		$controller->$action($params);
 	}
 
-	public function status($status){
-		header('Content-Type: application/json;charset=utf-8');
+	public function status($status, $header='Content-Type: application/json;charset=utf-8'){
+		header($header);
 		http_response_code($status);
 	}
 
