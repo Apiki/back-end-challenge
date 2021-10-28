@@ -55,4 +55,22 @@ class Helpers{
 		}
 	}
 
+	/**
+	 * Valida se a uri tem uma barra "/" em caso positivo remove-a.
+	 *
+	 * @param string $uri a uri digitada na url.
+	 * @return string a uri sem conter uma barra no final.
+	 */
+	public static function removeLastBar($uri) {
+		if(empty($uri) || !is_string($uri)){
+			$msg = self::msgJson('Erro ao processar a uri', 500);
+			throw new \Exception($msg);
+		}
+		$bar = substr($uri, -1);
+		if($bar === "/"){
+			$uri = substr($uri, 0, -1);
+		}
+		return $uri;
+	}
+
 }
