@@ -3,13 +3,15 @@
 namespace App\core;
 
 use App\components\Helpers;
+use App\components\Httpd;
+
 
 class Uri {
 	// Retorna a instância da própria classe, caso já exista retorna a instância existente (Singleton).
 	private static $instance;
 	public static $controller;
 	public static $action;
-	protected static $is_api;
+	protected static $is_api = false;
 	public static $params;
 
 	/**
@@ -41,6 +43,7 @@ class Uri {
 	public static function getAction() {
 
 		$uri = self::getUri();
+		$uri = Helpers::removeLastBar($uri);
 		$uriArray = explode('/', $uri);
 
 		if(isset(CONFIG['api_actions'])){
@@ -62,16 +65,7 @@ class Uri {
 			}
 		}
 
-		$action = strtolower($uriArray[1]);
-
-		if(!is_string($action)){
-			$erro = [
-				'msg' 	=> 'Bad Request',
-				'code' 	=> 400
-			];
-			$erro = \json_encode($erro);
-			throw new \Exception($erro);
-		}
+		$action = (!empty($uriArray[1])) ? strtolower($uriArray[1]) : null;
 
 		return $action;
 	}
