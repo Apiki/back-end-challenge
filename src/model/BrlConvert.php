@@ -15,4 +15,9 @@ class BrlConvert {
 		return $this->total;
 	}
 
+	public function convToEur($rs, $eur) {
+		$this->total += ($rs/($eur * $this->eur));
+		return $this->total;
+	}
+
 }

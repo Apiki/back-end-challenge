@@ -27,4 +27,18 @@ class Exchange extends Controller {
 		die;
 	}
 
+	public function brl_to_eur($amount) {
+		if(!is_array($amount)){
+			$msg = Helpers::msgJson('Problemas ao processar a requisição', 500);
+			throw new \Exception($msg);
+		}
+
+		$brl = new BrlConvert;
+		$total = $brl->convToEur($amount['for'], $amount['to']);
+		$msg = Helpers::msgApi($total,$brl->simbol);
+		$this->status(200);
+		echo $msg;
+		die;
+	}
+
 }
