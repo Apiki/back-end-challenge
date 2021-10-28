@@ -18,7 +18,7 @@ class Helpers{
 		}
 		$msg = [
 			'valorConvertido' 	=> $total,
-			'simbolo' 	=> $simbol
+			'simboloMoeda' 	=> $simbol
 		];
 		return \json_encode($msg);
 	}
