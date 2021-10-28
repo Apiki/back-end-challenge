@@ -47,9 +47,11 @@ class Uri {
 			$i = 0;
 			foreach($uriArray as $action){
 				foreach(CONFIG['api_actions'] as $key => $api_action){
+					$key 		= strtoupper($key);
+					$action = strtoupper($action);
 					if($key === $action){
-						if(is_array($api_action) && in_array($uriArray[$i+1], $api_action)){
-							$method = strtolower($action) . "_to_" . strtolower($uriArray[$i+1]);
+						if(is_array($api_action) && in_array(strtoupper($uriArray[$i+1]), $api_action)){
+							$method = $action . "_to_" . strtoupper($uriArray[$i+1]);
 							self::$action = $method;
 							self::$is_api = true;
 							return $method;
