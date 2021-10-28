@@ -13,7 +13,7 @@ class Helpers{
 	 * @return json a mensagem da API no formato json.
 	*/
 	public static function msgApi($total, $simbol) {
-		if((float)$total < 0 || !is_string($simbol)){
+		if(!is_string($simbol)){
 			throw new \Exception('Parametros informado estão incorreto');
 		}
 		$msg = [
@@ -39,6 +39,20 @@ class Helpers{
 			'code' 	=> $code
 		];
 		return \json_encode($msg);
+	}
+
+	/**
+	 * Valida se os valores são maiores que zero.
+	 *
+	 * @param int|float $amount o montante a ser avaliado.
+	 * @param int|float $rate a taxa a ser avaliada.
+	 * @return void lança um erro a ser retornada na resposta.
+	 */
+	public static function validateAmount($amount, $rate) {
+		if((!is_int((int)$amount) && !is_float((float)$amount)) || ($rate <= 0)){
+			$msg = self::msgJson('Parametros informado estão incorreto', 500);
+			throw new \Exception($msg);
+		}
 	}
 
 }
