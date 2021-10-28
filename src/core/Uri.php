@@ -50,8 +50,8 @@ class Uri {
 					$key 		= strtoupper($key);
 					$action = strtoupper($action);
 					if($key === $action){
-						if(is_array($api_action) && in_array(strtoupper($uriArray[$i+1]), $api_action)){
-							$method = $action . "_to_" . strtoupper($uriArray[$i+1]);
+						if( (is_array($api_action) && in_array(strtoupper($uriArray[$i+1]), $api_action)) || ($api_action === strtoupper($uriArray[$i+1])) ){
+							$method = strtolower($action . "_to_" . strtoupper($uriArray[$i+1]));
 							self::$action = $method;
 							self::$is_api = true;
 							return $method;
@@ -90,8 +90,8 @@ class Uri {
 				$erro = \json_encode($erro);
 				throw new \Exception($erro);
 			}
-			$params['for'] = $uriArray[1];
-			$params['to']	 = $uriArray[4];
+			$params['amount'] = $uriArray[1];
+			$params['rate']	 = $uriArray[4];
 
 			self::$params = $params;
 			return $params;
