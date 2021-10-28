@@ -5,6 +5,7 @@ namespace App\controllers;
 
 use App\core\Controller;
 use App\model\BrlConvert;
+use App\components\Helpers;
 
 
 class Exchange extends Controller {
@@ -14,23 +15,15 @@ class Exchange extends Controller {
 
 	public function brl_to_usd($amount) {
 		if(!is_array($amount)){
-			$this->status(400);
-			$erro = [
-				'msg' 	=> 'Router not found',
-				'code' 	=> 404
-			];
-			$erro = \json_encode($erro);
-			throw new \Exception($erro);
+			$msg = Helpers::msgJson('Problemas ao processar a requisição', 500);
+			throw new \Exception($msg);
 		}
 
 		$brl = new BrlConvert;
 		$total = $brl->convToUsd($amount['for'], $amount['to']);
-		$msg = [
-			'valorConvertido' 	=> $total,
-			'simbolo' 					=> $brl->simbol
-		];
+		$msg = Helpers::msgApi($total,$brl->simbol);
 		$this->status(200);
-		echo \json_encode($msg);
+		echo $msg;
 		die;
 	}
 
