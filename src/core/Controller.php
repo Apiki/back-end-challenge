@@ -3,6 +3,7 @@
 namespace App\core;
 
 use App\core\Uri;
+use App\components\Helpers;
 
 
 class Controller {
@@ -61,6 +62,15 @@ class Controller {
 		$controller = new $this->name_space();
 		$action = $controller::Uri()::getAction();
 		$params = $controller::Uri()::getParams();
+		if(isset($controller) && empty($action)){
+			$action = 'index';
+		}
+		if(!method_exists($controller, $action)){
+			$this->status(500);
+			$msg = Helpers::msgJson('Erro ao processar a requisição', 500);
+			echo $msg;
+			die;
+		}
 		$controller->$action($params);
 	}
 
