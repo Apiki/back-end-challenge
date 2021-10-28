@@ -3,20 +3,22 @@
 namespace App\model;
 
 
+use App\components\Helpers;
+
 class BrlConvert {
 
-	private $usd = 5.54;
-	private $eur = 6.42;
 	public $simbol = "r$";
 	private $total = 0.00;
 
-	public function convToUsd($rs, $usd) {
-		$this->total += ($rs/($usd * $this->usd));
+	public function convToUsd($amount, $rate) {
+		Helpers::validateAmount($amount, $rate);
+		$this->total += ($amount/$rate);
 		return $this->total;
 	}
 
-	public function convToEur($rs, $eur) {
-		$this->total += ($rs/($eur * $this->eur));
+	public function convToEur($amount, $rate) {
+		Helpers::validateAmount($amount, $rate);
+		$this->total += ($amount/$rate);
 		return $this->total;
 	}
 
