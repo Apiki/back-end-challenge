@@ -11,7 +11,7 @@ use App\model\EurConvert;
 
 
 class Exchange extends Controller {
-	public function index() {
+	public function index($params=null) {
 		$this->status(200);
 		$msg = Helpers::msgJson('Bem vindo a conversão de moedas', 200);
 		echo $msg;
