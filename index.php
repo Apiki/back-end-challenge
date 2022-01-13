@@ -15,3 +15,15 @@
 declare(strict_types=1);
 
 require __DIR__ . '/vendor/autoload.php';
+
+use App\Controller\ExchangeController;
+use App\Kernel\Http\Request;
+use App\Kernel\Kernel;
+
+$request = new Request($_SERVER['REQUEST_URI']);
+$kernel = new Kernel([
+    ExchangeController::class
+], $request);
+
+$response = $kernel->execute();
+$response->send();
