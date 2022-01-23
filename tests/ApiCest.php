@@ -71,9 +71,9 @@ class ApiCest
         $I->seeResponseIsJson();
     }
 
-    public function tryApiBrlToUsd(ApiTester $I)
+    public function tryApiEurToUsd(ApiTester $I)
     {
-        $I->sendGET('/7.8/BRL/USD/0.5');
+        $I->sendGET('/7.8/EUR/USD/0.5');
         $I->seeResponseCodeIs(200);
         $I->seeResponseIsJson();
         $I->seeResponseContainsJson([
@@ -82,9 +82,9 @@ class ApiCest
         ]);
     }
 
-    public function tryApiUsdToBrl(ApiTester $I)
+    public function tryApiEurToBrl(ApiTester $I)
     {
-        $I->sendGET('/7/USD/BRL/0.5');
+        $I->sendGET('/7/EUR/BRL/0.5');
         $I->seeResponseCodeIs(200);
         $I->seeResponseIsJson();
         $I->seeResponseContainsJson([
@@ -93,25 +93,14 @@ class ApiCest
         ]);
     }
 
-    public function tryApiBrlToEur(ApiTester $I)
+    public function tryApiUsdToEur(ApiTester $I)
     {
-        $I->sendGET('/7/BRL/EUR/5');
+        $I->sendGET('/7/USD/EUR/5');
         $I->seeResponseCodeIs(200);
         $I->seeResponseIsJson();
         $I->seeResponseContainsJson([
             'valorConvertido' => 35,
             'simboloMoeda' => '€',
-        ]);
-    }
-
-    public function tryApiEurToBrl(ApiTester $I)
-    {
-        $I->sendGET('/7/EUR/BRL/5');
-        $I->seeResponseCodeIs(200);
-        $I->seeResponseIsJson();
-        $I->seeResponseContainsJson([
-            'valorConvertido' => 35,
-            'simboloMoeda' => 'R$',
         ]);
     }
 }
