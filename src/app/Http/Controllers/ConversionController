@@ -1,0 +1,46 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Exception;
+
+class ConversionController extends Controller
+{
+    private $currency_symbols = [
+        'USD' => '$',
+        'BRL' => 'R$',
+        'EUR' => '€'
+    ];
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    private function currencySymbol($currency){
+        if (!isset($this->currency_symbols[$currency]))
+        {
+            throw new Exception("Currency $currency is unavailable");
+        }
+
+        return $this->currency_symbols[$currency];
+    }
+
+    public function convert(){
+
+        return "hid";
+        // $currency_symbol = $this->currencySymbol($to);
+
+        // $converted_amount = $amount * $rate;
+
+        // return [
+        //     "valorConvertido" => $converted_amount,
+        //     "simboloMoeda" => $currency_symbol
+        // ];
+    }
+}
