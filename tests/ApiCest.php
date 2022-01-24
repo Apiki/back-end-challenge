@@ -1,11 +1,14 @@
 <?php
+
+use \Codeception\Util\HttpCode;
+
 class ApiCest
 {
     public function tryApiWithoutValue(ApiTester $I)
     {
         $I->sendGET('/');
-        $I->seeResponseCodeIs(400);
-        $I->seeResponseIsJson();
+        $I->seeResponseCodeIs(400);        
+        $I->seeResponseIsJson();        
     }
 
     public function tryApiWithoutFrom(ApiTester $I)

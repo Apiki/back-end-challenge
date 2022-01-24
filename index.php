@@ -15,3 +15,15 @@
 declare(strict_types=1);
 
 require __DIR__ . '/vendor/autoload.php';
+
+use \App\Conversao;
+
+$request = $_SERVER['REQUEST_URI'];
+
+$conversao = new Conversao( $request );
+
+$conversao->responseCode();
+$conversao->responseContent();
+
+
+
