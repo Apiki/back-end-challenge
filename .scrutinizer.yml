@@ -3,4 +3,4 @@ build:
     analysis:
       environment:
         php:
-          version: 7.2.13
+          version: 7.4
