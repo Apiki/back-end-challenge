@@ -29,12 +29,12 @@ class CurrencyConverterService
     }
 
     /**
-     * @param float $rate
+     * @param string $rate
      * @return void
      */
-    public function setRate(float $rate): void
+    public function setRate(string $rate): void
     {
-        $this->rate = $rate;
+        $this->rate = floatval($rate);
     }
 
     /**

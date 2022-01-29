@@ -1,10 +1,10 @@
-<?php // @codingStandardsIgnoreStart
+<?php
 
 namespace App\models;
 
-enum CoinSymbolEnum: string
+class CoinSymbolModel
 {
-    case BRL = 'R$';
-    case USD = '$';
-    case EUR = '€';
+    const BRL = 'R$';
+    const USD = '$';
+    const EUR = '€';
 }

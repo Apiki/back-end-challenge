@@ -20,13 +20,13 @@ class ExchangeController
     public function conversion(string $amount, string $from, string $to, string $rate): void
     {
         try {
-            $coinFrom = new CoinModel(floatval($amount), $from);
-            $coinTo = new CoinModel(null, $to);
+            $coinFrom = new CoinModel($amount, $from);
+            $coinTo = new CoinModel('', $to);
 
             $currecyConverter = new CurrencyConverterService();
             $currecyConverter->setFrom($coinFrom);
             $currecyConverter->setTo($coinTo);
-            $currecyConverter->setRate(floatval($rate));
+            $currecyConverter->setRate($rate);
 
             $coinTo = $currecyConverter->converter();
             Response::render($coinTo);

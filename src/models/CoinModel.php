@@ -7,18 +7,18 @@ use Exception;
 class CoinModel
 {
 
-    private float|null $amount;
+    private float $amount;
     private string $currency;
     private string $symbol;
 
     /**
-     * @param float|null $amount
+     * @param mixed $amount
      * @param string $currency
      * @throws Exception
      */
-    public function __construct(float|null $amount, string $currency)
+    public function __construct(string $amount, string $currency)
     {
-        $this->amount = $amount;
+        $this->amount = floatval($amount);
         $this->currency = $currency;
         $this->setSymbol();
     }
@@ -48,26 +48,22 @@ class CoinModel
     private function setSymbol(): void
     {
         try {
-            foreach (CoinSymbolEnum::cases() as $cases) {
-                if ($cases->name == $this->currency) {
-                    $this->symbol = $cases->value;
-                }
-            }
-
-            if (empty($this->symbol)) {
+            if (!defined(CoinSymbolModel::class . "::" . $this->currency)) {
                 throw new Exception('O valor de "currency" não está definido corretamente');
             }
+
+            $this->symbol = constant(CoinSymbolModel::class . "::" . $this->currency);
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
     }
 
     /**
-     * @return float|null
+     * @return float
      */
-    public function getAmount(): float|null
+    public function getAmount(): float
     {
-        return $this->amount;
+        return $this->amount ?? 0.0;
     }
 
     /**
@@ -85,5 +81,4 @@ class CoinModel
     {
         return $this->symbol;
     }
-
 }
