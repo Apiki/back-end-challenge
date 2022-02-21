@@ -15,3 +15,15 @@
 declare(strict_types=1);
 
 require __DIR__ . '/vendor/autoload.php';
+
+use \App\Converter;
+
+$request = $_SERVER['REQUEST_URI'];
+
+$converter = new Converter( $request );
+
+$converter->responseCode();
+$converter->responseContent();
+
+
+
