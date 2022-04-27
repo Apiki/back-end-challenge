@@ -1,8 +1,11 @@
 <?php 
+namespace Src;
 require_once __DIR__ . '/output.php';
 require_once __DIR__ . '/request.php';
 require_once __DIR__ . '/exchange.php';
-
+use Src\Request;
+use Src\Exchange;
+use Src\Output;
 class API { 
 	public function init() {
 		$request = new Request();

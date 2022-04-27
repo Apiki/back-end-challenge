@@ -1,4 +1,5 @@
 <?php 
+namespace Src;
 	class Currency {
 		protected $currencies;
 

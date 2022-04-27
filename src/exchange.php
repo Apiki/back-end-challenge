@@ -1,5 +1,7 @@
 <?php 
+namespace Src;
 require('currency.php');
+use Src\Currency;
 	class Exchange {
 		protected $object;
 		public function __construct($object) {

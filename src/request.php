@@ -1,4 +1,5 @@
 <?php 
+namespace Src;
 	class Request {
 		protected $request;
 		private $parameters, $currencyLenght = 3;
