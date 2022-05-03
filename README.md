@@ -26,6 +26,9 @@ Desenvolva uma **REST API** que faça conversão de moedas.
 * Serão executados testes automatizados para validação dos requisitos:
    * Levantar servidor embutido do PHP: `php -S localhost:8000 index.php`;
    * Executando testes: `composer test`;
+   * Executando lint: `composer lint`;
+  
+*Obs.: Não esqueça de executar o `composer test` e `composer lint`.*
 
 ## Instruções
 
@@ -35,7 +38,7 @@ Desenvolva uma **REST API** que faça conversão de moedas.
 
 ## Pré-requisitos
 
-* PHP >= 7.2
+* PHP 7.4
 * Orientado a objetos
 
 ## Dúvidas
