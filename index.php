@@ -2,7 +2,7 @@
 /**
  * Back-end Challenge.
  *
- * PHP version 7.2
+ * PHP version 7.4
  *
  * Este será o arquivo chamado na execução dos testes automátizados.
  *
