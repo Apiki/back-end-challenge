@@ -6,20 +6,23 @@ class HandleInputData
 
     function __construct()
     {
-        $this->inputDataFromUrl = $_SERVER[REQUEST_URI];
+        $this->inputDataFromUrl = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
     }
 
     public function getUrlData()
     {
-        $urlAttributes = preg_split("/\//", $this->inputDataFromUrl);
-        
-        $dataForAnalysis = array(
-            'amount' => str_replace(",", ".", $urlAttributes[2]),
-            'rate' => str_replace(",", ".", $urlAttributes[5]),
-            'coinFrom' => $urlAttributes[3],
-            'coinTo' => $urlAttributes[4],
-        );
+        $urlAttributes = $this->getUrlAttributes();
+        $dataForAnalysis = [];
 
+        if($urlAttributes){
+            
+            $dataForAnalysis = [
+                'amount' => str_replace(",", ".", $urlAttributes[2]),
+                'rate' => str_replace(",", ".", $urlAttributes[5]),
+                'coinFrom' => $urlAttributes[3],
+                'coinTo' => $urlAttributes[4],
+            ];
+        }
         return $dataForAnalysis;
     }
 
@@ -43,5 +46,11 @@ class HandleInputData
 
         return json_encode($conversionResult);
     }
+
+    public function getUrlAttributes()
+    {
+        return preg_split("/\//", $this->inputDataFromUrl);
+    } 
+
 
 }

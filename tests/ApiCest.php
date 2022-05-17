@@ -36,7 +36,7 @@ class ApiCest
         $I->seeResponseIsJson();
     }
 
-    public function tryApiNegativeValue(ApiTester $I) 
+    public function tryApiNegativeValue(ApiTester $I) #OK
     {
         $I->sendGET('/-10/EUR/USD/0.5');
         $I->seeResponseCodeIs(400);

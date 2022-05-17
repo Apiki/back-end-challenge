@@ -8,7 +8,7 @@ class ValidateInputData{
     {
         $handleInputData = new HandleInputData();
         $data = $handleInputData->getUrlData();
-        $validateUrlAttributes = $this->validateFieldsAmountAndRate($data['amount'], $data['rate']) && $this->validateFieldsFromAndTo($data['coinFrom'], $data['coinTo']);
+        $validateUrlAttributes = $this->validateFieldsAmountAndRate($data['amount'], $data['rate']) && $this->validateFieldsFromAndTo($data['coinFrom'], $data['coinTo']) && $this->validateUrlWithoutValues($handleInputData->getUrlAttributes());
         return $validateUrlAttributes;
     }
 
