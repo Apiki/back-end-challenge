@@ -31,7 +31,7 @@ class HandleInputData
         $symbolFrom = array(
             'BRL' => 'R$',
             'USD' => '$',
-            'EUR' => '€',
+            'EUR' => '&#8364',
         );
 
         return $symbolFrom[$country];
