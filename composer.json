@@ -4,7 +4,11 @@
   "type": "project",
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.4",
-    "codeception/codeception": "^3.0"
+    "codeception/codeception": "^2.4",
+    "codeception/module-laravel": "^2.2",
+    "codeception/module-rest": "^2.0",
+    "codeception/module-webdriver": "^2.0",
+    "codeception/module-asserts": "^2.0"
   },
   "license": "MIT",
   "scripts": {
@@ -13,6 +17,9 @@
     "lint:fix": "./vendor/bin/phpcbf src/"
   },
   "autoload": {
+      "files": [
+        "src/ConversionRequest.php"
+      ],
     "psr-4": {
       "App\\": "src/"
     }
