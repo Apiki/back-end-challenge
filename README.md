@@ -1,12 +1,3 @@
-# Instrução para uso:
-
-Subir a API com:
-* php -S localhost:8000
-
-Executar requisição com os valores de {amount} e {rate} separados por vírgula e não por pontos, exemplos:
-* http://localhost:8000/exchange/10,1/BRL/USD/4,50
-* http://localhost:8000/exchange/10,5/BRL/USD/4
-
 # Back-end Challenge
 
 Desafio para os futuros programadores back-end da Apiki.
