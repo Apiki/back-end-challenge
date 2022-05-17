@@ -29,42 +29,42 @@ class ApiCest
         $I->seeResponseIsJson();
     }
 
-    public function tryApiInvalidValue(ApiTester $I)
+    public function tryApiInvalidValue(ApiTester $I) #ok
     {
         $I->sendGET('/a/EUR/USD/0.5');
         $I->seeResponseCodeIs(400);
         $I->seeResponseIsJson();
     }
 
-    public function tryApiNegativeValue(ApiTester $I)
+    public function tryApiNegativeValue(ApiTester $I) 
     {
         $I->sendGET('/-10/EUR/USD/0.5');
         $I->seeResponseCodeIs(400);
         $I->seeResponseIsJson();
     }
 
-    public function tryApiInvalidFrom(ApiTester $I)
+    public function tryApiInvalidFrom(ApiTester $I) #ok
     {
         $I->sendGET('/10/eur/USD/0.5');
         $I->seeResponseCodeIs(400);
         $I->seeResponseIsJson();
     }
 
-    public function tryApiInvalidTo(ApiTester $I)
+    public function tryApiInvalidTo(ApiTester $I) #ok
     {
         $I->sendGET('/10/EUR/usd/0.5');
         $I->seeResponseCodeIs(400);
         $I->seeResponseIsJson();
     }
 
-    public function tryApiInvalidRate(ApiTester $I)
+    public function tryApiInvalidRate(ApiTester $I) #ok
     {
         $I->sendGET('/10/EUR/USD/a');
         $I->seeResponseCodeIs(400);
         $I->seeResponseIsJson();
     }
 
-    public function tryApiNegativeRate(ApiTester $I)
+    public function tryApiNegativeRate(ApiTester $I) #ok
     {
         $I->sendGET('/10/EUR/USD/-0.5');
         $I->seeResponseCodeIs(400);
