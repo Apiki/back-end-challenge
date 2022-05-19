@@ -1,6 +1,6 @@
 {
   "name": "apiki/back-end-challenge",
-  "description": "Desafio para candidatos a back-end.",
+  "description": "Apiki backend chalenge.",
   "type": "project",
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.4",
