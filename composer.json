@@ -1,20 +1,19 @@
 {
-  "name": "apiki/back-end-challenge",
-  "description": "Desafio para candidatos a back-end.",
-  "type": "project",
-  "require-dev": {
-    "squizlabs/php_codesniffer": "^3.4",
-    "codeception/codeception": "^3.0"
-  },
+  "name": "adriano/conversor",
+  "description": "Sistema conversor de moedas",
+  "authors": [
+    {
+      "name": "Adriano Reis",
+      "email": "adrianoreis@outlook.com.br"
+    }
+  ],
   "license": "MIT",
-  "scripts": {
-    "test": "./vendor/bin/codecept run",
-    "lint": "./vendor/bin/phpcs src/",
-    "lint:fix": "./vendor/bin/phpcbf src/"
-  },
   "autoload": {
     "psr-4": {
-      "App\\": "src/"
+      "App\\": "app//"
     }
+  },
+  "require": {
+    "php": "^7.2"
   }
 }
