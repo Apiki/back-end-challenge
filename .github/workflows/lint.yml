@@ -1,10 +1,8 @@
 name: PHP Lint
 
 on:
-  push:
-    branches: [ Emanuel-Souza ]
   pull_request:
-    branches: [ Emanuel-Souza ]
+    branches: [ master ]
 
 permissions:
   contents: read
