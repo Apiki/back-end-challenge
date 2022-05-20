@@ -2,9 +2,9 @@ name: PHP Lint
 
 on:
   push:
-    branches: [ main ]
+    branches: [ Emanuel-Souza ]
   pull_request:
-    branches: [ main ]
+    branches: [ Emanuel-Souza ]
 
 permissions:
   contents: read
