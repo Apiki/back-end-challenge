@@ -11,7 +11,8 @@ class Response extends HttpMessage
 
     public function withStatus(int $code)
     {
-        return http_response_code($code);
+        http_response_code($code);
+        return $this;
     }
 
     public function send()
