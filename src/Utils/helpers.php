@@ -10,5 +10,5 @@ function dd($value)
 
 function redirect(string $path)
 {
-    header("Location: http://localhost:8000/{$path}");
+    header("Location: http://localhost/back-end-challenge/{$path}");
 }

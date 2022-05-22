@@ -45,7 +45,7 @@ class Router
         }
 
         if (empty($this->args) && !$this->issetRoute($this->request->getUri())) {
-            $this->error = 404;
+            $this->error = 400;
             return;
         }
 

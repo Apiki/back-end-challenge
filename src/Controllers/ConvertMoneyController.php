@@ -17,7 +17,7 @@ class ConvertMoneyController implements IController
         if (!$result) {echo json_encode(["Message" => "A Conversão não é permitida ou as moedas são inválidas"]);
             return $response
                 ->withHeader('Content-type', 'application/json')
-                ->withStatus(401)
+                ->withStatus(400)
                 ->send();
         }
 

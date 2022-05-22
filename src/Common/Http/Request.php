@@ -11,6 +11,9 @@ class Request extends HttpMessage
 
     public function getUri()
     {
+        if ($_SERVER["HTTP_HOST"] === "localhost") {
+            return substr($_SERVER["REQUEST_URI"], strlen("/back-end-challenge"));
+        }
         return $_SERVER['REQUEST_URI'];
     }
 

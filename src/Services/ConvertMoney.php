@@ -18,7 +18,7 @@ class ConvertMoney
     }
     public function convert($amount, $from, $to, $rate)
     {
-        if (!$this->configConversion($from, $to)) {
+        if (!$this->configConversion($from, $to) || $amount < 0 || $rate < 0) {
             return false;
         }
 
