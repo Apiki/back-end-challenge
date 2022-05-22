@@ -15,17 +15,17 @@
 declare(strict_types=1);
 
 use App\Common\Router;
-use App\Controllers\ConvertMoneyController;
-use App\Controllers\HomeController;
+use App\Controllers\{HomeController, ErrorController, ConvertMoneyController};
 
 require __DIR__ . '/vendor/autoload.php';
 
 $router = new Router();
 $router->get("/", HomeController::class);
+$router->get("/error/{code}", ErrorController::class);
 $router->get("/exchange/{amount}/{from}/{to}/{rate}", ConvertMoneyController::class);
 
 $router->run();
 
 if ($router->error()) {
-    echo $router->error();
+    redirect("error/{$router->error()}");
 }
