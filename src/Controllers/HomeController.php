@@ -2,8 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Common\Http\Request;
-use App\Common\Http\Response;
+use App\Common\Http\{Request, Response};
 
 class HomeController implements IController
 {
