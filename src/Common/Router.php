@@ -7,6 +7,8 @@ use App\Common\Http\Response;
 
 class Router
 {
+    use RouterTrait;
+
     private $routes;
     private $request;
     private $response;
@@ -42,48 +44,39 @@ class Router
             $this->matchRoutes($key, $route);
         }
 
-        if (empty($this->args)) {
+        if (empty($this->args) && !$this->issetRoute($this->request->getUri())) {
             $this->error = 404;
             return;
         }
 
-        $this->normalizeArgs();
+        $this->normalizeArgs($this->args, $this->route);
         $controller = new $this->routes[$this->request->getMethod()][$this->route]["handler"]();
         $controller->handle($this->request, $this->response, $this->args);
     }
 
+    private function issetRoute($route)
+    {
+        if (array_key_exists($route, $this->routes[$this->request->getMethod()])) {
+            $this->args = [
+                "route" => $route,
+                "args" => []
+            ];
+
+            return true;
+        }
+
+        return false;
+    }
+
     private function matchRoutes($key, $route)
     {
-      if (preg_match_all('~' . $route['route'] . '~', $this->request->getUri(), $matches)) {
-          unset($matches[0]);
-          $this->args = [
-              "route" => $key,
-              "args" => $matches
-          ];
-      }
-    }
-
-    private function normalizeArgs()
-    {
-      preg_match_all("/(\{\w*})/", $this->args["route"], $matches);
-      foreach ($matches[0] as $key => $value) {
-          $matches[0][$key+1] = $value;
-      }
-      unset($matches[0][0]);
-
-      $this->route = $this->args["route"];
-      foreach ($this->args["args"] as $key => $value) {
-          $this->args[ltrim(rtrim($matches[0][$key], "}"), "{")] = $value[0];
-      }
-
-      unset($this->args["route"]);
-      unset($this->args["args"]);
-    }
-
-    private function parseUrl($path)
-    {
-        $path = str_replace("/", "\/", $path);
-        return preg_replace("/(\{\w*})/", "(.*)", $path);
+        if (strpos($key, "{") && preg_match_all('~' . $route['route'] . '~', $this->request->getUri(), $matches)) {
+            unset($matches[0]);
+            $this->args = [
+                "route" => $key,
+                "args" => $matches
+            ];
+        }
     }
 
     public function error()
