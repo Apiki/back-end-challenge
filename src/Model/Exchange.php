@@ -1,9 +1,23 @@
 <?php
-
+/**
+ * This file is part of the Exchange Rate package, an API for managing
+ *
+ * @category Controllers.
+ * @package  App\Controllers.
+ * @author   Marcos Matos <marcosvm000@gmail.com>
+ * @license  http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @link     <https://www.linkedin.com/in/marcos-matos-47596a160/>
+ */
 namespace App\Model;
 
 /**
+ * Class Exchange.
  *
+ * @category Controllers.
+ * @package  App\Controllers.
+ * @author   Marcos Matos <marcosvm000@gmail.com>
+ * @license  http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @link     <https://www.linkedin.com/in/marcos-matos-47596a160/>
  */
 class Exchange
 {
@@ -17,52 +31,48 @@ class Exchange
     ];
 
     /**
-     * USD Currency value.
-     */
-    const USD_TO_BRL = 4.82;
-
-    /**
-     * EUR Currency value.
-     */
-    CONST EUR_TO_BRL = 5.17;
-
-    /**
      * Amount of money to convert.
      *
      * @var
      */
-    private  $amount;
+    private  $_amount;
 
     /**
      * Currency to convert from.
      *
      * @var
      */
-    private  $coin_from;
+    private  $_coin_from;
 
     /**
      * Currency to convert to.
      *
      * @var
      */
-    private  $coin_to;
+    private  $_coin_to;
 
     /**
      * Rate of conversion.
      *
      * @var
      */
-    private  $rate;
+    private  $_rate;
 
     /**
-     * @param float $amount Amount of money to convert.
+     * Constructor.
+     *
+     * @param float  $_amount   Amount of money to convert.
      * @param string $coin_from Currency to convert from.
-     * @param string  Currency to convert to.
-     * @param float $rate Rate of conversion.
+     * @param string $coin_to   Currency to convert to.
+     * @param float  $rate      Rate of conversion.
      */
-    public function __construct(float $amount, string $coin_from, string $coin_to, float $rate)
-    {
-        $this->setAmount($amount);
+    public function __construct(
+        float $_amount,
+        string $coin_from,
+        string $coin_to,
+        float $rate
+    ) {
+        $this->setAmount($_amount);
         $this->setCoinFrom($coin_from);
         $this->setCoinTo($coin_to);
         $this->setRate($rate);
@@ -75,88 +85,23 @@ class Exchange
      */
     public function makeConversion(): array
     {
-        $new_amount = $this->getAmount() - $this->getRate();
+        $new_amount = $this->getAmount() * $this->getRate();
 
-        switch ($this->getCoinTo()) {
-            case 'USD':
-                $new_amount = $this->convertToUSD($new_amount);
-                break;
-            case 'EUR':
-                $new_amount = $this->convertToEUR($new_amount);
-                break;
-            case 'BRL':
-                $new_amount  = $this->convertToBRL($new_amount);
-                break;
-        }
-
-        return $this->makeResponse($new_amount);
+        return $this->_makeResponse($new_amount);
     }
 
-    /**
-     * Convert to BRL.
-     *
-     * @param float $new_amount New amount of money to convert.
-     * @return float
-     */
-    private function convertToBRL(float $new_amount): float
-    {
-        if ('USD' === $this->getCoinFrom()) {
-
-            $new_amount = $new_amount * self::USD_TO_BRL;
-
-        }elseif('EUR' === $this->getCoinFrom()) {
-
-            $new_amount = $new_amount * self::EUR_TO_BRL;
-
-        }
-
-        return $new_amount;
-    }
-
-    /**
-     * Convert to USD.
-     *
-     * @param float $amount Amount of money to convert.
-     * @return float
-     */
-    private function convertToUSD(float $amount): float
-    {
-        if ('BRL' === $this->getCoinFrom()) {
-
-            $amount = $amount / self::USD_TO_BRL;
-
-        }
-
-        return $amount;
-    }
-
-    /**
-     * Convert to EUR.
-     *
-     * @param float $amount Amount of money to convert.
-     * @return float
-     */
-    private function convertToEUR(float $amount): float
-    {
-        if ('BRL' === $this->getCoinFrom()) {
-
-            $amount = $amount / self::EUR_TO_BRL;
-
-        }
-
-        return $amount;
-    }
 
     /**
      * Make endpoint response.
      *
      * @param float $new_amount New amount of money.
+     *
      * @return array
      */
-    private function makeResponse(float $new_amount): array
+    private function _makeResponse(float $new_amount): array
     {
         return [
-            'valorConvertido' => (int) $new_amount,
+            'valorConvertido' => $new_amount,
             'simboloMoeda' => self::SYMBOLS[$this->getCoinTo()],
         ];
     }
@@ -168,17 +113,19 @@ class Exchange
      */
     public function getAmount()
     {
-        return $this->amount;
+        return $this->_amount;
     }
 
     /**
      * Set amount.
      *
-     * @param mixed $amount
+     * @param mixed $_amount Amount of money to convert.
+     *
+     * @return void
      */
-    public function setAmount($amount)
+    public function setAmount($_amount)
     {
-        $this->amount = $amount;
+        $this->_amount = $_amount;
     }
 
     /**
@@ -188,17 +135,19 @@ class Exchange
      */
     public function getCoinFrom()
     {
-        return $this->coin_from;
+        return $this->_coin_from;
     }
 
     /**
      * Set coin_from.
      *
-     * @param mixed $coin_from
+     * @param mixed $coin_from Currency to convert from.
+     *
+     * @return void
      */
     public function setCoinFrom($coin_from)
     {
-        $this->coin_from = $coin_from;
+        $this->_coin_from = $coin_from;
     }
 
     /**
@@ -208,17 +157,19 @@ class Exchange
      */
     public function getCoinTo()
     {
-        return $this->coin_to;
+        return $this->_coin_to;
     }
 
     /**
      * Set coin_to.
      *
-     * @param mixed $coin_to
+     * @param mixed $coin_to Currency to convert to.
+     *
+     * @return void
      */
     public function setCoinTo($coin_to)
     {
-        $this->coin_to = $coin_to;
+        $this->_coin_to = $coin_to;
     }
 
     /**
@@ -228,17 +179,19 @@ class Exchange
      */
     public function getRate()
     {
-        return $this->rate;
+        return $this->_rate;
     }
 
     /**
      * Set rate.
      *
-     * @param mixed $rate
+     * @param mixed $rate Rate of conversion.
+     *
+     * @return void
      */
     public function setRate($rate)
     {
-        $this->rate = $rate;
+        $this->_rate = $rate;
     }
 
 }
