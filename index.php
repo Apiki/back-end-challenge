@@ -8,10 +8,17 @@
  *
  * @category Challenge
  * @package  Back-end
- * @author   Seu Nome <seu-email@seu-provedor.com>
+ * @author   Marcos Matos <marcosvm000@gmail.com>
  * @license  http://opensource.org/licenses/MIT MIT
- * @link     https://github.com/apiki/back-end-challenge
+ * @link     https://github.com/MarcosVVMK/marcos-matos
  */
 declare(strict_types=1);
 
+use App\Controllers\RequestController;
+
 require __DIR__ . '/vendor/autoload.php';
+
+$controller = new RequestController();
+
+$controller->processRequest(explode('/', $_SERVER['REQUEST_URI']));
+
