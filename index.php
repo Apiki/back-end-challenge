@@ -8,10 +8,16 @@
  *
  * @category Challenge
  * @package  Back-end
- * @author   Seu Nome <seu-email@seu-provedor.com>
+ * @author   Gabriel Palhares <garpalhares@gmail.com>
  * @license  http://opensource.org/licenses/MIT MIT
  * @link     https://github.com/apiki/back-end-challenge
  */
 declare(strict_types=1);
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: GET");
 
 require __DIR__ . '/vendor/autoload.php';
+
+$api = new App\Api();
+$api->start();
