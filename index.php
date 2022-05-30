@@ -12,6 +12,19 @@
  * @license  http://opensource.org/licenses/MIT MIT
  * @link     https://github.com/apiki/back-end-challenge
  */
-declare(strict_types=1);
 
+require("./bootstrap.php");
 require __DIR__ . '/vendor/autoload.php';
+
+use App\core\Controller;
+
+try{
+	$controller = new Controller;
+	$controller->load();
+	$controller->exec();
+}catch(\Exception $e){
+	echo $e->getMessage();
+	die;
+}
+
+
