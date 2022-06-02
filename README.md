@@ -38,7 +38,7 @@ Desenvolva uma **REST API** que faça conversão de moedas.
 
 ## Pré-requisitos
 
-* PHP 7.4
+* PHP => 7.4
 * Orientado a objetos
 
 ## Dúvidas
