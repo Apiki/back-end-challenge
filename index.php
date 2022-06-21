@@ -16,3 +16,30 @@ declare(strict_types=1);
 
 require __DIR__ . '/vendor/autoload.php';
 
+require __DIR__ . "/Src/Controllers/Web.php";
+
+
+use CoffeeCode\Router\Router;
+
+
+define("URL_BASE", "http:localhost:8000/exchange");
+
+$router = new Router(URL_BASE);
+
+$router->namespace("App\Controllers");
+
+$router->get("/{amount}/{from}/{to}/{rate}", "Web:convert");
+
+
+
+
+$router->group("oops");
+$router->get("/{errcode}", "Web:error");
+
+
+$router->dispatch();
+
+
+if($router->error()){
+    $router->redirect("/oops/{$router->error()}");
+}
