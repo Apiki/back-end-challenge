@@ -16,3 +16,9 @@ declare(strict_types=1);
 
 require __DIR__ . '/vendor/autoload.php';
 
+/* torna a uri em um array */
+
+require "converterMoeda.php";
+
+$moeda = new converterMoeda();
+$moeda->exibir();
