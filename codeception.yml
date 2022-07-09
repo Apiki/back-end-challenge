@@ -6,7 +6,7 @@ suites:
         modules:
             enabled:
                 - REST:
-                    url: http://localhost:8000/exchange
+                    url: http://localhost:8000/index.php/exchange
                     depends: PhpBrowser
 
 paths:
