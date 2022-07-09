@@ -22,7 +22,7 @@ $config = ['settings' => ['displayErrorDetails' => true]];
 $container = new \Slim\Container($config);
 $app = new \Slim\App($container);
 
-$app->get('/', '\App\Exchange:init');
-$app->get('/exchange/', '\App\Exchange:init');
-$app->get('/exchange[/{amount:[A-Za-z0-9.-]+}[/{from}[/{to}[/{rate:[A-Za-z0-9.-]+}]]]]', '\App\Exchange:init');
+$app->get('/', '\App\Controllers\Exchange:init');
+$app->get('/exchange/', '\App\Controllers\Exchange:init');
+$app->get('/exchange[/{amount:[A-Za-z0-9.-]+}[/{from}[/{to}[/{rate:[A-Za-z0-9.-]+}]]]]', '\App\Controllers\Exchange:init');
 $app->run();
