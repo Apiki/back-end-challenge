@@ -58,7 +58,7 @@ final class Exchange
         }
 
         $data = [
-            'valorConvertido' => $this->convert($args['amount'], $args['rate']),
+            'valorConvertido' => $this->_convert($args['amount'], $args['rate']),
             'simboloMoeda' => $this->currencySymbol[$args['to']],
         ];
 
@@ -66,14 +66,14 @@ final class Exchange
     }
 
     /**
-     * Convert.
+     * Convert values.
      *
      * @param int|float $amount Amount.
      * @param int|float $rate   Rate.
      *
      * @return float
      */
-    public function convert($amount, $rate): float
+    private function _convert($amount, $rate): float
     {
         return floatval(number_format($amount * $rate, 2, '.', ''));
     }
