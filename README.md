@@ -1,46 +1,43 @@
 # Back-end Challenge
 
-Desafio para os futuros programadores back-end da Apiki.
+Desafio back-end da Apiki.
 
 ## Introdução
 
-Desenvolva uma **REST API** que faça conversão de moedas.
+A **REST API** desenvolvida faz a conversão de moedas.
 
-**Especifícações**:
+## Instruções
 
-* A URL da requisição deve seguir o seguinte formato:
-   * http://localhost:8000/exchange/{amount}/{from}/{to}/{rate}
-   * http://localhost:8000/exchange/10/BRL/USD/4.50
-* A resposta deve seguir o seguinte formato:
+1. Clonar o repositório: `git clone https://github.com/luispaiva/back-end-challenge`;
+1. Troque de branch: `git checkout luis-paiva`;
+2. Instalar as dependências utilizando composer: `composer install`;
+3. Levantar servidor embutido do PHP: `php -S localhost:8000 index.php`; 
+4. Executar o lint do código: `composer lint`;
+5. Executar os testes: `composer test`;
+
+**Especificações**:
+
+* Para realizar os testes com o servidor web embutido do PHP, esse é o formato da URL:
+   * http://localhost:8000/index.php/exchange/{amount}/{from}/{to}/{rate}
+   * http://localhost:8000/index.php/exchange/10/BRL/USD/4.50
+
+   <br>
+   
+   *Obs.: Você deve usar `index.php/exchange/10/BRL/USD/4.50` em vez de `exchange/10/BRL/USD/4.50` na URL para garantir que o servidor web embutido do PHP chame o arquivo principal index.php.*
+   <br>
+
+* Para realizar os testes em localhost, esse é o formato da URL:
+   * http://localhost/back-end-challenge/exchange/{amount}/{from}/{to}/{rate}
+   * http://localhost/back-end-challenge/exchange/10/BRL/USD/4.50
+   
+* A resposta segue o seguinte formato:
    ```json
    {
      "valorConvertido": 45,
      "simboloMoeda": "$"
    }
    ```
-* Conversões:
-    * De Real para Dólar;
-    * De Dólar para Real;
-    * De Real para Euro;
-    * De Euro para Real;
-* Serão executados testes automatizados para validação dos requisitos:
-   * Levantar servidor embutido do PHP: `php -S localhost:8000 index.php`;
-   * Executando testes: `composer test`;
-   * Executando lint: `composer lint`;
-
-## Instruções
-
-1. Efetue o fork deste repositório e crie um branch com o seu nome e sobrenome. (exemplo: fulano-dasilva)
-2. Após finalizar o desafio, crie um Pull Request.
-3. Aguarde algum contribuidor realizar o code review.
- 
-*Obs.: Não esqueça de executar o `composer test` e `composer lint` localmente.*
 
 ## Pré-requisitos
 
 * PHP => 7.4
-* Orientado a objetos
-
-## Dúvidas
-
-Em caso de dúvidas, crie uma issue.
