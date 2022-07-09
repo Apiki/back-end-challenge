@@ -9,7 +9,7 @@
  * @package  Back-end
  * @author   Luis Paiva <contato@luispaiva.com.br>
  * @license  http://opensource.org/licenses/MIT MIT
- * @link     https://github.com/Apiki/back-end-challenge
+ * @link     https://github.com/luispaiva/back-end-challenge/tree/luis-paiva
  */
 
 namespace App\Controllers;
@@ -25,7 +25,7 @@ use App\Helpers\Validate;
  * @package  Back-end
  * @author   Luis Paiva <contato@luispaiva.com.br>
  * @license  http://opensource.org/licenses/MIT MIT
- * @link     https://github.com/Apiki/back-end-challenge
+ * @link     https://github.com/luispaiva/back-end-challenge/tree/luis-paiva
  */
 final class Exchange
 {
