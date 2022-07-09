@@ -26,25 +26,25 @@ namespace App\Helpers;
 final class Validate
 {
     /**
-     * Attributes names.
+     * Parameter names.
      *
      * @var array
      */
-    private static $_attributes = ['amount', 'from', 'to', 'rate'];
+    private static $_parameterNames = ['amount', 'from', 'to', 'rate'];
 
     /**
      * From currency.
      *
      * @var array
      */
-    private static $_from = ['EUR', 'USD', 'BRL'];
+    private static $_fromCurrency = ['EUR', 'USD', 'BRL'];
 
     /**
      * To currency.
      *
      * @var array
      */
-    private static $_to = ['EUR', 'USD', 'BRL'];
+    private static $_toCurrency = ['EUR', 'USD', 'BRL'];
 
     /**
      * Validate args.
@@ -64,9 +64,9 @@ final class Validate
             return $error;
         }
 
-        foreach (self::$_attributes as $attribute) {
-            if (! isset($args[$attribute])) {
-                $error->message = "Missing {$attribute} parameter";
+        foreach (self::$_parameterNames as $parameter) {
+            if (! isset($args[$parameter])) {
+                $error->message = "Missing {$parameter} parameter";
                 $error->code = 400;
 
                 return $error;
@@ -87,14 +87,14 @@ final class Validate
             return $error;
         }
 
-        if (! in_array($args['from'], self::$_from)) {
+        if (! in_array($args['from'], self::$_fromCurrency)) {
             $error->message = 'Invalid from currency';
             $error->code = 400;
 
             return $error;
         }
 
-        if (! in_array($args['to'], self::$_to)) {
+        if (! in_array($args['to'], self::$_toCurrency)) {
             $error->message = 'Invalid to currency';
             $error->code = 400;
 
