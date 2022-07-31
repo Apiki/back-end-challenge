@@ -69,7 +69,7 @@ $app->run(
     }
 
     $responseData = [
-        'valorConvertido' => (string)$exchange->convert($to, $rate),
+        'valorConvertido' => (string)$exchange->convert($rate),
         'simboloMoeda' => $exchange->getCurrencySymbol($to)
     ];
 

@@ -31,41 +31,23 @@ class Exchange
      *
      * @var string
      */
-    public string $from;
+    private string $_from;
     /**
      * Valor a trocar
      *
      * @var float
      */
-    public float $qty;
+    private float $_qty;
 
     /**
      * Moedas aceitas
      *
      * @var array|array[]
      */
-    public array $currencies = [
-        'USD' => [
-            'symbol' => '$',
-            'conversionRelation' => [
-                'BRL' => 'm',
-                'EUR' => 'd',
-            ]
-        ],
-        'BRL' => [
-            'symbol' => 'R$',
-            'conversionRelation' => [
-                'USD' => 'd',
-                'EUR' => 'd',
-            ]
-        ],
-        'EUR' => [
-            'symbol' => '€',
-            'conversionRelation' => [
-                'BRL' => 'm',
-                'USD' => 'm',
-            ]
-        ],
+    private array $_currencies = [
+        'USD' => '$',
+        'BRL' => 'R$',
+        'EUR' => '€',
     ];
 
     /**
@@ -76,8 +58,8 @@ class Exchange
      */
     public function __construct(float $qty, string $from)
     {
-        $this->qty = $qty;
-        $this->from = $from;
+        $this->_qty = $qty;
+        $this->_from = $from;
     }
 
 
@@ -90,26 +72,20 @@ class Exchange
      */
     public function isValidCurrency(string $currency): bool
     {
-        return array_key_exists($currency, $this->currencies);
+        return array_key_exists($currency, $this->_currencies);
     }
 
 
     /**
      * Função com a lógica para converter a moeda
      *
-     * @param string $to   Nova moeda
-     * @param float  $rate Taxa de câmbio para operação
+     * @param float $rate Taxa de câmbio para operação
      *
-     * @return float|int|string
+     * @return float|int
      */
-    public function convert(string $to, float $rate)
+    public function convert(float $rate)
     {
-        $operation = $this->currencies[$this->from]['conversionRelation'][$to];
-        if ($rate > 0 && $rate < 1) {
-            return $this->qty * $rate;
-        }
-        $result = $operation === 'm' ? $this->qty * $rate : $this->qty / $rate;
-        return number_format($result);
+        return $this->_qty * $rate;
     }
 
     /**
@@ -121,7 +97,7 @@ class Exchange
      */
     public function getCurrencySymbol(string $currency)
     {
-        return $this->currencies[$currency]['symbol'];
+        return $this->_currencies[$currency];
     }
 
 

@@ -15,8 +15,6 @@
 
 namespace App;
 
-use JetBrains\PhpStorm\ArrayShape;
-
 /**
  * Class Router
  *
@@ -33,13 +31,13 @@ class Router
      *
      * @var string|null
      */
-    public ?string $route;
+    private ?string $_route;
     /**
      * Caminho
      *
      * @var string
      */
-    public string $path;
+    private string $_path;
 
     /**
      * Classe Request
@@ -77,7 +75,7 @@ class Router
      *
      * @return string|null
      */
-    public function getRoute(): ?string
+    private function _getRoute(): ?string
     {
         $routes = [
             '/exchange',
@@ -86,7 +84,7 @@ class Router
             '/exchange/{qty}/{from}/{to}',
             '/exchange/{qty}/{from}/{to}/{rate}'
         ];
-        $routeParams = explode('/', trim($this->path, '/'));
+        $routeParams = explode('/', trim($this->_path, '/'));
         $routeParamsCount = count($routeParams);
         $routesCount = count($routes);
         if ($routeParamsCount > $routesCount) {
@@ -100,13 +98,13 @@ class Router
      *
      * @return string
      */
-    public function getRouteRegex(): string
+    private function _getRouteRegex(): string
     {
         return "@^" .
             preg_replace_callback(
                 '/\{\w+(:([^}]+))?}/',
                 fn() => '([A-Za-z0-9.-]+)',
-                $this->route
+                $this->_route
             )
             . "$@";
     }
@@ -117,12 +115,12 @@ class Router
      *
      * @return array
      */
-    public function getRouteParams(): array
+    private function _getRouteParams(): array
     {
         // Convert route name into regex pattern
-        $routeRegex = $this->getRouteRegex();
+        $routeRegex = $this->_getRouteRegex();
         // Test and match current route against $routeRegex
-        if (preg_match_all($routeRegex, $this->path, $valueMatches)) {
+        if (preg_match_all($routeRegex, $this->_path, $valueMatches)) {
             $values = [];
             for ($i = 1, $iMax = count($valueMatches); $i < $iMax; $i++) {
                 $values[] = $valueMatches[$i][0];
@@ -149,9 +147,9 @@ class Router
     public function resolve(): void
     {
         $path = $this->request->getPath();
-        $this->path = rtrim($path, '/');
-        $this->route = $this->getRoute();
-        $this->routeParams = $this->getRouteParams();
+        $this->_path = rtrim($path, '/');
+        $this->_route = $this->_getRoute();
+        $this->routeParams = $this->_getRouteParams();
     }
 
     /**
