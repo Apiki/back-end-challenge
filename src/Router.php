@@ -8,7 +8,7 @@
  *
  * @category Router
  * @package  Back-end
- * @author   Seu Nome <internickbr@gmail.com>
+ * @author   Nick Granados <internickbr@gmail.com>
  * @license  http://opensource.org/licenses/MIT MIT
  * @link     https://github.com/internick2017/back-end-challenge
  */
@@ -20,18 +20,18 @@ namespace App;
  *
  * @category Router
  * @package  Back-end
- * @author   Seu Nome <internickbr@gmail.com>
+ * @author   Nick Granados <internickbr@gmail.com>
  * @license  http://opensource.org/licenses/MIT MIT
  * @link     https://github.com/internick2017/back-end-challenge
  */
 class Router
 {
     /**
-     * Rota
+     * Rota Regex
      *
      * @var string|null
      */
-    private ?string $_route;
+    private ?string $_routeRegex;
     /**
      * Caminho
      *
@@ -67,30 +67,7 @@ class Router
     {
         $this->request = $request;
         $this->response = $response;
-    }
-
-
-    /**
-     * Obter e validar a rota
-     *
-     * @return string|null
-     */
-    private function _getRoute(): ?string
-    {
-        $routes = [
-            '/exchange',
-            '/exchange/{qty}',
-            '/exchange/{qty}/{from}',
-            '/exchange/{qty}/{from}/{to}',
-            '/exchange/{qty}/{from}/{to}/{rate}'
-        ];
-        $routeParams = explode('/', trim($this->_path, '/'));
-        $routeParamsCount = count($routeParams);
-        $routesCount = count($routes);
-        if ($routeParamsCount > $routesCount) {
-            return null;
-        }
-        return $routes[$routeParamsCount - 1];
+        $this->_routeRegex = $this->_getRouteRegex();
     }
 
     /**
@@ -104,7 +81,7 @@ class Router
             preg_replace_callback(
                 '/\{\w+(:([^}]+))?}/',
                 fn() => '([A-Za-z0-9.-]+)',
-                $this->_route
+                '/exchange/{amount}/{from}/{to}/{rate}'
             )
             . "$@";
     }
@@ -117,25 +94,18 @@ class Router
      */
     private function _getRouteParams(): array
     {
-        // Convert route name into regex pattern
-        $routeRegex = $this->_getRouteRegex();
-        // Test and match current route against $routeRegex
-        if (preg_match_all($routeRegex, $this->_path, $valueMatches)) {
+        if (preg_match_all($this->_routeRegex, $this->_path, $valueMatches)) {
             $values = [];
             for ($i = 1, $iMax = count($valueMatches); $i < $iMax; $i++) {
                 $values[] = $valueMatches[$i][0];
             }
         }
-        $qty = $values[0] ?? null;
-        $from = $values[1] ?? null;
-        $to = $values[2] ?? null;
-        $rate = $values[3] ?? null;
 
         return [
-            'qty' => $qty,
-            'from' => $from,
-            'to' => $to,
-            'rate' => $rate,
+            'amount' => $values[0] ?? null,
+            'from' => $values[1] ?? null,
+            'to' => $values[2] ?? null,
+            'rate' => $values[3] ?? null,
         ];
     }
 
@@ -148,33 +118,22 @@ class Router
     {
         $path = $this->request->getPath();
         $this->_path = rtrim($path, '/');
-        $this->_route = $this->_getRoute();
         $this->routeParams = $this->_getRouteParams();
     }
 
     /**
-     * Validar se o parameter é invalido
-     *
-     * @param array $params Parâmetros da rota
+     * Validar se o rota é invalido
      *
      * @return bool
      */
-    public function checkIsParamNull(array $params): bool
+    public function isValidRoute(): bool
     {
-        $filteredParamsValues = [];
-        foreach ($this->routeParams as $param => $value) {
-            if (in_array($param, $params, true)) {
-                $filteredParamsValues[] = $value;
-            }
-        }
-
-        foreach ($filteredParamsValues as $value) {
+        foreach ($this->routeParams as $value) {
             if ($value === null) {
                 return true;
             }
         }
         return false;
     }
-
-
 }
+

@@ -8,7 +8,7 @@
  *
  * @category Challenge
  * @package  Back-end
- * @author   Seu Nome <internickbr@gmail.com>
+ * @author   Nick Granados <internickbr@gmail.com>
  * @license  http://opensource.org/licenses/MIT MIT
  * @link     https://github.com/internick2017/back-end-challenge
  */
@@ -32,40 +32,35 @@ $app->run(
  * @param Router $router
  * @return false|string
  */ function (Request $request, Response $response, Router $router) {
-    if (
-        $router->checkIsParamNull(['qty', 'from', 'to', 'rate'])
-        || $router->checkIsParamNull(['from', 'to', 'rate'])
-        || $router->checkIsParamNull(['to', 'rate'])
-        || $router->checkIsParamNull(['rate'])
-    ) {
+    if ($router->isValidRoute()) {
         $response->setStatusCode(400);
-        $response->json(['message' => 'como en las favelas']);
+        $response->json(['mensagem' => 'a rota é inválida deve ser assim: /exchange/{amount}/{from}/{to}/{rate}']);
     }
 
-    $qtyParam = $router->routeParams['qty'];
+    $amountParam = $router->routeParams['amount'];
     $rateParam = $router->routeParams['rate'];
 
-    if (!is_numeric($qtyParam) || !is_numeric($rateParam)) {
+    if (!is_numeric($amountParam) || !is_numeric($rateParam)) {
         $response->setStatusCode(400);
-        return $response->json(['message' => 'BAD REQUEST']);
+        return $response->json(['mensagem' => 'os valores devem ser numéricos', 'erros' => ["'$amountParam' e '$rateParam' deve ser números"]]);
     }
 
-    $qty = (float)$qtyParam;
+    $amount = (float)$amountParam;
     $rate = (float)$rateParam;
 
-    if ($qty < 0 || $rate < 0) {
+    if ($amount < 0 || $rate < 0) {
         $response->setStatusCode(400);
-        return $response->json(['message' => 'BAD REQUEST']);
+        return $response->json(['mensagem' => 'os valores devem ser maiores que 0', 'erros' => ["'$amount' e '$rate' deve ser maior que 0"]]);
     }
 
     $from = $router->routeParams['from'];
     $to = $router->routeParams['to'];
 
-    $exchange = new Exchange($qty, $from);
+    $exchange = new Exchange($amount, $from);
 
     if (!$exchange->isValidCurrency($from) || !$exchange->isValidCurrency($to)) {
         $response->setStatusCode(400);
-        return $response->json(['message' => 'BAD REQUEST']);
+        return $response->json(['mensagem' => 'moedas inválidas', 'erros' => ["'$from' e '$to' deve ser de USD, BRL ou EUR"]]);
     }
 
     $responseData = [

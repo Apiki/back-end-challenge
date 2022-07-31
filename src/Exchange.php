@@ -8,7 +8,7 @@
  *
  * @category Exchange
  * @package  Back-end
- * @author   Seu Nome <internickbr@gmail.com>
+ * @author   Nick Granados <internickbr@gmail.com>
  * @license  http://opensource.org/licenses/MIT MIT
  * @link     https://github.com/internick2017/back-end-challenge
  */
@@ -20,7 +20,7 @@ namespace App;
  *
  * @category Exchange
  * @package  Back-end
- * @author   Seu Nome <internickbr@gmail.com>
+ * @author   Nick Granados <internickbr@gmail.com>
  * @license  http://opensource.org/licenses/MIT MIT
  * @link     https://github.com/internick2017/back-end-challenge
  */
@@ -37,7 +37,7 @@ class Exchange
      *
      * @var float
      */
-    private float $_qty;
+    private float $_amount;
 
     /**
      * Moedas aceitas
@@ -53,12 +53,12 @@ class Exchange
     /**
      * Função que recibe os parâmetros principais da class Exchange
      *
-     * @param float  $qty  Valor a trocar.
-     * @param string $from Moeda original.
+     * @param float  $amount Valor a trocar.
+     * @param string $from   Moeda original.
      */
-    public function __construct(float $qty, string $from)
+    public function __construct(float $amount, string $from)
     {
-        $this->_qty = $qty;
+        $this->_amount = $amount;
         $this->_from = $from;
     }
 
@@ -85,7 +85,7 @@ class Exchange
      */
     public function convert(float $rate)
     {
-        return $this->_qty * $rate;
+        return $this->_amount * $rate;
     }
 
     /**

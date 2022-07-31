@@ -8,7 +8,7 @@
  *
  * @category Response
  * @package  Back-end
- * @author   Seu Nome <internickbr@gmail.com>
+ * @author   Nick Granados <internickbr@gmail.com>
  * @license  http://opensource.org/licenses/MIT MIT
  * @link     https://github.com/internick2017/back-end-challenge
  */
@@ -20,7 +20,7 @@ namespace App;
  *
  * @category Response
  * @package  Back-end
- * @author   Seu Nome <internickbr@gmail.com>
+ * @author   Nick Granados <internickbr@gmail.com>
  * @license  http://opensource.org/licenses/MIT MIT
  * @link     https://github.com/internick2017/back-end-challenge
  */
