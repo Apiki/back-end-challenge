@@ -8,7 +8,7 @@
  * @package  Back-end
  * @author   Bernardo Gomes <bernardomgo@gmail.com>
  * @license  http://opensource.org/licenses/MIT MIT
- * @link     https://github.com/apiki/back-end-challenge
+ * @link     https://github.com/bernardomaia/back-end-challenge
  */
 
 
@@ -50,7 +50,7 @@ class Controller
     private function _exchange($data)
     {
         [$amount, $from, $to, $rate] = $data;
-        if (!$amount || !$from || !$to || !$rate) {
+        if (!max($amount, 0) || !$from || !$to || !max($rate, 0)) {
             return ['ERRO' => 'ERRO DE REQUISIÇÃO'];
         }
         if ($from == 'BRL' xor $to == 'BRL') {
