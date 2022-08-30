@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Função para retornar o erro de valor de conversão vazio.
  *
