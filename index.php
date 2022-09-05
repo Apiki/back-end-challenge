@@ -36,4 +36,5 @@ if (!isset($uri[2]) or empty($uri[2]) or
 
 $exchange = new Exchange($uri[2],$uri[3],$uri[4],$uri[5]);
 $exchange->doExchange();
+header('Content-Type: application/json; charset=utf-8');
 exit( $exchange->outputJson() );

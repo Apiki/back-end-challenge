@@ -1,0 +1,5 @@
+RewriteEngine on
+
+RewriteBase /
+#colocar caminho correto
+RewriteRule ./ apiki/back-end-challenge/index.php [NC,QSA,L]
