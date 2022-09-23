@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Este será o arquivo para tratamento de erros.
+ * Este será o arquivo para validação de rotas.
  * 
  * PHP version 8.0.0
  *
@@ -17,7 +17,7 @@ namespace App\Validation;
 use App\Exception\BadRequestException;
 
 /**
- * Classe de validação e tratamento de erro para rotas.
+ * Classe de validação e tratamento de erro na rotas.
  * 
  * PHP version 8.0.0
  *

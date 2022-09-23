@@ -19,7 +19,7 @@ use App\Exception\BadRequestException;
 use App\Validation\RouterValidation;
 
 /**
- * Classe básica de rotas 
+ * Classe de rotas 
  * 
  * PHP version 8.0.0
  *

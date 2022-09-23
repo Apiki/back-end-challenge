@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Este será o arquivo de Controller.
+ * Este é o arquivo de Controller.
  * 
  * PHP version 8.0.0
  *
@@ -18,7 +18,7 @@ use App\Exception\BadRequestException;
 use stdClass;
 
 /**
- * Este será o arquivo de uma classe de erro.
+ * Este é a classe para converter valores de uma moeda para outra.
  * 
  * PHP version 8.0.0
  *
@@ -34,7 +34,7 @@ class ConvertController
     private array $_coinSignals = ['BRL' => 'R$', 'USD' => '$', 'EUR' => '€'];
 
     /**
-     * Função
+     * Função para conversão dos valores de moedas
      * 
      * @param float  $amount valores inteiros e flultuantes 
      * @param string $from   Sigla de moeda original 
@@ -62,7 +62,7 @@ class ConvertController
     }
 
     /**
-     * Basic function to return a bad request
+     * Função de validação dos parâmetros recebidos no controller
      * 
      * @param float  $amount valores inteiros e flultuantes 
      * @param string $from   Sigla de moeda original 

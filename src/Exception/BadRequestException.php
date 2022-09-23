@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Este será o arquivo de Exception.
+ * Este será o arquivo de Exception adicionais.
  * 
  * PHP version 8.0.0
  *
@@ -17,7 +17,7 @@ namespace App\Exception;
 use Exception;
 
 /**
- * Basic function to return a bad request
+ * Função para retornar uma resposta quando for bad request
  * 
  * PHP version 8.0.0
  *
