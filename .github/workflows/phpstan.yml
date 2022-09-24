@@ -15,4 +15,6 @@ jobs:
         uses: php-actions/phpstan@master
         with:
           level: 9
-          path: src/
+          paths_file: 
+            - index.php
+            - src/
