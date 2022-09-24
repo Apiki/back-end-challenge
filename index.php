@@ -15,4 +15,11 @@
 declare(strict_types=1);
 
 require __DIR__ . '/vendor/autoload.php';
+//require __DIR__ . '/src/exchange-class.php';
 
+//$request = $_SERVER['REQUEST_URI'];
+//$exchange = new ExchangeClass( $request );
+
+use App\Core;
+
+$core = new Core();
