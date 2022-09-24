@@ -1,0 +1,17 @@
+name: CI
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  phpstan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: php-actions/composer@v5
+
+      - name: PHPStan Static Analysis
+        uses: php-actions/phpstan@master
+        with:
+          path: src/
