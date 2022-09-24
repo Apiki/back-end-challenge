@@ -24,7 +24,7 @@ Desenvolva uma **REST API** que faça conversão de moedas.
     * De Real para Euro;
     * De Euro para Real;
 * Serão executados testes automatizados para validação dos requisitos:
-   * Levantar servidor embutido do PHP: `php -S localhost:8000 index.php`;
+   * Levantar servidor embutido do PHP: `php -S localhost:8000 src/index.php`;
    * Executando testes: `composer test`;
    * Executando lint: `composer lint`;
 
