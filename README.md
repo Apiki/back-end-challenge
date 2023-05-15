@@ -1,46 +1,22 @@
-# Back-end Challenge
+﻿# Convers-o-de-Moedas
+ --------------------------------------------------------------------
+ PS C:\test> php -S localhost:8000 src/index.php
+[Sat May 13 16:33:41 2023] PHP 7.4.26 Development Server (http://localhost:8000) started
+[Sat May 13 16:33:54 2023] [::1]:59826 Accepted
+[Sat May 13 16:33:54 2023] [::1]:59826 Closing
+--------------------------------------------------------------------
+PS C:\test> composer test
+> phpunit
+PHPUnit 9.6.0 by Sebastian Bergmann and contributors.
 
-Desafio para os futuros programadores back-end da Apiki.
+.                                                                   1 / 1 (100%)  
 
-## Introdução
+Time: 00:00.016, Memory: 6.00 MB
 
-Desenvolva uma **REST API** que faça conversão de moedas.
-
-**Especifícações**:
-
-* A URL da requisição deve seguir o seguinte formato:
-   * http://localhost:8000/exchange/{amount}/{from}/{to}/{rate}
-   * http://localhost:8000/exchange/10/BRL/USD/4.50
-* A resposta deve seguir o seguinte formato:
-   ```json
-   {
-     "valorConvertido": 45,
-     "simboloMoeda": "$"
-   }
-   ```
-* Conversões:
-    * De Real para Dólar;
-    * De Dólar para Real;
-    * De Real para Euro;
-    * De Euro para Real;
-* Serão executados testes automatizados para validação dos requisitos:
-   * Levantar servidor embutido do PHP: `php -S localhost:8000 src/index.php`;
-   * Executando testes: `composer test`;
-   * Executando lint: `composer lint`;
-
-## Instruções
-
-1. Efetue o fork deste repositório e crie um branch com o seu nome e sobrenome. (exemplo: fulano-dasilva)
-2. Após finalizar o desafio, crie um Pull Request.
-3. Aguarde algum contribuidor realizar o code review.
- 
-*Obs.: Não esqueça de executar o `composer test` e `composer lint` localmente.*
-
-## Pré-requisitos
-
-* PHP => 7.4
-* Orientado a objetos
-
-## Dúvidas
-
-Em caso de dúvidas, crie uma issue.
+OK (1 test, 4 assertions)
+--------------------------------------------------------------------
+PS C:\test> composer lint
+> for /r src %f in (*.php) do @(echo Verifying %f & php -l %f)
+Verifying C:\test\src\index.php 
+No syntax errors detected in C:\test\src\index.php
+--------------------------------------------------------------------
