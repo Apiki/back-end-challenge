@@ -1,25 +1,21 @@
 {
-  "name": "apiki/back-end-challenge",
-  "description": "Desafio para candidatos a back-end.",
-  "type": "project",
-  "require": {
-    "php": ">= 7.4"
-  },
-  "require-dev": {
-    "squizlabs/php_codesniffer": "^3.4",
-    "codeception/codeception": "^4.1",
-    "codeception/module-phpbrowser": "^1.0.0",
-    "codeception/module-rest": "^1.0.0"
-  },
-  "license": "MIT",
-  "scripts": {
-    "test": "./vendor/bin/codecept run",
-    "lint": "./vendor/bin/phpcs src/",
-    "lint:fix": "./vendor/bin/phpcbf src/"
-  },
-  "autoload": {
-    "psr-4": {
-      "App\\": "src/"
+    "name": "edgar-pc/test",
+    "description": "Teste de programador",
+    "autoload": {
+        "psr-4": {
+            "EdgarPc\\test\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Edgar Filho"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "9.6"
+    },
+    "scripts": {
+        "test": "phpunit",
+        "lint": "for /r src %f in (*.php) do @(echo Verifying %f & php -l %f)"
     }
-  }
 }
