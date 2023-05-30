@@ -66,4 +66,17 @@ class Converter
         $rate = $this->_exchangeRates['BRL']['EUR'];
         return $amount * $rate;
     }
+
+    /**
+     * Converts from Euro to Brazilian Real
+     *
+     * @param float $amount Value in Euro
+     * 
+     * @return float Value in Brazilian Real
+     */
+    public function fromEuroToReal($amount) 
+    {
+        $rate = $this->_exchangeRates['EUR']['BRL'];
+        return $amount * $rate;
+    }
 }
