@@ -40,4 +40,17 @@ class Converter
         $rate = $this->_exchangeRates['BRL']['USD'];
         return $amount * $rate;
     }
+
+    /**
+     * Converts from US Dollar to Brazilian Real
+     *
+     * @param float $amount Value in US Dollar
+     * 
+     * @return float Value in Brazilian Real
+     */
+    public function fromDollarToReal($amount)
+    {
+        $rate = $this->_exchangeRates['USD']['BRL'];
+        return $amount * $rate;
+    }
 }
