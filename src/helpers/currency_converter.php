@@ -27,4 +27,17 @@ class Converter
             'USD' => 1.07
         ]
     ];
+
+    /**
+     * Converts from Brazilian Real to US Dollar
+     *
+     * @param float $amount Value in Brazilian Real
+     * 
+     * @return float Value in US Dollar
+     */
+    public function fromRealToDollar($amount)
+    {
+        $rate = $this->_exchangeRates['BRL']['USD'];
+        return $amount * $rate;
+    }
 }
