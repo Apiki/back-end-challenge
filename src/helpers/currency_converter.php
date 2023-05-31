@@ -1,13 +1,12 @@
 <?php
-
 /**
- * Class for currency conversion
+ * Currency Converter file
  *
  * PHP version 7.4
  *
  * This file is responsible for the conversion methods.
  *
- * @category Currency
+ * @category Converter
  * @package  Currency\Converter
  * @author   Juliano Firme <julianofirme23@gmail.com>
  * @license  MIT License
@@ -16,7 +15,19 @@
 declare(strict_types=1);
 
 namespace Currency;
-
+/**
+ * Class for currency conversion
+ *
+ * PHP version 7.4
+ *
+ * This file is responsible for the conversion methods.
+ *
+ * @category Converter
+ * @package  Converter
+ * @author   Juliano Firme <julianofirme23@gmail.com>
+ * @license  MIT License
+ * @link     https://github.com/jfirme-sys/back-end-challenge
+ */
 class Converter
 {
     /**
