@@ -7,7 +7,7 @@
  *
  * This file is responsible for return the currency symbols.
  *
- * @category Currency Symbols
+ * @category Currency_Symbols
  * @package  CurrencySymbols\Symbols
  * @author   Juliano Firme <julianofirme23@gmail.com>
  * @license  MIT License
@@ -17,6 +17,13 @@ declare(strict_types=1);
 
 namespace CurrencySymbols;
 
+/**
+ * Converts from Brazilian Real to Euro
+ *
+ * @param string $currency Currency to exchange
+ * 
+ * @return string $symbols Currency symbol
+ */
 function getCurrencySymbol($currency)
 {
     $symbols = [
