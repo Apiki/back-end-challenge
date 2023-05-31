@@ -15,12 +15,60 @@ $app = AppFactory::create();
 $converter = new Converter();
 
 $app->get(
-    '/exchange/{amount}/{from}/{to}/{rate}', 
+    '/exchange[/{amount}[/{from}[/{to}[/{rate}]]]]', 
     function (Request $request, Response $response, array $args) use ($converter) {
         $amount = $args['amount'];
         $from = $args['from'];
         $to = $args['to'];
         $rate = $args['rate'];
+
+        if (empty($amount) || empty($from) || empty($to) || empty($rate)) {
+            $data = [
+                'error' => 'Bad Request',
+                'message' => 'All parameters must be provided',
+            ];
+            $response->getBody()->write(json_encode($data));
+            return $response->withStatus(400)->withHeader('Content-Type', 'application/json');
+        }
+
+        if ($from !== strtoupper($from) || $to !== strtoupper($to)) {
+            $errorData = [
+                'error' => 'Bad Request',
+                'message' => 'Currencies should be uppercase',
+            ];
+            $response->getBody()->write(json_encode($errorData));
+            return $response->withStatus(400)->withHeader('Content-Type', 'application/json');
+        }
+
+        if (empty($from) || empty($to)) {
+            $errorData = [
+                'error' => 'Bad Request',
+                'message' => 'Missing required parameters'
+            ];
+    
+            $response->getBody()->write(json_encode($errorData));
+            return $response->withStatus(400)->withHeader('Content-Type', 'application/json');
+        }
+    
+        if (!is_numeric($amount) || $amount <= 0) {
+            $errorData = [
+                'error' => 'Bad Request',
+                'message' => 'Invalid amount value'
+            ];
+    
+            $response->getBody()->write(json_encode($errorData));
+            return $response->withStatus(400)->withHeader('Content-Type', 'application/json');
+        }
+    
+        if (!is_numeric($rate) || $rate <= 0) {
+            $errorData = [
+                'error' => 'Bad Request',
+                'message' => 'Invalid rate value'
+            ];
+    
+            $response->getBody()->write(json_encode($errorData));
+            return $response->withStatus(400)->withHeader('Content-Type', 'application/json');
+        }
 
         $convertedAmount = 0;
         $symbol = CurrencySymbols\getCurrencySymbol($to);
