@@ -15,7 +15,7 @@ $app = AppFactory::create();
 $converter = new Converter();
 
 $app->get(
-    '/exchange[/{amount}[/{from}[/{to}[/{rate}]]]]', 
+    '/exchange/[{amount}[/{from}[/{to}[/{rate}]]]]', 
     function (Request $request, Response $response, array $args) use ($converter) {
         $amount = $args['amount'];
         $from = $args['from'];
