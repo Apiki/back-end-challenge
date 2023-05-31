@@ -22,8 +22,8 @@ class Converter
     /**
      * Converts from Brazilian Real to US Dollar
      *
-     * @param float $amount Value in Brazilian Real
-     * @param float|null $rate Currency exchange rate
+     * @param float      $amount Value in Brazilian Real
+     * @param float|null $rate   Currency exchange rate
      * 
      * @return float Value in US Dollar
      */
@@ -35,8 +35,8 @@ class Converter
     /**
      * Converts from US Dollar to Brazilian Real
      *
-     * @param float $amount Value in US Dollar
-     * @param float|null $rate Currency exchange rate
+     * @param float      $amount Value in US Dollar
+     * @param float|null $rate   Currency exchange rate
      * 
      * @return float Value in Brazilian Real
      */
@@ -48,8 +48,8 @@ class Converter
     /**
      * Converts from Brazilian Real to Euro
      *
-     * @param float $amount Value in Brazilian Real
-     * @param float|null $rate Currency exchange rate
+     * @param float      $amount Value in Brazilian Real
+     * @param float|null $rate   Currency exchange rate
      * 
      * @return float Value in Euro
      */
@@ -61,8 +61,8 @@ class Converter
     /**
      * Converts from Euro to Brazilian Real
      *
-     * @param float $amount Value in Euro
-     * @param float|null $rate Currency exchange rate
+     * @param float      $amount Value in Euro
+     * @param float|null $rate   Currency exchange rate
      * 
      * @return float Value in Brazilian Real
      */
