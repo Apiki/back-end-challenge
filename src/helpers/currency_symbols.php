@@ -18,7 +18,7 @@ declare(strict_types=1);
 namespace CurrencySymbols;
 
 /**
- * Converts from Brazilian Real to Euro
+ * Get the currency symbol
  *
  * @param string $currency Currency to exchange
  * 
