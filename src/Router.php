@@ -2,8 +2,24 @@
 
 namespace App;
 
+/**
+ * Class Router
+ *
+ * Classe responsável por realizar o roteamento da URL da requisição.
+ *
+ * @package App
+ */
 class Router
 {
+    /**
+     * Realiza o roteamento da URL da requisição.
+     *
+     * @param string $url URL da requisição.
+     *
+     * @return array Dados da requisição roteada (amount, fromCurrency, toCurrency, rate).
+     * @throws \InvalidArgumentException Caso a ação seja inválida, o número de parâmetros seja inválido,
+     *                                    ou o valor ou taxa sejam inválidos.
+     */
     public function route(string $url): array
     {
         $urlParts = explode('/', trim($url, '/'));

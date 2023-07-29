@@ -36,7 +36,10 @@ try {
     // Retornar a resposta em formato JSON
     $response = [
         'valorConvertido' => $convertedAmount,
-        'simboloMoeda' => $requestData['toCurrency'] === CurrencyConverter::CURRENCY_USD ? '$' : 'R$',
+        'simboloMoeda' => 
+            $requestData['toCurrency'] === CurrencyConverter::CURRENCY_USD
+            ? '$'
+            : 'R$',
     ];
 
     header('Content-Type: application/json');
