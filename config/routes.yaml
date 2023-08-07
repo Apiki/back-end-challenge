@@ -1,0 +1,13 @@
+index:
+    path: /
+    controller: App\Controller\ExchangeController::index
+exchange_c:
+    path: /exchange/{amount}/{from}/{to}/{rate}
+    controller: App\Controller\ExchangeController::index
+    methods: GET|HEAD
+    defaults:
+        amount: null
+        from: null
+        to: null
+        rate: null
+    #condition:  "params['id'] < 1000"

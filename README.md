@@ -1,3 +1,9 @@
+## Instruções Francisco Matelli
+
+necessário instalar e rodar o symfony com o comando:
+
+ * symfony server:start
+
 # Back-end Challenge
 
 Desafio para os futuros programadores back-end da Apiki.
