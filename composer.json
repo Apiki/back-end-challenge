@@ -3,7 +3,7 @@
   "description": "Desafio para candidatos a back-end.",
   "type": "project",
   "require": {
-    "php": ">= 7.4"
+    "php": ">= 8.2"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.4",
