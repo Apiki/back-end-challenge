@@ -1,18 +1,27 @@
 <?php
-/**
- * Back-end Challenge.
- *
- * PHP version 7.4
- *
- * Este será o arquivo chamado na execução dos testes automátizados.
- *
- * @category Challenge
- * @package  Back-end
- * @author   Seu Nome <seu-email@seu-provedor.com>
- * @license  http://opensource.org/licenses/MIT MIT
- * @link     https://github.com/apiki/back-end-challenge
- */
-declare(strict_types=1);
 
-require __DIR__ . '/../vendor/autoload.php';
+require 'vendor/autoload.php';
 
+use App\CurrencyConverter;
+
+$requestUri = $_SERVER['REQUEST_URI'];
+$requestMethod = $_SERVER['REQUEST_METHOD'];
+
+if (preg_match('/^\/exchange\/(\d+(\.\d+)?)\/(BRL|USD|EUR)\/(BRL|USD|EUR)\/(\d+(\.\d+)?)/', $requestUri, $matches)) {
+    $amount = (float)$matches[1];
+    $from = strtoupper($matches[3]);
+    $to = strtoupper($matches[4]);
+    $rate = (float)$matches[5];
+
+    $result = CurrencyConverter::convert($amount, $from, $to, $rate);
+
+    if ($result) {
+        echo json_encode($result);
+    } else {
+        http_response_code(400);
+        echo json_encode(['error' => 'Conversão não suportada']);
+    }
+} else {
+    http_response_code(404);
+    echo json_encode(['error' => 'Rota não encontrada']);
+}
