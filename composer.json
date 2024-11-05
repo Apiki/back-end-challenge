@@ -1,25 +1,31 @@
 {
-  "name": "apiki/back-end-challenge",
-  "description": "Desafio para candidatos a back-end.",
-  "type": "project",
-  "require": {
-    "php": ">= 7.4"
-  },
-  "require-dev": {
-    "squizlabs/php_codesniffer": "^3.4",
-    "codeception/codeception": "^4.1",
-    "codeception/module-phpbrowser": "^1.0.0",
-    "codeception/module-rest": "^1.0.0"
-  },
-  "license": "MIT",
-  "scripts": {
-    "test": "./vendor/bin/codecept run",
-    "lint": "./vendor/bin/phpcs src/",
-    "lint:fix": "./vendor/bin/phpcbf src/"
-  },
-  "autoload": {
-    "psr-4": {
-      "App\\": "src/"
+    "name": "alexs/back-end-challenge",
+    "description": "Teste",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Alexs\\BackEndChallenge\\": "src/",
+            "TestApi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "alexsanderkafka",
+            "email": "alexsanderkafka2001alex@gmail.com"
+        }
+    ],
+    "require": {
+      "php": ">= 7.4"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "*",
+        "codeception/codeception": "^4.1",
+        "codeception/module-phpbrowser": "*",
+        "codeception/module-rest": "*"
+    },
+    "scripts": {
+      "test": "./vendor/bin/codecept run",
+      "lint": "./vendor/bin/phpcs src/",
+      "lint:fix": "./vendor/bin/phpcbf src/"
     }
-  }
 }
