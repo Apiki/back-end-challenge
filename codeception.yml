@@ -8,6 +8,7 @@ suites:
                 - REST:
                     url: http://localhost:8000/exchange
                     depends: PhpBrowser
+                    timeout: 30
 
 paths:
     tests: tests
