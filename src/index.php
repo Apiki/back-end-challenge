@@ -1,8 +1,9 @@
 <?php
+
 /**
  * Back-end Challenge.
  *
- * PHP version 7.4
+ * PHP version 7.4+
  *
  * Este será o arquivo chamado na execução dos testes automátizados.
  *
@@ -12,65 +13,60 @@
  * @license  http://opensource.org/licenses/MIT MIT
  * @link     https://github.com/apiki/back-end-challenge
  */
+
 declare(strict_types=1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
+use App\Application;
+use App\Application\Controller\ExchangeController;
+use App\Application\UseCase\ConvertCurrencyUseCase;
+use App\Container;
+use App\Infrastructure\Persistence\InMemoryCurrencyRepository;
+use App\Domain\Model\Exchange\Service\CurrencyExchangeService;
+use Symfony\Component\HttpFoundation\Request;
 
-use App\CurrencyConverter;
+// Create container
+$container = new Container();
 
-// Parse the request URI
-$requestUri = $_SERVER['REQUEST_URI'] ?? '';
-$path = parse_url($requestUri, PHP_URL_PATH);
-
-// Check if path starts with /exchange/
-if (strpos($path, '/exchange/') === 0) {
-    $parts = explode('/', trim($path, '/'));
-    // parts[0] = 'exchange', [1]=amount, [2]=from, [3]=to, [4]=rate
-    if (count($parts) !== 5) {
-        http_response_code(400);
-        header('Content-Type: application/json');
-        echo '{}';
-        exit;
+// Register repositories
+$container->register(
+    'CurrencyRepository',
+    static function () {
+        return new InMemoryCurrencyRepository();
     }
+);
 
-    $amountStr = $parts[1];
-    $from = $parts[2];
-    $to = $parts[3];
-    $rateStr = $parts[4];
-
-    // Validate amount
-    if (!is_numeric($amountStr) || ($amount = (float)$amountStr) <= 0) {
-        http_response_code(400);
-        header('Content-Type: application/json');
-        echo '{}';
-        exit;
+// Register services
+$container->register(
+    'CurrencyExchangeService',
+    static function ($c) {
+        return new CurrencyExchangeService($c->get('CurrencyRepository'));
     }
+);
 
-    // Validate rate
-    if (!is_numeric($rateStr) || ($rate = (float)$rateStr) <= 0) {
-        http_response_code(400);
-        header('Content-Type: application/json');
-        echo '{}';
-        exit;
+$container->register(
+    'ConvertCurrencyUseCase',
+    static function ($c) {
+        return new ConvertCurrencyUseCase(
+            $c->get('CurrencyExchangeService'),
+            $c->get('CurrencyRepository')
+        );
     }
+);
 
-    $converter = new CurrencyConverter();
-    $result = $converter->convert($amount, $from, $to, $rate);
-
-    if ($result === null) {
-        http_response_code(400);
-        header('Content-Type: application/json');
-        echo '{}';
-        exit;
+$container->register(
+    ExchangeController::class,
+    static function ($c) {
+        return new ExchangeController($c->get('ConvertCurrencyUseCase'));
     }
+);
 
-    header('Content-Type: application/json');
-    echo json_encode($result);
-} else {
-    // For other paths, perhaps 404, but tests don't cover
-    http_response_code(404);
-    header('Content-Type: application/json');
-    echo '{}';
-}
+// Load routes from config file
+$routeLoader = include __DIR__ . '/../config/routes.php';
+$routes = $routeLoader();
 
+// Create request and run application
+$request = Request::createFromGlobals();
+$app = new Application($routes, $request, $container);
+$app->run();

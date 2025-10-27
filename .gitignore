@@ -1,1 +1,10 @@
 /vendor/
+/tests/_output/
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.env
+.env.local
