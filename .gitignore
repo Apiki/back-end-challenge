@@ -1,1 +1,5 @@
 /vendor/
+
+# Codeception workaround
+i18n.php
+vendor/i18n.php
