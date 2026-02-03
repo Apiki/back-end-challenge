@@ -1,46 +1,69 @@
-# Back-end Challenge
+# Desafio Back-end Apiki (Conversor de Moedas)
 
-Desafio para os futuros programadores back-end da Apiki.
+Este projeto é um desafio técnico para candidatos a desenvolvedor back-end, implementando uma API simples de conversão de moedas em PHP.
 
-## Introdução
+## Requisitos
 
-Desenvolva uma **REST API** que faça conversão de moedas.
+- PHP >= 7.4
+- Composer
 
-**Especifícações**:
+## Instalação
 
-* A URL da requisição deve seguir o seguinte formato:
-   * http://localhost:8000/exchange/{amount}/{from}/{to}/{rate}
-   * http://localhost:8000/exchange/10/BRL/USD/4.50
-* A resposta deve seguir o seguinte formato:
-   ```json
-   {
-     "valorConvertido": 45,
-     "simboloMoeda": "$"
-   }
+1. Clone o repositório:
+   ```sh
+   git clone https://github.com/pedromarcusso09/back-end-challenge-pedromarcusso09
+   cd back-end-challenge-pedromarcusso09
    ```
-* Conversões:
-    * De Real para Dólar;
-    * De Dólar para Real;
-    * De Real para Euro;
-    * De Euro para Real;
-* Serão executados testes automatizados para validação dos requisitos:
-   * Levantar servidor embutido do PHP: `php -S localhost:8000 src/index.php`;
-   * Executando testes: `composer test`;
-   * Executando lint: `composer lint`;
+2. Instale as dependências:
+   ```sh
+   composer install
+   ```
 
-## Instruções
+## Como executar
 
-1. Efetue o fork deste repositório e crie um branch com o seu nome e sobrenome. (exemplo: fulano-dasilva)
-2. Após finalizar o desafio, crie um Pull Request.
-3. Aguarde algum contribuidor realizar o code review.
- 
-*Obs.: Não esqueça de executar o `composer test` e `composer lint` localmente.*
+O endpoint principal está em `src/index.php` e espera requisições HTTP no seguinte formato:
 
-## Pré-requisitos
+```
+/exchange/{valor}/{from}/{to}/{rate}
+```
 
-* PHP => 7.4
-* Orientado a objetos
+- `valor`: Valor a ser convertido (ex: 10)
+- `from`: Moeda de origem (BRL, USD, EUR)
+- `to`: Moeda de destino (BRL, USD, EUR)
+- `rate`: Taxa de câmbio (ex: 0.2)
 
-## Dúvidas
+### Exemplo de requisição
 
-Em caso de dúvidas, crie uma issue.
+```
+GET /exchange/10/BRL/USD/0.2
+```
+
+Resposta:
+
+```json
+{
+  "valorConvertido": 2,
+  "simboloMoeda": "$"
+}
+```
+
+### Erros comuns
+
+- Parâmetros ausentes ou inválidos retornam HTTP 400 com mensagem de erro.
+- Rota inexistente retorna HTTP 404.
+
+## Testes
+
+Os testes automatizados estão na pasta `tests/` e utilizam o Codeception.
+
+Para rodar os testes:
+
+```sh
+vendor/bin/codecept run
+```
+
+## Scripts úteis
+
+- `composer test` — Executa todos os testes
+- `composer lint` — Verifica padrão de código
+- `composer lint:fix` — Corrige automaticamente problemas de formatação
