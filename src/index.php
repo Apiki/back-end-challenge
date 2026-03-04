@@ -81,7 +81,9 @@ $symbol = $service->getSymbol($to);
 // Returns JSON
 http_response_code(200);
 header('Content-Type: application/json');
-echo json_encode([
+echo json_encode(
+    [
     'valorConvertido' => $converted,
     'simboloMoeda' => $symbol,
-]);
+    ]
+);
