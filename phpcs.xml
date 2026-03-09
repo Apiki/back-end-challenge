@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<ruleset name="Back-end Challenge">
+
+    <description>Regras de código para o desafio</description>
+
+    <config name="php_version" value="83"/>
+
+    <rule ref="PSR12"/>
+
+    <file>src</file>
+
+</ruleset>
