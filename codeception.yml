@@ -8,6 +8,9 @@ suites:
                 - REST:
                     url: http://localhost:8000/exchange
                     depends: PhpBrowser
+            config:
+                PhpBrowser:
+                    url: http://localhost:8000
 
 paths:
     tests: tests
