@@ -16,3 +16,15 @@ declare(strict_types=1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
+use App\Controller\ExchangeController;
+use App\Service\ExchangeService;
+use App\Validation\ExchangeRequestValidator;
+use App\Utils\Url;
+
+$controller = new ExchangeController(
+    new ExchangeService(),
+    new ExchangeRequestValidator(),
+    new Url()
+);
+
+$controller->handle($_SERVER['REQUEST_URI'] ?? '/');
