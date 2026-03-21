@@ -2,6 +2,15 @@
 
 Desafio para os futuros programadores back-end da Apiki.
 
+## Índice
+
+- [Introdução](#introdução)
+- [Instruções](#instruções)
+- [Pré-requisitos](#pré-requisitos)
+- [Dúvidas](#dúvidas)
+- [Instalação e execução com Docker](#instalação-e-execução-com-docker)
+- [Instalação e execução sem Docker (alternativa)](#instalação-e-execução-sem-docker-alternativa)
+
 ## Introdução
 
 Desenvolva uma **REST API** que faça conversão de moedas.
@@ -44,3 +53,65 @@ Desenvolva uma **REST API** que faça conversão de moedas.
 ## Dúvidas
 
 Em caso de dúvidas, crie uma issue.
+
+## Instalação e execução com Docker
+
+Para facilitar a execução do projeto, foi disponibilizado um ambiente Docker.
+
+*Obs.: A API estará disponível em `http://localhost:8000`.*
+
+### Pré-requisitos
+
+* Docker >= 20.10
+* Docker Compose >= 1.29
+
+### Instalação
+
+**1 - Clonar o repositório:**
+
+```sh
+git clone git@github.com:Apiki/back-end-challenge.git
+cd back-end-challenge
+```
+
+**2 - Subir o ambiente:**
+
+```sh
+docker-compose up
+```
+
+## Comandos Úteis Docker
+
+```bash
+# Para visualizar os comandos disponíveis
+make help
+```
+
+```bash
+# Para inicializar o ambiente e instalar as dependências
+make start
+```
+
+```bash
+# Para parar o ambiente
+make stop
+```
+
+```bash
+# Para executar os testes usando composer
+make test
+```
+
+```bash
+# Para executar o lint usando composer
+make lint
+```
+
+---
+
+### Execução sem Docker (alternativa)
+
+```sh
+composer install
+php -S localhost:8000 -t src
+```

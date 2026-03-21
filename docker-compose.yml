@@ -1,0 +1,13 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/common/php-fpm/Dockerfile
+    container_name: "back-end-challenge-app"
+    restart: always
+    ports:
+      - "8000:8000"
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: sh -c "composer install && php -S 0.0.0.0:8000 src/index.php"
