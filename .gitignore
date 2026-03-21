@@ -1,1 +1,5 @@
 /vendor/
+/phpunit.xml
+
+# PHPStorm
+/.idea
