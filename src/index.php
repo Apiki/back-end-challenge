@@ -8,11 +8,16 @@
  *
  * @category Challenge
  * @package  Back-end
- * @author   Seu Nome <seu-email@seu-provedor.com>
+ * @author   João Paulin <ppaulin23@hotmail.com>
  * @license  http://opensource.org/licenses/MIT MIT
- * @link     https://github.com/apiki/back-end-challenge
+ * @link     https://github.com/joaopaulin/back-end-challenge
  */
 declare(strict_types=1);
 
 require __DIR__ . '/../vendor/autoload.php';
+
+use App\Routers\Router;
+
+$router = new Router();
+$router->handleRequest();
 
