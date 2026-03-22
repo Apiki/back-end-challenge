@@ -19,7 +19,9 @@
   },
   "autoload": {
     "psr-4": {
-      "App\\": "src/"
+      "App\\": "src/",
+      "App\\Classes\\": "src/class/",
+      "App\\Routers\\": "src/router/"
     }
   }
 }
