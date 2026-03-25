@@ -14,6 +14,8 @@
  * @link     https://github.com/apiki/back-end-challenge
  */
 
+declare(strict_types=1);
+
 namespace App\Exchange;
 
 /**
