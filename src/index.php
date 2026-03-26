@@ -8,7 +8,7 @@
  *
  * @category Challenge
  * @package  Back-end
- * @author   Seu Nome <seu-email@seu-provedor.com>
+ * @author   Kayo Almondes Tusthler <kayotusthler@gmail.com>
  * @license  http://opensource.org/licenses/MIT MIT
  * @link     https://github.com/apiki/back-end-challenge
  */
@@ -16,3 +16,9 @@ declare(strict_types=1);
 
 require __DIR__ . '/../vendor/autoload.php';
 
+use App\Exchange\ExchangeHandler;
+
+header('Content-Type: application/json');
+
+$handler = new ExchangeHandler();
+$handler->handle($_SERVER['REQUEST_URI']);
