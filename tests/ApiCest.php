@@ -68,7 +68,7 @@ class ApiCest
     {
         $I->sendGET('/10/EUR/USD/-0.5');
         $I->seeResponseCodeIs(400);
-        $I->seeResponseContainsJson();
+        $I->seeResponseIsJson();
     }
 
     public function tryApiBrlToUsd(ApiTester $I)
