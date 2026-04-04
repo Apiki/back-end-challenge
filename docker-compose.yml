@@ -1,0 +1,11 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/app/src
+      - ./tests:/app/tests
+      - ./tests-unit:/app/tests-unit
+      - ./phpunit.xml:/app/phpunit.xml
+      - ./composer.json:/app/composer.json
