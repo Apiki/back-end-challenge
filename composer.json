@@ -3,23 +3,33 @@
   "description": "Desafio para candidatos a back-end.",
   "type": "project",
   "require": {
-    "php": ">= 7.4"
+    "php": ">= 8.1"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.4",
-    "codeception/codeception": "^4.1",
-    "codeception/module-phpbrowser": "^1.0.0",
-    "codeception/module-rest": "^1.0.0"
+    "codeception/codeception": "^5.0",
+    "codeception/module-phpbrowser": "^3.0",
+    "codeception/module-rest": "^3.0",
+    "phpstan/phpstan": "^2.1",
+    "phpunit/phpunit": "^12.5"
   },
   "license": "MIT",
   "scripts": {
     "test": "./vendor/bin/codecept run",
     "lint": "./vendor/bin/phpcs src/",
-    "lint:fix": "./vendor/bin/phpcbf src/"
+    "lint:fix": "./vendor/bin/phpcbf src/",
+    "unit-test": "./vendor/bin/phpunit",
+    "analyse": "./vendor/bin/phpstan analyse src/ --level=9"
   },
   "autoload": {
     "psr-4": {
       "App\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/",
+      "Tests\\Unit\\": "tests-unit/"
     }
   }
 }
