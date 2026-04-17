@@ -14,5 +14,13 @@
  */
 declare(strict_types=1);
 
+use App\Router;
+
 require __DIR__ . '/../vendor/autoload.php';
 
+$router = new Router();
+
+$routes = include __DIR__ . './routes/api.php';
+$routes($router);
+
+$router->dispatch();
