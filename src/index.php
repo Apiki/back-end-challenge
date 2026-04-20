@@ -8,11 +8,19 @@
  *
  * @category Challenge
  * @package  Back-end
- * @author   Seu Nome <seu-email@seu-provedor.com>
+ * @author   Seu Nome <leonardosilvadelima534@gmail.com>
  * @license  http://opensource.org/licenses/MIT MIT
  * @link     https://github.com/apiki/back-end-challenge
  */
 declare(strict_types=1);
 
+use App\Router;
+
 require __DIR__ . '/../vendor/autoload.php';
 
+$router = new Router();
+
+$routes = include __DIR__ . '/routes/api.php';
+$routes($router);
+
+$router->dispatch();
