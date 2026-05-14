@@ -1,46 +1,84 @@
-# Back-end Challenge
+# Back-end Challenge — Apiki
 
-Desafio para os futuros programadores back-end da Apiki.
+REST API de conversão de moedas. Implementação em PHP 8.1+ orientada a objetos.
 
-## Introdução
+## Especificação atendida
 
-Desenvolva uma **REST API** que faça conversão de moedas.
+Endpoint:
 
-**Especifícações**:
+```
+GET http://localhost:8000/exchange/{amount}/{from}/{to}/{rate}
+```
 
-* A URL da requisição deve seguir o seguinte formato:
-   * http://localhost:8000/exchange/{amount}/{from}/{to}/{rate}
-   * http://localhost:8000/exchange/10/BRL/USD/4.50
-* A resposta deve seguir o seguinte formato:
-   ```json
-   {
-     "valorConvertido": 45,
-     "simboloMoeda": "$"
-   }
-   ```
-* Conversões:
-    * De Real para Dólar;
-    * De Dólar para Real;
-    * De Real para Euro;
-    * De Euro para Real;
-* Serão executados testes automatizados para validação dos requisitos:
-   * Levantar servidor embutido do PHP: `php -S localhost:8000 src/index.php`;
-   * Executando testes: `composer test`;
-   * Executando lint: `composer lint`;
+Exemplo do enunciado:
 
-## Instruções
+```bash
+curl http://localhost:8000/exchange/10/BRL/USD/4.50
+```
 
-1. Efetue o fork deste repositório e crie um branch com o seu nome e sobrenome. (exemplo: fulano-dasilva)
-2. Após finalizar o desafio, crie um Pull Request.
-3. Aguarde algum contribuidor realizar o code review.
- 
-*Obs.: Não esqueça de executar o `composer test` e `composer lint` localmente.*
+Resposta:
 
-## Pré-requisitos
+```json
+{
+  "valorConvertido": 45,
+  "simboloMoeda": "$"
+}
+```
 
-* PHP => 7.4
-* Orientado a objetos
+Conversões suportadas: `BRL ⇄ USD` e `BRL ⇄ EUR`. Códigos são *case-sensitive* (`BRL`, `USD`, `EUR`).
 
-## Dúvidas
+## Como rodar
 
-Em caso de dúvidas, crie uma issue.
+### Direto, como o avaliador faz
+
+```bash
+composer install
+php -S localhost:8000 src/index.php
+composer test    # Codeception (integração)
+composer lint    # PHP_CodeSniffer (PSR-12)
+```
+
+### Via Docker (opcional)
+
+```bash
+docker compose up app                     # sobe a API em :8000
+docker compose run --rm test              # roda Codeception
+docker compose run --rm unit-test         # roda PHPUnit (extra)
+docker compose run --rm lint              # roda phpcs
+```
+
+## Testes
+
+- **15 testes Codeception** (`tests/ApiCest.php`) — cobrem os 4 caminhos de conversão exigidos pelo enunciado + todos os caminhos de erro (segmentos faltando, valor inválido, valor negativo, moeda inválida, rate inválida, rate negativa).
+- **46 testes PHPUnit** (`tests-unit/`) — cobertura unitária de `Currency`, `Request` e `Exchange`.
+
+## Estrutura
+
+```
+.
+├── src/
+│   ├── index.php             # entry point chamado por `php -S`
+│   ├── Request.php           # parsing e validação da URI
+│   ├── Currency.php          # enum das moedas (BRL, USD, EUR)
+│   ├── ExchangeInput.php     # VO imutável (readonly)
+│   ├── Exchange.php          # lógica de conversão
+│   ├── ExchangeException.php # exception de domínio (HTTP 400)
+│   └── Response.php          # output JSON
+├── tests/
+│   └── ApiCest.php           # testes de integração (composer test)
+├── tests-unit/               # testes unitários (composer unit-test)
+├── codeception.yml
+├── phpunit.xml
+├── phpcs.xml                 # regras PSR-12
+├── composer.json
+├── Dockerfile
+└── docker-compose.yml
+```
+
+## Decisões de design
+
+- **Validação no boundary, lógica pura no domínio.** `Request` valida a URI e produz um `ExchangeInput`. `Exchange` recebe um `ExchangeInput` já válido — não revalida, não faz I/O.
+- **Enum + readonly VO.** Garantem em tempo de tipagem que só códigos válidos e dados imutáveis circulam entre as camadas.
+- **`round($amount * $rate, 2)`** para evitar drift de ponto flutuante (e.g. `0.1 * 3 = 0.30000000000000004` em IEEE 754).
+- **`JSON_THROW_ON_ERROR`** no encode para que falha de serialização vire `JsonException` capturável, e não um body vazio silencioso.
+- **`ExchangeException` com `getCode() = 400`** para mapear direto pro status HTTP no `index.php`.

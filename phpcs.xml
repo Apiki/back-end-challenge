@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<ruleset name="Apiki Back-end Challenge">
+    <description>PSR-12 coding standard</description>
+
+    <arg name="colors"/>
+    <arg value="sp"/>
+
+    <file>src</file>
+
+    <rule ref="PSR12"/>
+</ruleset>

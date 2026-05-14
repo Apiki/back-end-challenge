@@ -1,0 +1,33 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/app/src
+
+  test:
+    build: .
+    volumes:
+      - ./src:/app/src
+      - ./tests:/app/tests
+      - ./codeception.yml:/app/codeception.yml
+    command: >
+      sh -c "php -S 0.0.0.0:8000 src/index.php &
+             sleep 1 &&
+             ./vendor/bin/codecept run"
+
+  unit-test:
+    build: .
+    volumes:
+      - ./src:/app/src
+      - ./tests-unit:/app/tests-unit
+      - ./phpunit.xml:/app/phpunit.xml
+    command: ./vendor/bin/phpunit
+
+  lint:
+    build: .
+    volumes:
+      - ./src:/app/src
+      - ./phpcs.xml:/app/phpcs.xml
+    command: ./vendor/bin/phpcs src/
