@@ -6,7 +6,7 @@ class ApiCest
     // Erro 400 — segmentos faltando
     // -----------------------------------------------------------------
 
-    public function tryApiWithoutValue(ApiTester $I)
+    public function tryApiPrefixOnly(ApiTester $I)
     {
         $I->sendGET('/exchange');
         $I->seeResponseCodeIs(400);

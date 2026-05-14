@@ -11,6 +11,7 @@
         </testsuite>
     </testsuites>
 
+    <!-- coverage uses PHPUnit 9 schema; migrate to <source> when bumping to PHPUnit 10+ -->
     <coverage>
         <include>
             <directory>src</directory>

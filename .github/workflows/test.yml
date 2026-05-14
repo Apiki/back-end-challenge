@@ -35,7 +35,17 @@ jobs:
         run: php -S localhost:8000 src/index.php > /tmp/server.log 2>&1 &
 
       - name: Wait for server
-        run: sleep 2
+        run: |
+          for i in $(seq 1 30); do
+            if curl -sS -o /dev/null http://localhost:8000/exchange; then
+              echo "Server is up after ${i} attempts"
+              exit 0
+            fi
+            sleep 0.2
+          done
+          echo "Server did not come up in time"
+          cat /tmp/server.log || true
+          exit 1
 
       - name: Run integration suite (Codeception)
         run: composer test
