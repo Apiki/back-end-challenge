@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<ruleset name="Apiki Currency Converter">
+    <description>Coding standards for Apiki challenge</description>
+    
+    <!-- Check all files in src directory -->
+    <file>src</file>
+    
+    <!-- Use PSR12 standard -->
+    <rule ref="PSR12"/>
+    
+    <!-- Additional rules -->
+    <arg name="colors"/>
+    <arg value="p"/>
+</ruleset>
